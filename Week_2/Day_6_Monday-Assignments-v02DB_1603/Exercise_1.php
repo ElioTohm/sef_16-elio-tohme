@@ -42,8 +42,12 @@ function count_black_hats_infront($currentindex, $input){
 	return $count;
 }
 
-$input = explode(",", $argv[1]);
-$inputsize = sizeof($input);
+$inputsize = readline("Number of players: ");
+$input = array();
+for ($i = 0; $i < $inputsize; $i++){
+	array_push($input, readline());
+}
+echo "Player will shout :" . "\n";
 $hint="";
 foreach ($input as $key => $value) {
 	if($key == 0){
