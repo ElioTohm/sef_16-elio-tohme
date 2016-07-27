@@ -52,7 +52,6 @@ $hint="";
 foreach ($input as $key => $value) {
 	if($key == 0){
 		$iseven = count_black_hats_infront(0, $input) . "\n";
-		// echo $iseven;
 		if($iseven % 2 == 0){
 			$hint = "Black";
 		}else{
@@ -62,7 +61,6 @@ foreach ($input as $key => $value) {
 	}else{
 		$numberofblackhats = count_black_hats_infront($key, $input);
 		$previousinfo = check_previous_info($key, $input);
-		// echo $numberofblackhats + $previousinfo . "\n";
 		callout_color($previousinfo, $numberofblackhats, $hint) . "\n";
 	}
 }
