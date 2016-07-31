@@ -15,7 +15,7 @@ class GameGenerator{
 		$this->NumTakenSecondArray = $this->TotalNumberInGame - $this->NumTakenFirstArray;
 		shuffle($this->BigNumberArr);
 		shuffle($this->SmallNumberArr);
-	
+		$this->RandomTargetNumber =  rand(101,999);
 	}
 	
 /*push values from the shuffled arrays in a new array that will be returned*/
@@ -30,8 +30,8 @@ class GameGenerator{
  	}
  
 /*Generate random number between 101 and 999 inclusive*/
-	public GenerateRandomTarget(){
-		retrun rand(101,999);
-	} 
+	public function GetGenerateRandomTarget(){
+		return $this->RandomTargetNumber;
+	}
 }
 ?>
