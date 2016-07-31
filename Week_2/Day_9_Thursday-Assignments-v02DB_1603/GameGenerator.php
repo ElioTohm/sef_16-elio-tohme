@@ -29,5 +29,9 @@ class GameGenerator{
  		return $this->GeneratedArray;
  	}
  
+/*Generate random number between 101 and 999 inclusive*/
+	public GenerateRandomTarget(){
+		retrun rand(101,999);
+	} 
 }
 ?>
