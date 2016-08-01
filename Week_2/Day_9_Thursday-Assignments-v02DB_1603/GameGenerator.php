@@ -11,11 +11,11 @@ class GameGenerator{
 
 /*Generate random number taken from the first array, calculate the numbers to take fromt he second array and shuffle the 2 arrays for randomness*/
 	public function __construct(){
-		$this->NumTakenFirstArray = rand(1, 4);
+		$this->NumTakenFirstArray = mt_rand(1, 4);
 		$this->NumTakenSecondArray = $this->TotalNumberInGame - $this->NumTakenFirstArray;
 		shuffle($this->BigNumberArr);
 		shuffle($this->SmallNumberArr);
-		$this->RandomTargetNumber =  rand(101,999);
+		$this->RandomTargetNumber =  mt_rand(101,999);
 	}
 	
 /*push values from the shuffled arrays in a new array that will be returned*/
