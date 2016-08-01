@@ -1,6 +1,6 @@
 <?php
 /*tests for game solver*/
-$array = array(2, 75, 5, 2, 20, 100);
+/*$array = array(2, 75, 5, 2, 20, 100);
 $array2 = array("*","/","+","-");
 function depth_picker($arr, $temp_string, &$collect) {
     if ($temp_string != "" ) $collect [] = $temp_string;    
@@ -134,4 +134,35 @@ $lalala = CheckBestResult($arraytocalculate);
 $reskey = getClosest($lalala,500);
 
 echo $arraytocalculate[$reskey] . "\n";
+*/
+class GameSolver{
+    public function CheckBestResult($array){
+        $max = 0;
+        $result = array();
+        foreach ($array as $key => $value) {
+            $p = eval('return '.$value.';'); 
+            array_push($result, $p);
+        }
+        return $result;
+    }
+
+    public function getClosest($array, $number) {
+        //does an exact match exist?
+        if ($i=array_search($number, $array)) return $i;
+
+        //find closest
+        foreach ($array as $key => $match) {
+            $diff = abs($number-$match); //get absolute value of difference
+            if (!isset($closeness) || (isset($closeness) && $closeness>$diff)) {
+                $closeness = $diff;
+                $closest = $key;
+            }
+        }
+        return $closest;
+    }
+
+    public function GetSolutionInfo($closest , $arraycalculate, $origarray){
+        return $result = array($arraycalculate[$closest], $origarray[$closest]);
+    }
+}
 ?>

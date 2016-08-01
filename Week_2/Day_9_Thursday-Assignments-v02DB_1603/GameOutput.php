@@ -5,7 +5,8 @@ class GameOutput{
 	public function PrintValue($value){
 		echo 'Target: ' . $value . "\n";
 	}
-	public function PrintArray($array, $gamenum){
+	
+	public function PrintGameinfo($array, $gamenum){
 		echo "Game $gamenum:" . "\n{ " ;
 		foreach ($array as $key => $value) {
 			if($key == 0){
@@ -16,6 +17,16 @@ class GameOutput{
 		}
 		echo ' }'. "\n";
 	}
-
+	public function printAnswer($array){
+		echo "{ " ;
+		foreach($array as $key => $value) {
+			if($key == 0){
+				echo $value;
+			}else{
+				echo ', ' . $value;
+			}
+		}
+		echo ' }'. "\n";
+	}
 }
 ?>
