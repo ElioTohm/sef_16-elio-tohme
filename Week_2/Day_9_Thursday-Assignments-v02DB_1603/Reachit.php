@@ -7,14 +7,14 @@ require_once "GameSolver.php";
  
 $numberofgames = readline("How many games would you like me to play today? \n");
 /*since the operators are the same their combination will be the same so we do it once*/
-$operatorcombos = new OperatorArray();
-$operatorArrays = $operatorcombos->createOperatorCombos();
 for($i = 1; $i <= $numberofgames; $i++){
 	$game =  new GameGenerator();
 	$solver =  new GameSolver();
 	$output = new GameOutput();
 	$target = $game->GetGenerateRandomTarget();
 	$array =  $game->getGeneratedArray();
+	$operatorcombos = new OperatorArray();
+	$operatorArrays = $operatorcombos->createOperatorCombos();
 	$operatorcombos->setArraynumbers($array);
 	$operatorcombos->createArray();
 	$output->PrintGameinfo($array, $i);

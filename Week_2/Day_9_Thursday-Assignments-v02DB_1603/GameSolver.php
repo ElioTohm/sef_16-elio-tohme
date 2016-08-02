@@ -6,7 +6,12 @@ class GameSolver{
         $result = array();
         foreach ($array as $key => $value) {
             $p = eval('return '.$value.';');
-            array_push($result, $p);
+            if(!is_float($p)){
+                array_push($result, $p);    
+            }else{
+                unset($array[$key]);
+            }
+            
         }
         return $result;
     }
