@@ -3,7 +3,7 @@
 class GameOutput{
 
 	public function PrintValue($value){
-		echo 'Target: ' . $value . "\n";
+		echo  $value . "\n";
 	}
 	
 	public function PrintGameinfo($array, $gamenum){

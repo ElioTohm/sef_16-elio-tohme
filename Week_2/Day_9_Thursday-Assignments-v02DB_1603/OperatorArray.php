@@ -16,10 +16,12 @@ class OperatorArray{
     public function getarraarraytocalculate(){
     	return $this->arraytocalculate;
     }
+
     public function setArraynumbers($array){
     	$this->array = $array;
     }
-
+    
+/*get $k combination of an array (with repitition)*/
 	public function combos($arr, $k) {
 	    if ($k == 0){
 	        return array(array());
@@ -42,6 +44,7 @@ class OperatorArray{
 	    return $combos;
 	}
 
+/*get the permutation of an array (without repetition)*/
 	public function itterateNumberArray($arr, $temp_string, &$collect) {
     	if ($temp_string != "" ) $collect [] = $temp_string;    
 	        for ($i=0; $i<sizeof($arr);$i++) {
@@ -56,6 +59,7 @@ class OperatorArray{
 		    }   
     }
 
+/*function that returns all combination on numbers and */
     public function createOperatorCombos(){
 		self::itterateNumberArray($this->array2, "", $this->operators);
     	$this->arrayop1 = self::combos($this->array2, 1);
@@ -64,7 +68,9 @@ class OperatorArray{
 		$this->arrayop4 = self::combos($this->array2, 4);
 		$this->arrayop5 = self::combos($this->array2, 5);
     }
-    function addoperators($arr1, $arr2){ 
+
+/*add 2 array $arra1 put values in the even index of the new array and $arr2 in the odd index*/
+    private function addoperators($arr1, $arr2){ 
 	    $result = array();
 	    foreach ($arr1 as $key => $value) {
 	        if(!empty($arr1)) {
@@ -77,6 +83,7 @@ class OperatorArray{
 	    return implode("", $result);
 	}
 
+/*combines both number array and operator array*/
     public function createArray(){
     	self::itterateNumberArray($this->array, "", $this->numbers);
 		foreach ($this->numbers as $key => $value) {
