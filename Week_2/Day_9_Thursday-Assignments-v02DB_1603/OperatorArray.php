@@ -20,7 +20,7 @@ class OperatorArray{
     public function setArraynumbers($array){
     	$this->array = $array;
     }
-    
+
 /*get $k combination of an array (with repitition)*/
 	public function combos($arr, $k) {
 	    if ($k == 0){

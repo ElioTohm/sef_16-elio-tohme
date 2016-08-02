@@ -6,12 +6,9 @@ class GameSolver{
         $result = array();
         foreach ($array as $key => $value) {
             $p = eval('return '.$value.';');
-            if(!is_float($p)){
-                array_push($result, $p);    
-            }else{
-                unset($array[$key]);
+            if(!is_float($p)){ 
+                $result[$key] = $p;
             }
-            
         }
         return $result;
     }
@@ -32,10 +29,10 @@ class GameSolver{
 /*checks if closest is exact or not and return it in an array*/
     public function GetSolutionInfo($closest , $arraycalculate, $origarray, $target){
         if($target == $arraycalculate[$closest]){
-           return $result = array("Solution [Exact]:" . $arraycalculate[$closest], $origarray[$closest]); 
+           return $result = array("Solution [Exact]:", "$origarray[$closest] = $arraycalculate[$closest]"); 
        }else{
             $result = $target - $arraycalculate[$closest];
-            return $result = array("Solution [Remaining: $result]:" , "$origarray[$closest]" );
+            return $result = array("Solution [Remaining: $result]:" , "$origarray[$closest] = $arraycalculate[$closest]" );
        }
         
     }
