@@ -9,7 +9,7 @@ class Records
 			$table = fopen("$table_name.csv", "a+");
 			fputcsv($table, $records);
 			fclose($table);
-		}elseif($checkColumnNumberResult > 0){
+		}elseif($checkColumnNumberResult < 0){
 			echo "You have added $checkColumnNumberResult more than it's needed \n";
 		}else{
 			echo "You have added " . abs($checkColumnNumberResult) . " less than it's needed \n";
