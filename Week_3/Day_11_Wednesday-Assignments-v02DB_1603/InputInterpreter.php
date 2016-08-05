@@ -12,6 +12,8 @@ class InputInterpreter
 					$db->createDataBase($inputArray[2]);
 				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "TABLE"){
 					$db->createTable(array_slice($inputArray, 2));
+				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "ROW"){
+					
 				}else{
 					echo "Unknown command please try again \n";
 				}
@@ -43,9 +45,6 @@ class InputInterpreter
 				}
 				break;
 			case "GET":
-
-				break;
-			case "test":
 				if(sizeof($inputArray) == 2){
 					$db->readRecord($inputArray[1],"");
 				}elseif(sizeof($inputArray) == 3){
@@ -53,6 +52,9 @@ class InputInterpreter
 				}else{
 					echo "Unknown command please try again \n";
 				}
+				break;
+			case "test":
+				
 				break;
 			default:
 				echo "Unknown command please try again \n";
