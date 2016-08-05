@@ -22,11 +22,18 @@ class Records
 
 	}
 
-	function readRecord($table_name)
+	function readRecord($table_name,$searchable)
 	{
-		$table = fopen("$table_name.csv", "r");
-		self::file_get_contents_chunked($table,2);
-		fclose($table_name);
+		$infoarray = self::fetchRecord($table_name);
+		if($searchable != ""){
+			if(self::searchForRecord($infoarray, $searchable)){
+				print_r($infoarray[$searchable]);				
+			}else{
+				echo "Record not found \n";
+			}
+		}else{
+			print_r($infoarray);
+		}
 	}
 
 	private function checkColumnNumber($table_name, $sizeofinput)
@@ -37,7 +44,7 @@ class Records
 		return $numberOfColmuns - $sizeofinput;
 	}
 
-	private function fetchRecord()
+	private function fetchRecord($table_name)
 	{
 		$table_to_array = array();
 		$table_file = fopen("$table_name.csv","r");
@@ -46,6 +53,7 @@ class Records
 			$table_to_array[$key] = $line;
 		}
 		fclose($table_file);
+		return $table_to_array;
 	}
 
 	private function searchForRecord($recordarray,$searchable)
@@ -57,37 +65,37 @@ class Records
 		}
 	}
 
-	function file_get_contents_chunked($handle,$chunk_size)
-	{
-	    try
-	    {
-	        // $handle = fopen($file, "r");
-	        $i = 0;
-	        $x = 0;
+	// function file_get_contents_chunked($handle,$chunk_size)
+	// {
+	//     try
+	//     {
+	//         // $handle = fopen($file, "r");
+	//         $i = 0;
+	//         $x = 0;
 
-	        $chunk = array();
-	        while (!feof($handle)) {
-	            while ($row = fgets($handle)) {
-	                // can parse further $row by usingstr_getcsv
-	                $x ++;
-	                $chunk[] = $row;
-	                if ($x == $chunk_size) {          
-	 					print_r($chunk);
-	                    // call_user_func_array($callback, array($chunk, &$handle, $i));
-	                    // unset($chunk);
-	                    // $x = 0;
-	                }         
-	            }
-	        }
-	        // fclose($handle);
-	    }
-	    catch(Exception $e)
-	    {
-	         trigger_error("file_get_contents_chunked::" . $e->getMessage(),E_USER_NOTICE);
-	         return false;
-	    }
-	    return true;
-	}
+	//         $chunk = array();
+	//         while (!feof($handle)) {
+	//             while ($row = fgets($handle)) {
+	//                 // can parse further $row by usingstr_getcsv
+	//                 $x ++;
+	//                 $chunk[] = $row;
+	//                 if ($x == $chunk_size) {          
+	//  					print_r($chunk);
+	//                     // call_user_func_array($callback, array($chunk, &$handle, $i));
+	//                     // unset($chunk);
+	//                     // $x = 0;
+	//                 }         
+	//             }
+	//         }
+	//         // fclose($handle);
+	//     }
+	//     catch(Exception $e)
+	//     {
+	//          trigger_error("file_get_contents_chunked::" . $e->getMessage(),E_USER_NOTICE);
+	//          return false;
+	//     }
+	//     return true;
+	// }
 
 }
 
