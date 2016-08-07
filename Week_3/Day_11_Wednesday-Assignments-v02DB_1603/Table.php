@@ -10,10 +10,12 @@ class Table extends Records
 			if(!file_exists($table_name_array[0])){
 				$tablename = $table_name_array[0];
 				array_shift($table_name_array);
-		 		$table = fopen("$table_name_array[0].csv", "w");
-		 		fwrite($table, implode(",",$table_name_array));
+		 		$table = fopen("$tablename.csv", "a");
+		 		$header = implode(",",$table_name_array);
+		 		// print_r($header);
+		 		fwrite($table, $header."\n");
 		 		fclose($table);
-		 		echo "$table_name_array[0] CREATED \n";
+		 		echo "$tablename CREATED \n";
 	 		}else{
 	 			echo "Table already exists \n";
 	 		}

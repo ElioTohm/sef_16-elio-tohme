@@ -10,11 +10,11 @@ class Records
 		if(!self::searchForRecord($infoarray, $records[0])){
 			$checkColumnNumberResult = self::checkColumnNumber($table_name, sizeof($records));
 			if($checkColumnNumberResult == 0){
-				$table = fopen("$table_name.csv", "a+");
+				$table = fopen("$table_name.csv", "a");
 				fputcsv($table, $records);
 				fclose($table);
 			}elseif($checkColumnNumberResult < 0){
-				echo "You have added $checkColumnNumberResult more than it's needed \n";
+				echo "You have added " . abs($checkColumnNumberResult) . " more than it's needed \n";
 			}else{
 				echo "You have added " . abs($checkColumnNumberResult) . " less than it's needed \n";
 			}
@@ -23,9 +23,21 @@ class Records
 		}
 	}
 
-	function deleteRecord()
+	function deleteRecord($table_name,$searchable)
 	{
-
+		$infoarray = self::fetchRecord($table_name);
+		if($searchable != ""){
+			if(self::searchForRecord($infoarray, $searchable)){
+				unset($infoarray[$searchable]);
+				$table = fopen("$table_name.csv", "w");
+				fputcsv($table, $infoarray);
+				fclose($table);		
+			}else{
+				echo "Record not found \n";
+			}
+		}else{
+			echo "Please specify a record to delete \n";;
+		}
 	}
 
 	function readRecord($table_name,$searchable)
@@ -33,7 +45,7 @@ class Records
 		$infoarray = self::fetchRecord($table_name);
 		if($searchable != ""){
 			if(self::searchForRecord($infoarray, $searchable)){
-				print_r($infoarray[$searchable]);				
+				return $infoarray[$searchable];				
 			}else{
 				echo "Record not found \n";
 			}
@@ -73,6 +85,8 @@ class Records
 	{
 		return array_key_exists($searchable, $recordarray);
 	}
+
+
 	// function file_get_contents_chunked($handle,$chunk_size)
 	// {
 	//     try

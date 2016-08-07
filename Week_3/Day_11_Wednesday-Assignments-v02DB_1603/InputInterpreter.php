@@ -10,12 +10,12 @@ class InputInterpreter
 			case "CREATE":
 				if(sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE"){
 					$db->createDataBase($inputArray[2]);
-				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "TABLE"){
+				}elseif(sizeof($inputArray) > 3 and $inputArray[1] == "TABLE"){
 					$db->createTable(array_slice($inputArray, 2));
 				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "ROW"){
 					
 				}else{
-					echo "Unknown command please try again \n";
+					echo "Unknown/Missing command please try again \n";
 				}
 				break;
 			case "DELETE":
@@ -23,6 +23,8 @@ class InputInterpreter
 					$db->deleteDataBase($inputArray[2]);
 				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "TABLE"){
 					$db->deleteTable($inputArray[2]);
+				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "ROW"){
+					$db->deleteRecord($inputArray[2],$inputArray[3]);
 				}else{
 					echo "Unknown command please try again \n";
 				}
@@ -52,9 +54,6 @@ class InputInterpreter
 				}else{
 					echo "Unknown command please try again \n";
 				}
-				break;
-			case "test":
-				
 				break;
 			default:
 				echo "Unknown command please try again \n";
