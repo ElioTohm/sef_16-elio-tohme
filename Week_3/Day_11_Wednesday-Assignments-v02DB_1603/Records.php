@@ -2,7 +2,7 @@
 
 class Records
 {
-	$DATABASE_FOLDER = "DB";
+	private $DATABASE_FOLDER = "DB";
 
 	function addRecord($table_name, $records)
 	{	
