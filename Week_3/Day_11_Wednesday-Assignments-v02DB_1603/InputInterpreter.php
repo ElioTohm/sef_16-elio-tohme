@@ -46,9 +46,9 @@ class InputInterpreter
 				break;
 			case "GET":
 				if(sizeof($inputArray) == 2){
-					$db->readRecord($inputArray[1],"");
+					print_r($db->readRecord($inputArray[1],""));
 				}elseif(sizeof($inputArray) == 3){
-					$db->readRecord($inputArray[1], $inputArray[2]);
+					print_r($db->readRecord($inputArray[1], $inputArray[2]));
 				}else{
 					echo "Unknown command please try again \n";
 				}

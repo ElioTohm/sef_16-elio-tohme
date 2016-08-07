@@ -2,6 +2,8 @@
 
 class Records
 {
+	$DATABASE_FOLDER = "DB";
+
 	function addRecord($table_name, $records)
 	{	
 		$infoarray = self::fetchRecord($table_name);
@@ -36,7 +38,7 @@ class Records
 				echo "Record not found \n";
 			}
 		}else{
-			print_r($infoarray);
+			return $infoarray;
 		}
 	}
 
@@ -51,19 +53,25 @@ class Records
 	private function fetchRecord($table_name)
 	{
 		$table_to_array = array();
-		$table_file = fopen("$table_name.csv","r");
-		while ($line = fgetcsv($table_file)){
-			$key = array_shift($line);
-			$table_to_array[$key] = $line;
+		if(file_exists("$table_name.csv")){
+			$table_file = fopen("$table_name.csv","r");
+			while ($line = fgetcsv($table_file)){
+				$key = array_shift($line);
+				$table_to_array[$key] = $line;
+			}
+			fclose($table_file);
+			return $table_to_array;	
+		}elseif(basename(getcwd()) == $this->DATABASE_FOLDER){
+			echo "Table does NOT exist \n";
+		}else{
+			echo "No database is selected USE database before reading \n";
 		}
-		fclose($table_file);
-		return $table_to_array;
+		
 	}
 
 	private function searchForRecord($recordarray,$searchable)
 	{
 		return array_key_exists($searchable, $recordarray);
-			
 	}
 	// function file_get_contents_chunked($handle,$chunk_size)
 	// {
