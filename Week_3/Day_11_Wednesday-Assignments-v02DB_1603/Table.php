@@ -7,12 +7,11 @@ class Table extends Records
 
 	function createTable($table_name_array)
 	{	if(self::checkCurrentDB()){
-			if(!file_exists($table_name_array[0])){
+			if(!file_exists("$table_name_array[0].csv")){
 				$tablename = $table_name_array[0];
 				array_shift($table_name_array);
-		 		$table = fopen("$tablename.csv", "a");
+		 		$table = fopen("$tablename.csv", "w");
 		 		$header = implode(",",$table_name_array);
-		 		// print_r($header);
 		 		fwrite($table, $header."\n");
 		 		fclose($table);
 		 		echo "$tablename CREATED \n";

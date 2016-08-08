@@ -7,31 +7,41 @@ class Records
 	function addRecord($table_name, $records)
 	{	
 		$infoarray = self::fetchRecord($table_name);
-		if(!self::searchForRecord($infoarray, $records[0])){
-			$checkColumnNumberResult = self::checkColumnNumber($table_name, sizeof($records));
-			if($checkColumnNumberResult == 0){
-				$table = fopen("$table_name.csv", "a");
-				fputcsv($table, $records);
-				fclose($table);
-			}elseif($checkColumnNumberResult < 0){
-				echo "You have added " . abs($checkColumnNumberResult) . " more than it's needed \n";
+		if(sizeof($infoarray)>0){
+			if(!self::searchForRecord($infoarray, $records[0])){
+				$checkColumnNumberResult = self::checkColumnNumber($table_name, sizeof($records));
+				if($checkColumnNumberResult == 0){
+					$table = fopen("$table_name.csv", "a");
+					fputcsv($table, $records);
+					fclose($table);
+				}elseif($checkColumnNumberResult < 0){
+					echo "You have added " . abs($checkColumnNumberResult) . " more than it's 	needed \n";
+				}else{	
+					echo "You have added " . abs($checkColumnNumberResult) . " less than it's needed \n";
+				}
 			}else{
-				echo "You have added " . abs($checkColumnNumberResult) . " less than it's needed \n";
+				echo "Record already exists \n";
 			}
-		}else{
-			echo "Record already exists \n";
 		}
 	}
 
 	function deleteRecord($table_name,$searchable)
 	{
-		$infoarray = self::fetchRecord($table_name);
+		$tableinfo = self::fetchRecord($table_name);
+		$resultarray = array();
 		if($searchable != ""){
-			if(self::searchForRecord($infoarray, $searchable)){
-				unset($infoarray[$searchable]);
+			if(self::searchForRecord($tableinfo, $searchable)){
+				unset($tableinfo[$searchable]);
+				foreach($tableinfo as $key => $value) {
+					$valuetostring = implode(",", $value);
+					array_push($resultarray, "$key,$valuetostring");
+				}
 				$table = fopen("$table_name.csv", "w");
-				fputcsv($table, $infoarray);
-				fclose($table);		
+				foreach($resultarray as $value){
+					$line = explode(",", $value);
+					fputcsv($table, $line);
+				}
+				fclose($table);
 			}else{
 				echo "Record not found \n";
 			}
@@ -72,13 +82,12 @@ class Records
 				$table_to_array[$key] = $line;
 			}
 			fclose($table_file);
-			return $table_to_array;	
 		}elseif(basename(getcwd()) == $this->DATABASE_FOLDER){
 			echo "Table does NOT exist \n";
 		}else{
-			echo "No database is selected USE database before reading \n";
+			echo "Table does NOT exist \n";
 		}
-		
+		return $table_to_array;		
 	}
 
 	private function searchForRecord($recordarray,$searchable)
