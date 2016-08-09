@@ -3,6 +3,7 @@
 class InputInterpreter
 {
 
+/*function analyseLine takes the line into array and analyse the input of the user by calling the functions of database object respectively*/
 	function AnalyseLine($userInput,Database $db)
 	{	
 		$inputArray = explode(",",$userInput);

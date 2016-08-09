@@ -3,8 +3,10 @@ require_once "Table.php";
 
 class  DataBase extends Table
 {
+/*main folder in which the class database will create the databases IOW creates folders with the name of the given database*/
 	private $DATABASE_FOLDER = "DB";
 
+/*checks if directory already exists if not creates it*/
 	function createDataBase($DB_name)
 	{
 		self::goToDBPool();
@@ -16,7 +18,7 @@ class  DataBase extends Table
 	 		echo "Database already exists \n";
 	 	}
 	}
-
+/*checks wethere the folder exists and then deletes it*/
 	function deleteDataBase($DB_name)
 	{	
 		self::goToDBPool();		
@@ -31,7 +33,7 @@ class  DataBase extends Table
 			echo "Databse does not exists \n";
 		}
 	}
-
+/*change directory to DB folder in which all the databases resides*/
 	private function goToDBPool(){
 		if(file_exists($this->DATABASE_FOLDER)){
 			chdir($this->DATABASE_FOLDER);
@@ -40,7 +42,7 @@ class  DataBase extends Table
 			self::goToDBPool();
 		}
 	}
-
+/*switch between folder of the corresponding name*/
 	function changeDatabase($DB_name){
 		self::goToDBPool();
 		if(file_exists($DB_name)){

@@ -2,8 +2,10 @@
 
 class Records
 {
+/*main folder in which the class database will create the databases IOW creates folders with the name of the given database*/
 	private $DATABASE_FOLDER = "DB";
 
+/*checks if line's ID already exists than write line to file*/
 	function addRecord($table_name, $records)
 	{	
 		$infoarray = self::fetchRecord($table_name);
@@ -25,6 +27,7 @@ class Records
 		}
 	}
 
+/*retrieve the file as an array search for the @$searchable and deletes it from the array than rewrite the update array in the file*/
 	function deleteRecord($table_name,$searchable)
 	{
 		$tableinfo = self::fetchRecord($table_name);
@@ -50,6 +53,7 @@ class Records
 		}
 	}
 
+/*uses fetchRecord & searchForRecord to retreive the searched record/line from the file/table*/
 	function readRecord($table_name,$searchable)
 	{
 		$infoarray = self::fetchRecord($table_name);
@@ -64,6 +68,7 @@ class Records
 		}
 	}
 
+/*checks the first line column number*/
 	private function checkColumnNumber($table_name, $sizeofinput)
 	{
 		$table = fopen("$table_name.csv", "r");
@@ -72,6 +77,7 @@ class Records
 		return $numberOfColmuns - $sizeofinput;
 	}
 
+/*read line by line the file given and puts the first column of the corresponding line as a key in the array*/
 	private function fetchRecord($table_name)
 	{
 		$table_to_array = array();
@@ -90,12 +96,13 @@ class Records
 		return $table_to_array;		
 	}
 
+/*search if the searchable exists as a key in the given array*/
 	private function searchForRecord($recordarray,$searchable)
 	{
 		return array_key_exists($searchable, $recordarray);
 	}
 
-
+/*to be put in use later reads csv file chunk by chunk which will optimize the read write functions*/
 	// function file_get_contents_chunked($handle,$chunk_size)
 	// {
 	//     try
