@@ -4,6 +4,7 @@ require_once "Table.php";
 class  DataBase extends Table
 {
 /*main folder in which the class database will create the databases IOW creates folders with the name of the given database*/
+	private $DATABASE_RELATIVE_LOCATION = "~/Day_11_Wednesday-Assignments-v02DB_1603/DB" 
 	private $DATABASE_FOLDER = "DB";
 
 /*checks if directory already exists if not creates it*/
