@@ -2,11 +2,17 @@
 class Record
 {
 /*main folder in which the class database will create the databases IOW creates folders with the name of the given database*/
-	private $DATABASE_FOLDER = "DB/";
+	private $RECORD_LOCATION;
+
+	function setTableName($table_name)
+	{
+		$this->RECORD_LOCATION = $table_name;
+	}
 
 /*checks if line's ID already exists than write line to file*/
 	function addRecord($table_name, $records)
 	{	
+		$table_name = $this->RECORD_LOCATION . "$table_name";
 		$infoarray = self::fetchRecord($table_name);
 		if(sizeof($infoarray)>0){
 			if(!self::searchForRecord($infoarray, $records[0])){
@@ -80,6 +86,7 @@ class Record
 	private function fetchRecord($table_name)
 	{
 		$table_to_array = array();
+		echo $table_name;
 		if(file_exists("$table_name.csv")){
 			$table_file = fopen("$table_name.csv","r");
 			while ($line = fgetcsv($table_file)){
@@ -87,10 +94,10 @@ class Record
 				$table_to_array[$key] = $line;
 			}
 			fclose($table_file);
-		}elseif(basename(getcwd()) == $this->DATABASE_FOLDER){
+		}elseif(file_exists($this->RECORD_LOCATION)){
 			echo "Table does NOT exist \n";
 		}else{
-			echo "Table does NOT exist \n";
+			echo "Table does NOT exist--- \n";
 		}
 		return $table_to_array;		
 	}

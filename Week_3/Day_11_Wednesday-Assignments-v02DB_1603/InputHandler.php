@@ -26,8 +26,7 @@ class InputHandler
 				if (sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE") {
 					$this->DATABASE->createDataBase($inputArray[2]);
 				} elseif (sizeof($inputArray) > 3 and $inputArray[1] == "TABLE") {
-					// printf($this->DATABASE->_getDataBaseName());
-					$this->TABLE->createTable(array_slice($inputArray, 2), $this->DATABASE->_getDataBaseName());
+					$this->TABLE->createTable(array_slice($inputArray, 2), $this->DATABASE->_getDataBaseFolder().$this->DATABASE->_getDataBaseName());
 				}else{
 					echo "Unknown/Missing command please try again \n";
 				}
@@ -48,6 +47,7 @@ class InputHandler
 					array_shift($inputArray);
 					$tablename = $inputArray[0];
 					array_shift($inputArray);
+					$this->RECORD->setTableName($this->DATABASE->_getDataBaseFolder());
 					$this->RECORD->addRecord($tablename, $inputArray);
 				} else {
 					echo "Missing parameters \n";

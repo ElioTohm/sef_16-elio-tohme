@@ -2,7 +2,14 @@
 
 class Table 
 {
+	private TABLE_NAME;
 
+	// function setTableName($table_name)
+	// {
+	// 	$this->TABLE_NAME = $table_name;
+	// }
+
+	
 /*checks i files exists and than create a file in with the name of the table and write first lines as header of the table*/
 	function createTable($table_name_array,$DB_name)
 	{	if(self::checkIfInDB($DB_name)){

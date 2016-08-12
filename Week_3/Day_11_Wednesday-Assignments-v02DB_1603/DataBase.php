@@ -6,16 +6,19 @@ class DataBase
 	private $DATABASE_FOLDER = "DB/";
 	private $DATABASE_NAME;
 
-	function _getDataBaseFolder(){
-
+	function _getDataBaseFolder()
+	{
+		return $this->DATABASE_FOLDER;
 	}
 
 	
-	function _getDataBaseName(){
+	function _getDataBaseName()
+	{
 		return $this->DATABASE_NAME;
 	}
 
-	function setDataBaseName($DB_name){
+	function setDataBaseName($DB_name)
+	{
 	 	$this->DATABASE_NAME = $DB_name;
 	}
 
