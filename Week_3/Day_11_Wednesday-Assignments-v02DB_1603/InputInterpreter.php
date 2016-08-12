@@ -13,8 +13,6 @@ class InputInterpreter
 					$db->createDataBase($inputArray[2]);
 				}elseif(sizeof($inputArray) > 3 and $inputArray[1] == "TABLE"){
 					$db->createTable(array_slice($inputArray, 2));
-				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "ROW"){
-					
 				}else{
 					echo "Unknown/Missing command please try again \n";
 				}
