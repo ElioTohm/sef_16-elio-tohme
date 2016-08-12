@@ -26,7 +26,8 @@ class InputHandler
 				if (sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE") {
 					$this->DATABASE->createDataBase($inputArray[2]);
 				} elseif (sizeof($inputArray) > 3 and $inputArray[1] == "TABLE") {
-					$this->TABLE->createTable(array_slice($inputArray, 2));
+					print();
+					$this->TABLE->createTable(array_slice($inputArray, 2), $DATABASE->_getDataBaseName());
 				}else{
 					echo "Unknown/Missing command please try again \n";
 				}
