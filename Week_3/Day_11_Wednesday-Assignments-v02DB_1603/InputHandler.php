@@ -1,6 +1,6 @@
 <?php 
 
-require_once "Database.php";
+require_once "DataBase.php";
 require_once "Table.php";
 require_once "Record.php";
 
@@ -14,7 +14,7 @@ class InputHandler
 	{
 		$this->DATABASE = new Database();
 		$this->TABLE = new Table();
-		$this->RECORD = new Record(); 		
+		// $this->RECORD = new Record(); 		
 	}
 	
 	/*function analyseLine takes the line into array and analyse the input of the user by calling the functions of database object respectively*/

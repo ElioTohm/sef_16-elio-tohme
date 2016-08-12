@@ -4,7 +4,8 @@ require_once "InputHandler.php";
 $InputHandler = new InputHandler();
 while(true) {
 	$user_input = readline();
-	$InputHandler($user_input);
+	// print_r($user_input);
+	$InputHandler->AnalyseLine($user_input);
 }
 
 ?>

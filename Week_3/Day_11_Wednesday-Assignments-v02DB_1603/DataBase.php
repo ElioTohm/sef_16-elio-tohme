@@ -17,9 +17,9 @@ class DataBase
 /*checks if directory already exists if not creates it*/
 	function createDataBase($DB_name)
 	{
-	 	if (!file_exists("$DB_name")) {
-		 	mkdir($this->DATABASE_FOLDER"/$DB_name");
-		 	setDataBaseName($this->DATABASE_FOLDER"/$DB_name");
+	 	if (!file_exists($this->DATABASE_FOLDER . $DB_name)) {
+		 	mkdir($this->DATABASE_FOLDER . $DB_name);
+		 	$this->setDataBaseName($this->DATABASE_FOLDER . $DB_name);
 		 	printf("%s Created\n",$DB_name);
 	 	} else {
 	 		echo "Database already exists \n";

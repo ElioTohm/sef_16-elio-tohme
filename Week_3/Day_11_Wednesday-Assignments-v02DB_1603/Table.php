@@ -1,6 +1,6 @@
 <?php
 
-class Table extends Records
+class Table 
 {
 
 /*checks i files exists and than create a file in with the name of the table and write first lines as header of the table*/
