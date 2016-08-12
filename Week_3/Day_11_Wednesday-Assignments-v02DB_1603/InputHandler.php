@@ -10,7 +10,6 @@ class InputHandler
 	private $TABLE;
 	private $RECORD; 
 
-
 	function __construct()
 	{
 		$this->DATABASE = new Database();
@@ -24,48 +23,48 @@ class InputHandler
 		$inputArray = explode(",",$userInput);
 		switch($inputArray[0]) {
 			case "CREATE":
-				if(sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE"){
+				if (sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE") {
 					$this->DATABASE->createDataBase($inputArray[2]);
-				}elseif(sizeof($inputArray) > 3 and $inputArray[1] == "TABLE"){
+				} elseif (sizeof($inputArray) > 3 and $inputArray[1] == "TABLE") {
 					$this->TABLE->createTable(array_slice($inputArray, 2));
 				}else{
 					echo "Unknown/Missing command please try again \n";
 				}
 				break;
 			case "DELETE":
-				if(sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE" ){
+				if (sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE" ) {
 					$this->DATABASE->deleteDataBase($inputArray[2]);
-				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "TABLE"){
+				} elseif (sizeof($inputArray) > 2 and $inputArray[1] == "TABLE") {
 					$this->TABLE->deleteTable($inputArray[2]);
-				}elseif(sizeof($inputArray) > 2 and $inputArray[1] == "ROW"){
+				} elseif (sizeof($inputArray) > 2 and $inputArray[1] == "ROW") {
 					$this->RECORD->deleteRecord($inputArray[2],$inputArray[3]);
-				}else{
+				} else {
 					echo "Unknown command please try again \n";
 				}
 				break;
 			case "ADD":
-				if(sizeof($inputArray) > 3){
+				if (sizeof($inputArray) > 3) {
 					array_shift($inputArray);
 					$tablename = $inputArray[0];
 					array_shift($inputArray);
 					$RECORD->addRecord($tablename, $inputArray);
-				}else{
+				} else {
 					echo "Missing parameters \n";
 				}
 				break;
 			case "USE":
-				if(sizeof($inputArray) > 1){
+				if (sizeof($inputArray) > 1) {
 						$this->DATABASE->changeDatabase($inputArray[1]);
-				}else{
+				} else {
 					echo "WRONG command please try again \n";
 				}
 				break;
 			case "GET":
-				if(sizeof($inputArray) == 2){
+				if (sizeof($inputArray) == 2) {
 					print_r($this->RECORD->readRecord($inputArray[1],""));
-				}elseif(sizeof($inputArray) == 3){
+				} elseif (sizeof($inputArray) == 3) {
 					print_r($this->RECORD->readRecord($inputArray[1], $inputArray[2]));
-				}else{
+				} else {
 					echo "Unknown command please try again \n";
 				}
 				break;
@@ -75,4 +74,5 @@ class InputHandler
 		}
 	}
 }
+
 ?>
