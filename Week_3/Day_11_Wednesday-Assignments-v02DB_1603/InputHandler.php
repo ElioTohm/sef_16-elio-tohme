@@ -14,7 +14,7 @@ class InputHandler
 	{
 		$this->DATABASE = new Database();
 		$this->TABLE = new Table();
-		// $this->RECORD = new Record(); 		
+		$this->RECORD = new Record(); 		
 	}
 	
 	/*function analyseLine takes the line into array and analyse the input of the user by calling the functions of database object respectively*/
@@ -26,8 +26,8 @@ class InputHandler
 				if (sizeof($inputArray) > 2 and $inputArray[1] == "DATABASE") {
 					$this->DATABASE->createDataBase($inputArray[2]);
 				} elseif (sizeof($inputArray) > 3 and $inputArray[1] == "TABLE") {
-					print();
-					$this->TABLE->createTable(array_slice($inputArray, 2), $DATABASE->_getDataBaseName());
+					// printf($this->DATABASE->_getDataBaseName());
+					$this->TABLE->createTable(array_slice($inputArray, 2), $this->DATABASE->_getDataBaseName());
 				}else{
 					echo "Unknown/Missing command please try again \n";
 				}
@@ -48,14 +48,14 @@ class InputHandler
 					array_shift($inputArray);
 					$tablename = $inputArray[0];
 					array_shift($inputArray);
-					$RECORD->addRecord($tablename, $inputArray);
+					$this->RECORD->addRecord($tablename, $inputArray);
 				} else {
 					echo "Missing parameters \n";
 				}
 				break;
 			case "USE":
 				if (sizeof($inputArray) > 1) {
-						$this->DATABASE->changeDatabase($inputArray[1]);
+						$this->DATABASE->setDataBaseName($inputArray[1]);
 				} else {
 					echo "WRONG command please try again \n";
 				}

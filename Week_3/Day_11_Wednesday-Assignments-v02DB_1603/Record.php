@@ -1,5 +1,5 @@
 <?php 
-class Records
+class Record
 {
 /*main folder in which the class database will create the databases IOW creates folders with the name of the given database*/
 	private $DATABASE_FOLDER = "DB/";

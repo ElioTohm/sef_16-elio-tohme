@@ -5,11 +5,11 @@ class Table
 
 /*checks i files exists and than create a file in with the name of the table and write first lines as header of the table*/
 	function createTable($table_name_array,$DB_name)
-	{	if(self::checkIfInDB()){
-			if (!file_exists($DB_name."/$table_name_array[0].csv")) {
+	{	if(self::checkIfInDB($DB_name)){
+			if (!file_exists("$DB_name/$table_name_array[0].csv")) {
 				$tablename = $table_name_array[0];
 				array_shift($table_name_array);
-		 		$table = fopen("$tablename.csv", "w");
+		 		$table = fopen("$DB_name/$tablename.csv", "w");
 		 		$header = implode(",",$table_name_array);
 		 		fwrite($table, $header."\n");
 		 		fclose($table);
