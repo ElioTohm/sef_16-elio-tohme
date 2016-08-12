@@ -16,6 +16,7 @@ GROUP BY P1.proc_id, P2.proc_id;
 /*after creating the view i get the Max 
  *of the column total and group tham by
  *procedure_id*/
+use HospitalRecords;
 SELECT procedure_id AS proc_id, MAX(total) AS max_inst_count
 FROM procedures
 GROUP BY procedure_id;
