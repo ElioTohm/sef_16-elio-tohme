@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `ClaimStatusCodes` (
     `claim_seq` int(11) NOT NULL,
     PRIMARY KEY (`claim_seq`)
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE IF NOT EXISTS `Defendants` (
     `claim_id` int(11) NOT NULL,
     `defendant_name` varchar(45) NOT NULL,
@@ -20,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `Defendants` (
         REFERENCES `Claims` (`claim_id`)
         ON DELETE CASCADE ON UPDATE CASCADE
 )  ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE IF NOT EXISTS `LegalEvents` (
     `claim_id` int(11) NOT NULL,
     `defendant_name` varchar(45) NOT NULL,
