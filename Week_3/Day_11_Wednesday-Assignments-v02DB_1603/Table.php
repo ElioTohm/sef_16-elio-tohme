@@ -2,13 +2,7 @@
 
 class Table 
 {
-	private TABLE_NAME;
-
-	// function setTableName($table_name)
-	// {
-	// 	$this->TABLE_NAME = $table_name;
-	// }
-
+	private $TABLE_NAME;
 	
 /*checks i files exists and than create a file in with the name of the table and write first lines as header of the table*/
 	function createTable($table_name_array,$DB_name)
@@ -28,6 +22,7 @@ class Table
 			echo "Please enter a database to use \n";
 		}
 	}
+	
 /*checks if file exists and than deletes it*/
 	function deleteTable($table_name,$DB_name)
 	{
@@ -38,6 +33,7 @@ class Table
 			echo "$table_name does not exists \n";
 		}
 	}
+
 /*check if files exists in the current database*/
 	private function checkIfInDB($DB_name){
 		if (empty($DB_name)) {

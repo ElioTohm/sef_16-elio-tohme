@@ -86,15 +86,15 @@ class Record
 	private function fetchRecord($table_name)
 	{
 		$table_to_array = array();
-		echo $table_name;
-		if(file_exists("$table_name.csv")){
+		echo $this->RECORD_LOCATION."/$table_name.csv";
+		if(file_exists($this->RECORD_LOCATION."/$table_name.csv")){
 			$table_file = fopen("$table_name.csv","r");
 			while ($line = fgetcsv($table_file)){
 				$key = array_shift($line);
 				$table_to_array[$key] = $line;
 			}
 			fclose($table_file);
-		}elseif(file_exists($this->RECORD_LOCATION)){
+		}elseif(!file_exists($this->RECORD_LOCATION)){
 			echo "Table does NOT exist \n";
 		}else{
 			echo "Table does NOT exist--- \n";
