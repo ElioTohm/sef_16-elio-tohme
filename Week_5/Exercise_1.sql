@@ -1,6 +1,6 @@
 -- SBQ_1
 SELECT 
-    first_name, last_name, count(*)
+    first_name, last_name, count(*) as count 
 FROM
     film_actor
         inner join
@@ -15,7 +15,7 @@ from
         language_id, count(*) as countmovie
     from
         film
-    group by release_year
+    group by language_id
     order by countmovie desc
     limit 3) as toplanguage
         inner join
