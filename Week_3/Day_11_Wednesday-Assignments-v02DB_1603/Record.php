@@ -1,13 +1,18 @@
-<?php
-
-class Records
+<?php 
+class Record
 {
 /*main folder in which the class database will create the databases IOW creates folders with the name of the given database*/
-	private $DATABASE_FOLDER = "DB";
+	private $RECORD_LOCATION;
+
+	function setTableName($table_name)
+	{
+		$this->RECORD_LOCATION = $table_name;
+	}
 
 /*checks if line's ID already exists than write line to file*/
 	function addRecord($table_name, $records)
 	{	
+		$table_name = $this->RECORD_LOCATION . "$table_name";
 		$infoarray = self::fetchRecord($table_name);
 		if(sizeof($infoarray)>0){
 			if(!self::searchForRecord($infoarray, $records[0])){
@@ -29,7 +34,8 @@ class Records
 
 /*retrieve the file as an array search for the @$searchable and deletes it from the array than rewrite the update array in the file*/
 	function deleteRecord($table_name,$searchable)
-	{
+	{	
+		$table_name = $this->RECORD_LOCATION . "$table_name";
 		$tableinfo = self::fetchRecord($table_name);
 		$resultarray = array();
 		if($searchable != ""){
@@ -46,16 +52,17 @@ class Records
 				}
 				fclose($table);
 			}else{
-				echo "Record not found \n";
+				echo "-- Record not found -- \n";
 			}
 		}else{
-			echo "Please specify a record to delete \n";;
+			echo "-- Please specify a record to delete -- \n";;
 		}
 	}
 
 /*uses fetchRecord & searchForRecord to retreive the searched record/line from the file/table*/
 	function readRecord($table_name,$searchable)
 	{
+		$table_name = $this->RECORD_LOCATION . "$table_name";
 		$infoarray = self::fetchRecord($table_name);
 		if($searchable != ""){
 			if(self::searchForRecord($infoarray, $searchable)){
@@ -88,10 +95,11 @@ class Records
 				$table_to_array[$key] = $line;
 			}
 			fclose($table_file);
-		}elseif(basename(getcwd()) == $this->DATABASE_FOLDER){
+		}elseif(!file_exists($this->RECORD_LOCATION)){
 			echo "Table does NOT exist \n";
+			echo $table_name;
 		}else{
-			echo "Table does NOT exist \n";
+			echo "Table does NOT exist--- \n";
 		}
 		return $table_to_array;		
 	}
@@ -101,40 +109,6 @@ class Records
 	{
 		return array_key_exists($searchable, $recordarray);
 	}
-
-/*to be put in use later reads csv file chunk by chunk which will optimize the read write functions*/
-	// function file_get_contents_chunked($handle,$chunk_size)
-	// {
-	//     try
-	//     {
-	//         // $handle = fopen($file, "r");
-	//         $i = 0;
-	//         $x = 0;
-
-	//         $chunk = array();
-	//         while (!feof($handle)) {
-	//             while ($row = fgets($handle)) {
-	//                 // can parse further $row by usingstr_getcsv
-	//                 $x ++;
-	//                 $chunk[] = $row;
-	//                 if ($x == $chunk_size) {          
-	//  					print_r($chunk);
-	//                     // call_user_func_array($callback, array($chunk, &$handle, $i));
-	//                     // unset($chunk);
-	//                     // $x = 0;
-	//                 }         
-	//             }
-	//         }
-	//         // fclose($handle);
-	//     }
-	//     catch(Exception $e)
-	//     {
-	//          trigger_error("file_get_contents_chunked::" . $e->getMessage(),E_USER_NOTICE);
-	//          return false;
-	//     }
-	//     return true;
-	// }
-
 }
 
 ?>
