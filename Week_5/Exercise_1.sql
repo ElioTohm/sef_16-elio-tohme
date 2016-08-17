@@ -65,18 +65,46 @@ from
     actor ON actor.actor_id = film_actor.actor_id
 
 -- SBQ_6
-select 
+select SQL_CALC_FOUND_ROWS
     *
 from
-    (SELECT 
-        category.name, category.category_id, count(*) as number
-    FROM
-        film_category
-    inner join category ON category.category_id = film_category.category_id
-    group by category_id) as result
+    (select 
+        firstTable.category as category, firstTable.count as count
+    from
+        (select 
+        c.name as category, count(*) as count
+    from
+        category as c, film_category as fc, film as f
+    where
+        c.category_id = fc.category_id
+            and fc.film_id = f.film_id
+    group by c.category_id) as firstTable
+    where
+        firstTable.count between 55 and 66
+    order by firstTable.count desc
+    limit 3) as t 
+UNION SELECT 
+    *
+FROM
+    (select 
+         secondTable.category,  secondTable.count
+    from
+        (select 
+        c.name as category, count(*) as count
+    from
+        category as c, film_category as fc, film as f
+    where
+        c.category_id = fc.category_id
+            and fc.film_id = f.film_id
+    group by c.category_id) as  secondTable
+    where
+         secondTable.count < 55
+            or  secondTable.count > 66
+    order by  secondTable.count desc
+    limit 3) as t2
 where
-    number between 55 and 65
-order by result.number desc
+    FOUND_ROWS() = 0
+;
 
 --SBQ_7
 select 
