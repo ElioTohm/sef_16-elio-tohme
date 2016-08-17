@@ -37,6 +37,7 @@ class InputHandler
 				} elseif (sizeof($inputArray) > 2 and $inputArray[1] == "TABLE") {
 					$this->TABLE->deleteTable($inputArray[2]);
 				} elseif (sizeof($inputArray) > 2 and $inputArray[1] == "ROW") {
+					$this->RECORD->setTableName($this->DATABASE->_getDataBaseFolder());
 					$this->RECORD->deleteRecord($inputArray[2],$inputArray[3]);
 				} else {
 					echo "Unknown command please try again \n";
@@ -62,8 +63,10 @@ class InputHandler
 				break;
 			case "GET":
 				if (sizeof($inputArray) == 2) {
+					$this->RECORD->setTableName($this->DATABASE->_getDataBaseFolder());
 					print_r($this->RECORD->readRecord($inputArray[1],""));
 				} elseif (sizeof($inputArray) == 3) {
+					$this->RECORD->setTableName($this->DATABASE->_getDataBaseFolder());	
 					print_r($this->RECORD->readRecord($inputArray[1], $inputArray[2]));
 				} else {
 					echo "Unknown command please try again \n";

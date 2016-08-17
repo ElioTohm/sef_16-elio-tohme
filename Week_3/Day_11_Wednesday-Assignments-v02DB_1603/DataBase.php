@@ -8,7 +8,7 @@ class DataBase
 
 	function _getDataBaseFolder()
 	{
-		return $this->DATABASE_FOLDER;
+		return $this->DATABASE_FOLDER . $this->DATABASE_NAME ."/";
 	}
 
 	

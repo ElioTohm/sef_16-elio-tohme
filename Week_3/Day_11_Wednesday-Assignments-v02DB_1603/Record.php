@@ -34,7 +34,8 @@ class Record
 
 /*retrieve the file as an array search for the @$searchable and deletes it from the array than rewrite the update array in the file*/
 	function deleteRecord($table_name,$searchable)
-	{
+	{	
+		$table_name = $this->RECORD_LOCATION . "$table_name";
 		$tableinfo = self::fetchRecord($table_name);
 		$resultarray = array();
 		if($searchable != ""){
@@ -51,16 +52,17 @@ class Record
 				}
 				fclose($table);
 			}else{
-				echo "Record not found \n";
+				echo "-- Record not found -- \n";
 			}
 		}else{
-			echo "Please specify a record to delete \n";;
+			echo "-- Please specify a record to delete -- \n";;
 		}
 	}
 
 /*uses fetchRecord & searchForRecord to retreive the searched record/line from the file/table*/
 	function readRecord($table_name,$searchable)
 	{
+		$table_name = $this->RECORD_LOCATION . "$table_name";
 		$infoarray = self::fetchRecord($table_name);
 		if($searchable != ""){
 			if(self::searchForRecord($infoarray, $searchable)){
@@ -86,8 +88,7 @@ class Record
 	private function fetchRecord($table_name)
 	{
 		$table_to_array = array();
-		echo $this->RECORD_LOCATION."/$table_name.csv";
-		if(file_exists($this->RECORD_LOCATION."/$table_name.csv")){
+		if(file_exists("$table_name.csv")){
 			$table_file = fopen("$table_name.csv","r");
 			while ($line = fgetcsv($table_file)){
 				$key = array_shift($line);
@@ -96,6 +97,7 @@ class Record
 			fclose($table_file);
 		}elseif(!file_exists($this->RECORD_LOCATION)){
 			echo "Table does NOT exist \n";
+			echo $table_name;
 		}else{
 			echo "Table does NOT exist--- \n";
 		}
