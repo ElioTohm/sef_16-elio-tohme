@@ -65,10 +65,17 @@ from
     actor ON actor.actor_id = film_actor.actor_id
 
 -- SBQ_6
-select * from (SELECT category.name,category.category_id, count(*) as number FROM film_category
-inner join category on category.category_id = film_category.category_id
-group by category_id) as result 
-where number between 55 and 65
+select 
+    *
+from
+    (SELECT 
+        category.name, category.category_id, count(*) as number
+    FROM
+        film_category
+    inner join category ON category.category_id = film_category.category_id
+    group by category_id) as result
+where
+    number between 55 and 65
 order by result.number desc
 
 --SBQ_7
@@ -96,4 +103,25 @@ from
     customer ON customer.first_name = NAME.first_name
 
 --SBQ_8
+select 
+    staff.store_id,
+    month(payment_date),
+    year(payment_date),
+    sum(amount),
+    avg(amount)
+from
+    payment
+        inner join
+    staff ON staff.staff_id = payment.staff_id
+group by month(payment_date) , year(payment_date) , staff.store_id
 
+--SBQ_9
+SELECT 
+    *, count(*) as numRental
+FROM
+    payment
+where
+    year(payment_date) = 2005
+group by customer_id
+order by numRental desc
+limit 3
