@@ -13,7 +13,7 @@ class OrderProcess
 	        die( "Could not open connection to server" );
 	    }
 
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+	    if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo "lol";
 		}
 	}
@@ -41,9 +41,9 @@ class OrderProcess
 		}
 	}
 
-	function rent()
-	{
-
+	private function rent()
+	{	
+		
 	}
 
 }

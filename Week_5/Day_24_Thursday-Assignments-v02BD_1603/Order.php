@@ -2,7 +2,8 @@
 <meta charset="UTF-8">
 <?php 
 	require_once "OrderProcess.php"; 
-	require_once "Config.php"; 
+	require_once "Config.php";
+	$OrderProcess = new OrderProcess($SERVERNAME, $USERNAME, $PASSWORD, $DBNAME);
 ?>
 
 <html lang="en">
@@ -11,7 +12,7 @@
 	<title>Exercise_1</title>
 	<body>
 		<h1>List of items</h1>
-		<form action="action_page.php">
+		<form method="POST">
 			<fieldset>
 				<legend>Rent:</legend>
 				<label for="Name"> Name: </label>
@@ -24,9 +25,8 @@
 				<br>
 				<label for="Duration"> for: </label>
 				<br>
-				<input id="Duration"  name="Duration" type="date"  
-					data-date-inline-picker="true" placeholder="2016-11-23"
-					required/>
+				<input id="Duration"  name="Duration" type="date"
+					placeholder="<?php echo date("Y-m-d"); ?>" required/>
 				<br><br>
 				<input type="submit" value="Submit">
 			</fieldset>
@@ -39,10 +39,9 @@
 			<th>Description</th>
 		</tr>
 			<?php 
-				$OrderProcess = new OrderProcess($SERVERNAME, $USERNAME, $PASSWORD, $DBNAME);
 				$OrderProcess->getAllMovies();
+				unset($OrderProcess);
 			?>
 		</table>
-		
 	</body>
 </head>

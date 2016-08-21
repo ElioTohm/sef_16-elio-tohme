@@ -6,28 +6,10 @@ table {
 th, td {
     text-align: left;
     padding: 8px;
+    border-bottom: 1px solid #ddd;
 }
-
-tr:nth-child(even){background-color: #f2f2f2}
 
 th {
     background-color: #4CAF50;
     color: white;
-}
-.Menu {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 1; 
-}
-
-.Menu div {
-    width: 35px;
-    height: 5px;
-    background-color: black;
-    margin: 6px 0;
-}
-
-fieldset input{
-	
 }
