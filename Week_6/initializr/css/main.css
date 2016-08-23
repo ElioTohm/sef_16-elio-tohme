@@ -58,6 +58,7 @@ textarea {
 
 div.inner-wrapper {
     width: 100%;
+    padding: 50px , 0;
 }
 
 .header-section-bg {
@@ -75,7 +76,7 @@ div.inner-wrapper {
     width: 960px;
     margin: 0 auto;
     padding-top: 10px;
-    height: 400px;
+    height: 500px;
 }
 
 #header-section {
@@ -191,6 +192,23 @@ a.dark-button:hover {
     background-color: #00e0d0;
 }
 
+a.dark-button-long {
+    width: 220px;
+    padding: 15px;
+    color: #00e0d0;
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 1px;
+    text-decoration: none;
+    border: 2px solid #00e0d0;
+}
+
+a.dark-button-long:hover {
+    color: #FFF;
+    background-color: #00e0d0;
+}
 .carousel-nav {
     padding: 0;
     text-decoration: none;
@@ -238,6 +256,12 @@ a.dark-button:hover {
     height: 700px;
 }
 
+.third-section-bg {
+    background: linear-gradient(0deg, rgba(46,29,85,0.85), rgba(49,29,94,0.85)), url('../img/foggy-forest.jpg') no-repeat;
+    background-size: cover;
+    height: 900px;
+}
+
 #second-footer {
     float: left;
     width: 100%;
@@ -250,12 +274,10 @@ a.dark-button:hover {
 
 #play-button {
     text-align: center;
-    height: 700px;
     padding-top: 30%;
 }
 
 #third-inner-section {
-    height: 700px;
     width: 100%;
 }
 
@@ -293,8 +315,50 @@ a.dark-button:hover {
     padding-top: 20px;
 }
 
+.white-text{
+    color: white;
+}
 
+.border-div{
+    border-color: white;
+    border-width: thin;
+    border:solid;
+    width: 20%;
+    float: left;
+    padding: 10px;
+    margin-right: 20px;
+}
 
+.border-div div:first-child{
+    background: white;
+    height: 300px;
+}
+
+.div-50-width{
+    float: left;
+    width: 50%;
+    height: 120px;
+}
+
+#see-all-projects{
+    color:blue;
+}
+
+#small_wrap div {
+    width: 16.6%;
+    height: 100px;
+    float: left;
+}
+
+#small_wrap div:nth-of-type(odd){
+    background: linear-gradient(10deg, rgba(255,255,255,255), rgba(0,0,0,0));
+    background-size: cover;
+}
+
+#small_wrap div:nth-of-type(even){
+    background: linear-gradient(45deg, rgba(255,255,255,255), rgba(0,0,0,0));
+    background-size: cover;
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */
