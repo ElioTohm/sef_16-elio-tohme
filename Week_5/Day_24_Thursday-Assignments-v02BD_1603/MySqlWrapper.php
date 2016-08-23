@@ -50,9 +50,10 @@ class MysqlWrapper
         $result = $this->dbConnection->query($query);
         if (!$result) {
             die ($this->dbConnection->error);
+            return false;
         } else {
             //Insert successfully
-            return 1;
+            return true;
         }
     }
 
@@ -76,9 +77,10 @@ class MysqlWrapper
         $result = $this->dbConnection->query($query);
         if (!$result) {
             die ($this->dbConnection->error);
+            return false;
         } else {
             //Insert successfully
-            return 1;
+            return true;
         }
     }
 

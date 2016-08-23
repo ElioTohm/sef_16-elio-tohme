@@ -24,6 +24,7 @@ class OrderProcess
 	function getAllMoviesSelect(MySqlWrapper $wrapper)
 	{
 		$result = $wrapper->getFilm();
+		echo $_GET{'page'};
 		while ($row = $result->fetch_row()) {
 			printf("<option value=\"%s\">%s</option>", $row[0], $row[1]);
 		}

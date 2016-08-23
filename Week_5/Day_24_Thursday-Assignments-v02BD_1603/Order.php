@@ -24,7 +24,7 @@
 				<br>
 				<select name="Title">
 					<?php
-						$wrapper->connect();
+						$wrapper->connect($SERVERNAME, $USERNAME, $PASSWORD, $DBNAME);
 						$OrderProcess->getAllMoviesSelect($wrapper);
 						$wrapper->disconnect();
 					?>
@@ -46,7 +46,7 @@
 			<th>Description</th>
 		</tr>
 			<?php
-				$wrapper->connect();
+				$wrapper->connect($SERVERNAME, $USERNAME, $PASSWORD, $DBNAME);
 				$OrderProcess->getAllMovies($wrapper);
 				$wrapper->disconnect();
 			?>
