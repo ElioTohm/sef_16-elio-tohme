@@ -145,6 +145,14 @@ div.inner-wrapper {
     border-top: 1px solid #FFF;
 }
 
+.separator-black {
+    height: 0px;
+    width: 50px;
+    margin: 5px auto;
+    border-top: 1px solid #000000;
+    padding: 10px;
+}
+
 #header-text {
     float: left;
     width: 100%;
@@ -254,6 +262,39 @@ a.dark-button:hover {
 #third-inner-section div img{
     vertical-align: middle;
 }
+
+#play-button h3{
+    color: white;
+}
+
+.text-align-center{
+    text-align: center;
+}
+.side-by-side-div{
+    text-align: center;
+    float: left;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: black;
+    width: 32%;
+    padding-top: 20px;
+}
+
+.border-column-div{
+    border-right: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.side-by-side-div-secRow{
+    text-align: center;
+    float: left;
+    width: 32%;
+    padding-top: 20px;
+}
+
+
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
