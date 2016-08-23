@@ -66,6 +66,12 @@ div.inner-wrapper {
     background-size: cover;
 }
 
+.footer-section-bg {
+    background: linear-gradient(0deg, rgba(46,29,85,0.85), rgba(49,29,94,0.85)), url('../img/head_section_bg_1600x670.jpg') no-repeat;
+    background-size: cover;
+    height: 800px;
+}
+
 .inner-section {
     width: 960px;
     margin: 0 auto;
@@ -78,6 +84,14 @@ div.inner-wrapper {
     padding-top: 10px;
     height: 500px;
 }
+
+.third-inner-section {
+    width: 960px;
+    margin: 0 auto;
+    padding-top: 10px;
+    height: 650px;
+}
+
 
 #header-section {
    height: 670px;
@@ -96,23 +110,23 @@ div.inner-wrapper {
     background: url('../img/logo_128x50.png') no-repeat;
 }
 
-#header-menu {
+.menu {
     float: left;
     width: 82%;
     height: 50px;
     padding: 15px 0;
 }
 
-#header-menu .inline-menu {
+.menu .inline-menu {
     float: right;
     list-style: none;
 }
 
-#header-menu .inline-menu li {
+.menu .inline-menu li {
     display: inline;
 }
 
-#header-menu .inline-menu li a {
+.menu .inline-menu li a {
     margin: 16px;
     color: #FFFFFF;
     font-size: 10pt;
@@ -120,11 +134,11 @@ div.inner-wrapper {
     text-decoration: none;
 }
 
-#header-menu .inline-menu li a:hover {
+.menu .inline-menu li a:hover {
     color: #00e0d0;
 }
 
-#header-menu .inline-menu li a.menu-item-active {
+.menu .inline-menu li a.menu-item-active {
     color: #00e0d0;
 }
 
@@ -340,6 +354,24 @@ a.dark-button-long:hover {
     height: 120px;
 }
 
+.div-33-width{
+    float: left;
+    width: 33%;
+    height: 500px;
+}
+
+.div-50-width input{
+    width: 400px;
+    height: 20px;
+    padding-bottom: 15px;
+}
+
+.div-50-width textarea{
+    width: 400px;
+    height: 150px;
+    padding: 1%;
+}
+
 #see-all-projects{
     color:blue;
 }
@@ -359,6 +391,31 @@ a.dark-button-long:hover {
     background: linear-gradient(45deg, rgba(255,255,255,255), rgba(0,0,0,0));
     background-size: cover;
 }
+
+.div-logo{
+    width: 48%;
+    padding: 1%;
+    float: left;
+    height: 50px;
+
+}
+
+.div-input{
+    padding-bottom: 30px;
+}
+
+#bottom_link{
+    text-align: left;
+}
+
+#copy_right{
+    text-align: right;
+}
+
+#sub-title{
+    padding-top: 20px;
+}
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
