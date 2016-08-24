@@ -257,6 +257,25 @@ a.dark-button-long:hover {
     color: #FFF;
     background-color: #00e0d0;
 }
+
+a.dark-button-footer {
+    width: 40px;
+    height: 40px;
+    padding: 1px;
+    color: #00e0d0;
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 1px;
+    text-decoration: none;
+    border: 2px solid #00e0d0;
+}
+
+a.dark-button-footer:hover {
+    color: #FFF;
+    background-color: #00e0d0;
+}
 .carousel-nav {
     padding: 0;
     text-decoration: none;
@@ -462,6 +481,9 @@ a.dark-button-long:hover {
 .float-left {
     float: left;
 }
+
+
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
