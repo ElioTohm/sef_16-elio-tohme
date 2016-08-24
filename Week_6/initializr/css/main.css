@@ -67,7 +67,7 @@ div.inner-wrapper {
 }
 
 .footer-section-bg {
-    background: linear-gradient(0deg, rgba(46,29,85,0.85), rgba(49,29,94,0.85)), url('../img/head_section_bg_1600x670.jpg') no-repeat;
+    background: linear-gradient(0deg, rgba(46,29,85,0.85), rgba(49,29,94,0.85)), url('../img/footer-background-1600px.jpg') no-repeat;
     background-size: cover;
     height: 800px;
 }
@@ -85,6 +85,19 @@ div.inner-wrapper {
     height: 500px;
 }
 
+.small-inner-section {
+    width: 1400px;
+    margin: 0 auto;
+    padding-top: 10px;
+    height: 100px;
+}
+
+.medium-inner-section {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    height: 350px;
+}
 .third-inner-section {
     width: 1400px;
     margin: 0 auto;
@@ -382,7 +395,7 @@ a.dark-button-long:hover {
 
 .div-33-width{
     float: left;
-    width: 33%;
+    width: 32%;
     height: 500px;
 }
 
@@ -438,15 +451,17 @@ a.dark-button-long:hover {
     text-align: right;
 }
 
-#sub-title{
+.sub-title{
     padding-top: 20px;
 }
 
-#small-links {
-    font-size: 10px;
+.footer-div-spacing {
+    padding: 5px;
 }
 
-
+.float-left {
+    float: left;
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */
