@@ -73,20 +73,20 @@ div.inner-wrapper {
 }
 
 .inner-section {
-    width: 960px;
+    width: 1400px;
     margin: 0 auto;
     padding-top: 10px;
 }
 
 .second-inner-section {
-    width: 960px;
+    width: 1400px;
     margin: 0 auto;
     padding-top: 10px;
     height: 500px;
 }
 
 .third-inner-section {
-    width: 960px;
+    width: 1400px;
     margin: 0 auto;
     padding-top: 10px;
     height: 650px;
@@ -120,6 +120,27 @@ div.inner-wrapper {
 .menu .inline-menu {
     float: right;
     list-style: none;
+}
+
+.menu .inline-menu-bot {
+    float: left;
+    list-style: none;
+}
+
+.menu .inline-menu-bot li {
+    display: inline;
+}
+
+.menu .inline-menu-bot li a {
+    margin: 16px;
+    color: #FFFFFF;
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu .inline-menu-bot li a:hover {
+    color: #00e0d0;
 }
 
 .menu .inline-menu li {
@@ -306,6 +327,11 @@ a.dark-button-long:hover {
 .text-align-center{
     text-align: center;
 }
+
+.text-align-left{
+    float: left;   
+}
+
 .side-by-side-div{
     text-align: center;
     float: left;
@@ -383,12 +409,12 @@ a.dark-button-long:hover {
 }
 
 #small_wrap div:nth-of-type(odd){
-    background: linear-gradient(10deg, rgba(255,255,255,255), rgba(0,0,0,0));
+    background: linear-gradient(10deg, white, black);
     background-size: cover;
 }
 
 #small_wrap div:nth-of-type(even){
-    background: linear-gradient(45deg, rgba(255,255,255,255), rgba(0,0,0,0));
+    background: linear-gradient(45deg, black, white);
     background-size: cover;
 }
 
@@ -415,6 +441,11 @@ a.dark-button-long:hover {
 #sub-title{
     padding-top: 20px;
 }
+
+#small-links {
+    font-size: 10px;
+}
+
 
 /* ==========================================================================
    Media Queries
