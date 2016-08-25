@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+	<script type="text/javascript">
+	//initialize arrays which will represent the pillars 
+		var A = ["A",3,2,1,];
+		var B = ["B"];
+		var C = ["C"];
+
+
+		//recursive function 
+		function hanoi (disc,src,aux,dst) {
+			if (disc > 1) {
+				hanoi(disc - 1,src,dst,aux);
+				dst.push(src.pop());
+				var temp = disc - 1;
+				document.write("<div><p>Move disc " + temp + " from " + src[0] + " to " + dst[0] + "</p></div>");
+				hanoi(disc - 1,aux,src,dst);
+			}
+		};
+		hanoi(A.length,A,B,C);
+	</script>
+</head>
+<body>
+		
+</body>
