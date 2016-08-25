@@ -1,25 +1,56 @@
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" href="Style.css">
 	<script type="text/javascript">
-	//initialize arrays which will represent the pillars 
-		var A = ["A",3,2,1,];
-		var B = ["B"];
-		var C = ["C"];
-
+		window.onload=function(){
+			var output = document.getElementById('textOutput');
+		//initialize arrays which will represent the pillars 
+			var A = ["A",3,2,1,];
+			var B = ["B"];
+			var C = ["C"];
 
 		//recursive function 
-		function hanoi (disc,src,aux,dst) {
-			if (disc > 1) {
-				hanoi(disc - 1,src,dst,aux);
-				dst.push(src.pop());
-				var temp = disc - 1;
-				document.write("<div><p>Move disc " + temp + " from " + src[0] + " to " + dst[0] + "</p></div>");
-				hanoi(disc - 1,aux,src,dst);
-			}
-		};
-		hanoi(A.length,A,B,C);
+			function hanoi (disc,src,aux,dst)
+			{
+				if (disc > 1) {
+					hanoi(disc - 1,src,dst,aux);
+					dst.push(src.pop());
+					var temp = disc - 1;
+		// document.write("<div><p>Move disc " + temp + " from " + src[0] + " to " + dst[0] + "</p></div>");
+					
+					var element = document.createElement("div");
+					element.innerHTML="Move disc " + temp + " from " + src[0] + " to " + dst[0];
+					output.appendChild(element);
+
+					hanoi(disc - 1,aux,src,dst);
+				}
+			};
+
+		//create rings
+		//call function
+			hanoi(A.length,A,B,C);		
+	};
 	</script>
 </head>
 <body>
-		
+	<div id="container">
+		<div id="bar0"><img src="Bar.png" /></div>
+		<div id="bar1"><img src="Bar.png" /></div>
+		<div id="bar2"><img src="Bar.png" /></div>
+		<div id="bottombar"></div>
+		<div class="disk" id="disk0" ><img class="insideImg"  style="left:94px;"  src="Bar2.png" /></div> 
+		<div class="disk" id="disk1" ><img class="insideImg"  style="left:74px;"  src="Bar2.png" /></div> 
+		<div class="disk" id="disk2" ><img class="insideImg"  style="left:54px;"  src="Bar2.png" /></div> 
+		<div class="disk" id="disk3" ><img class="insideImg"  style="left:34px;"  src="Bar2.png" /></div> 
+		<div class="disk" id="disk4" ><img class="insideImg"  style="left:14px;"  src="Bar2.png" /></div> 
+		<button onclick="executeHanoi()" >Start</button>
+		<label>Speed
+			<select id="speedSelectList" >
+				<option  value="1" >fast</option>
+				<option  value="10" >medium</option>
+				<option  value="20" >slow</option>
+			</select>
+		</label>
+	</div>
+	<div id="textOutput"></div>
 </body>
