@@ -1,56 +1,72 @@
 <!DOCTYPE html>
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title></title>
+	<meta name="description" content="Ecommerce shop for sports supplies">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Style.css">
 	<script type="text/javascript">
-		window.onload=function(){
-			var output = document.getElementById('textOutput');
-		//initialize arrays which will represent the pillars 
-			var A = ["A",3,2,1,];
-			var B = ["B"];
-			var C = ["C"];
-
+		window.onload=function ()
+		{
+			var A = ["0",3,2,1,];
+			var B = ["1"];
+			var C = ["2"];
 		//recursive function 
 			function hanoi (disc,src,aux,dst)
 			{
 				if (disc > 1) {
 					hanoi(disc - 1,src,dst,aux);
 					dst.push(src.pop());
-					var temp = disc - 1;
-		// document.write("<div><p>Move disc " + temp + " from " + src[0] + " to " + dst[0] + "</p></div>");
-					
-					var element = document.createElement("div");
-					element.innerHTML="Move disc " + temp + " from " + src[0] + " to " + dst[0];
-					output.appendChild(element);
-
+					var tempsrc = "disk" + src[0] + disc;
+					var tempdst = "disk" + dst[0] + disc;
+					document.getElementById(tempsrc).className = '';
+					document.getElementById(tempdst).className = "disk" + disc;
 					hanoi(disc - 1,aux,src,dst);
 				}
 			};
-
-		//create rings
 		//call function
-			hanoi(A.length,A,B,C);		
-	};
+			var start = document.getElementById("start-button");
+			start.addEventListener("click", function () {
+				hanoi(A.length,A,B,C)
+			});	
+		};
 	</script>
 </head>
 <body>
 	<div id="container">
-		<div id="bar0"><img src="Bar.png" /></div>
-		<div id="bar1"><img src="Bar.png" /></div>
-		<div id="bar2"><img src="Bar.png" /></div>
+		<div id="bar0">
+			<div id="disk07" class="disk7"></div>
+			<div id="disk06" class="disk6"></div>
+			<div id="disk05" class="disk5"></div>
+			<div id="disk04" class="disk4"></div>
+			<div id="disk03" class="disk3"></div>
+			<div id="disk02" class="disk2"></div>
+			<div id="disk01" class="disk1"></div>
+			<div id="disk00" class="disk0"></div>
+		</div>
+		<div id="bar1">
+			<div id="disk17"></div>
+			<div id="disk16"></div>
+			<div id="disk15"></div>
+			<div id="disk14"></div>
+			<div id="disk13"></div>
+			<div id="disk12"></div>
+			<div id="disk11"></div>
+			<div id="disk10"></div>
+		</div>
+		<div id="bar2">
+			<div id="disk27"></div>
+			<div id="disk26"></div>
+			<div id="disk25"></div>
+			<div id="disk24"></div>
+			<div id="disk23"></div>
+			<div id="disk22"></div>
+			<div id="disk21"></div>
+			<div id="disk20"></div>
+		</div>
 		<div id="bottombar"></div>
-		<div class="disk" id="disk0" ><img class="insideImg"  style="left:94px;"  src="Bar2.png" /></div> 
-		<div class="disk" id="disk1" ><img class="insideImg"  style="left:74px;"  src="Bar2.png" /></div> 
-		<div class="disk" id="disk2" ><img class="insideImg"  style="left:54px;"  src="Bar2.png" /></div> 
-		<div class="disk" id="disk3" ><img class="insideImg"  style="left:34px;"  src="Bar2.png" /></div> 
-		<div class="disk" id="disk4" ><img class="insideImg"  style="left:14px;"  src="Bar2.png" /></div> 
-		<button onclick="executeHanoi()" >Start</button>
-		<label>Speed
-			<select id="speedSelectList" >
-				<option  value="1" >fast</option>
-				<option  value="10" >medium</option>
-				<option  value="20" >slow</option>
-			</select>
-		</label>
 	</div>
-	<div id="textOutput"></div>
+	<button id='start-button' >Start</button>
+
 </body>
