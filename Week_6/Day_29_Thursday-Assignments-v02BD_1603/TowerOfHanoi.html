@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title></title>
+	<meta name="description" content="Ecommerce shop for sports supplies">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Style.css">
+	<script type="text/javascript">
+		window.onload=function ()
+		{
+			var A = [0,2,1,0];
+			var B = [1];
+			var C = [2];
+		//recursive function 
+			function hanoi (disc,src,aux,dst)
+			{
+				if (disc > 1) {
+					hanoi(disc - 1,src,dst,aux);
+					dst.push(src.pop());
+					drawDisks();
+					hanoi(disc - 1,aux,src,dst);
+				}
+			};
+
+
+		function clearDisks(i)
+		{
+			document.getElementById("disk" + i + 0).className = "" ;
+			document.getElementById("disk" + i + 1).className = "" ;
+			document.getElementById("disk" + i + 2).className = "" ;
+		}
+
+		function drawDisks ()
+		{
+			if(A.length > 0){
+				for (var i = A.length - 2; i >= 1; i--) {
+					document.getElementById("disk" + A[0] + i).className = "disk" + A[i] ;
+				}	
+			}else{
+				clearDisks(0);
+			}
+			
+			if(B.length > 0){
+				for (var i = B.length - 2; i >= 1; i--) {
+					document.getElementById("disk" + B[0] + i).className = "disk" + B[i] ;
+				}	
+			}else{
+				clearDisks(1);
+			}
+			
+			if(C.length > 0){
+				for (var i = C.length - 2; i >= 1; i--) {
+					console.log("disk" + C[0] + i);
+					document.getElementById("disk" + C[0] + i).className = "disk" + C[i] ;
+				}	
+			}else{
+				clearDisks(2);
+			}
+			
+		}	
+		//call function
+			var start = document.getElementById("start-button");
+			start.addEventListener("click", function () {
+				hanoi(A.length,A,B,C)
+			});	
+		};
+	</script>
+</head>
+<body>
+	<div id="container">
+		<div id="bar0">
+			<div id="disk00" class="disk0"></div>
+			<div id="disk01" class="disk1"></div>
+			<div id="disk02" class="disk2"></div>
+			<div id="disk03" class="disk3"></div>
+			<div id="disk04" class="disk4"></div>
+			<div id="disk05" class="disk5"></div>
+			<div id="disk06" class="disk6"></div>
+			<div id="disk07" class="disk7"></div>
+		</div>
+		<div id="bar1">
+			<div id="disk10"></div>
+			<div id="disk11"></div>
+			<div id="disk12"></div>
+			<div id="disk13"></div>
+			<div id="disk14"></div>
+			<div id="disk15"></div>
+			<div id="disk16"></div>
+			<div id="disk17"></div>
+		</div>
+		<div id="bar2">
+			<div id="disk20"></div>
+			<div id="disk21"></div>
+			<div id="disk22"></div>
+			<div id="disk23"></div>
+			<div id="disk24"></div>
+			<div id="disk25"></div>
+			<div id="disk26"></div>
+			<div id="disk27"></div>
+		</div>
+		<div id="bottombar"></div>
+	</div>
+	<button id='start-button' >Start</button>
+
+</body>

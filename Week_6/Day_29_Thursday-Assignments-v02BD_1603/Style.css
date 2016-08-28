@@ -1,0 +1,125 @@
+#container
+ {
+    position: relative;
+}
+        
+
+#bar0 { 
+	position: relative;
+	float: left;
+	height:300px; 
+	width:33%;
+	background-size: 30px 300px;
+	background-image: url('Bar.png');
+    background-repeat: no-repeat;
+    background-position:190px;
+}
+
+#bar1 { 
+	position: relative;
+	float: left;
+	height:300px; 
+	width:33%;
+	background-size: 30px 300px;
+	background-image: url('Bar.png');
+    background-repeat: no-repeat;
+    background-position:190px;
+}
+
+#bar2 { 
+	position: relative;
+	float: left;
+	height:300px; 
+	width:33%;
+	background-size: 30px 300px;
+	background-image: url('Bar.png');
+    background-repeat: no-repeat;
+    background-position:190px;
+} 	
+
+/* left of disk0 at 35px; left = 130 (bar0 left) -w/2 + 15 (bar width/2)  */
+.disk {
+	position:absolute; 
+	top:300px; 
+	left:35px;
+	background:white; 
+	width:340px;
+	height: 20px;
+} 
+.disk7 {
+	position:absolute; 
+	top:300px; 
+	left:35px;
+	background:blue; 
+	width:340px;
+	height: 20px;
+} 
+.disk6 { 
+	position:absolute;
+	top:275px; 
+	left:55px;
+	background:blue; 
+	width:300px; 
+	height: 20px;
+}
+.disk5 { 
+	position:absolute;
+	top:250px; 
+	left:75px;
+	background:blue; 
+	width:260px;
+	height: 20px; 
+}  
+.disk4 { 
+	position:absolute;
+	top:225px; 
+	left:95px;
+	background:blue; 
+	width:220px; 
+	height: 20px;
+}
+.disk3 { 
+	position:absolute;
+	top:200px; 
+	left:115px;
+	background:blue; 
+	width:180px;
+	height: 20px;
+}
+
+.disk2 { 
+	position:absolute;
+	top:175px; 
+	left:135px;
+	background:blue; 
+	width:140px;
+	height: 20px;
+}
+
+.disk1 { 
+	position:absolute;
+	top:150px; 
+	left:155px;
+	background:blue; 
+	width:100px;
+	height: 20px;
+}
+
+.disk0 {
+	position:absolute; 
+	top:125px; 
+	left:165px;
+	background:blue; 
+	width:80px;
+	height: 20px;
+}
+
+#bottombar { 
+	position:absolute; 
+	top:320px; 
+	/*left:10px;*/
+	background:#222; 
+	/*border:1px solid black; */
+	height:30px;
+	width:100%; 
+}
