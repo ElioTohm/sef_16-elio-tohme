@@ -9,22 +9,27 @@
 	<script type="text/javascript">
 		window.onload=function ()
 		{
-			var A = ["0",3,2,1,];
-			var B = ["1"];
-			var C = ["2"];
+			var A = ["A",7,6,5,4,3,2,1,0];
+			var B = ["B"];
+			var C = ["C"];
 		//recursive function 
 			function hanoi (disc,src,aux,dst)
 			{
 				if (disc > 1) {
 					hanoi(disc - 1,src,dst,aux);
 					dst.push(src.pop());
-					var tempsrc = "disk" + src[0] + disc;
-					var tempdst = "disk" + dst[0] + disc;
-					document.getElementById(tempsrc).className = '';
-					document.getElementById(tempdst).className = "disk" + disc;
+					drawDisks(disc,src,aux,dst);
 					hanoi(disc - 1,aux,src,dst);
 				}
 			};
+
+		function drawDisks (disc,src,aux,dst)
+		{
+			var node = document.createElement("div");
+			var textnode = document.createTextNode("Move disc " + disc + " from " + src[0] + " to " + dst[0]);         
+			node.appendChild(textnode);              
+			document.getElementById("container").appendChild(node);
+		}	
 		//call function
 			var start = document.getElementById("start-button");
 			start.addEventListener("click", function () {
@@ -35,37 +40,7 @@
 </head>
 <body>
 	<div id="container">
-		<div id="bar0">
-			<div id="disk07" class="disk7"></div>
-			<div id="disk06" class="disk6"></div>
-			<div id="disk05" class="disk5"></div>
-			<div id="disk04" class="disk4"></div>
-			<div id="disk03" class="disk3"></div>
-			<div id="disk02" class="disk2"></div>
-			<div id="disk01" class="disk1"></div>
-			<div id="disk00" class="disk0"></div>
-		</div>
-		<div id="bar1">
-			<div id="disk17"></div>
-			<div id="disk16"></div>
-			<div id="disk15"></div>
-			<div id="disk14"></div>
-			<div id="disk13"></div>
-			<div id="disk12"></div>
-			<div id="disk11"></div>
-			<div id="disk10"></div>
-		</div>
-		<div id="bar2">
-			<div id="disk27"></div>
-			<div id="disk26"></div>
-			<div id="disk25"></div>
-			<div id="disk24"></div>
-			<div id="disk23"></div>
-			<div id="disk22"></div>
-			<div id="disk21"></div>
-			<div id="disk20"></div>
-		</div>
-		<div id="bottombar"></div>
+		
 	</div>
 	<button id='start-button' >Start</button>
 
