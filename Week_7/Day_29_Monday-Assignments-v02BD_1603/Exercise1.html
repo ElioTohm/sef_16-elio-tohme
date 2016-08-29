@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title></title>
+	<meta name="description" content="Ecommerce shop for sports supplies">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript">
+
+		var hack = {
+			charlist : "abcdefghijklmnopqrstuvwxyz",
+			solution : "",
+			printsolution : function ()
+			{
+				IndexArray = this.crackDatShit(248410397744610);
+				for (var i = IndexArray.length - 1; i >= 0; i--) {
+					this.solution += this.charlist.charAt(IndexArray[i]);	
+				}
+				document.write(this.solution);
+			},
+			crackDatShit : function (totalNumber)
+			{
+				var total = totalNumber;
+				var arrayOfNumb = [];
+				while (total > 0){
+					var charNum = total % 17;
+					total -= charNum;
+					charNum--;
+					arrayOfNumb.push(charNum);
+					total /= 17;
+				}
+				return arrayOfNumb;
+			}
+		};
+	hack.printsolution();	
+	</script>
+</head>
+<body>
+</body>
