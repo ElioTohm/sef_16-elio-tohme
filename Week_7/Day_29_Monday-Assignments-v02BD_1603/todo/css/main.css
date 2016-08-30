@@ -70,6 +70,13 @@ textarea {
     height: auto;
     margin: 0 auto 10px auto;
 }
+.seperator {
+    margin: 50px auto 10px auto;
+    height: 1px;
+    background: #717171;
+    width: 55%;
+
+}
 #title-input {
     width: 100%;
     padding-bottom: 10px;
