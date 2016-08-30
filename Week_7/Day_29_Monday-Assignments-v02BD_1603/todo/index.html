@@ -17,20 +17,35 @@
         <div id="main-wrapper">
         <!-- bordered center container -->
             <div id="main-container">
+                
                 <h1>SEF Todo List</h1>
                 <h2>Item</h2>
-                <div id="title-input">
-                <!-- title section with add button -->
-                    <input type="text" name="title" placeholder="item title">
-                    <button>Add</button>
+                <div id="input-wrapper">
+                    <div id="title-input">
+                    <!-- title section with add button -->
+                        <input type="text" id="title" placeholder="item title">
+                        <button onclick="TodoItem.addItem()">Add</button>
+                    </div>
+                    <!-- details input -->
+                    <div id="details-input">
+                        <textarea id="details" placeholder="insert details of item here"></textarea>
+                    </div>    
                 </div>
-                <!-- details input -->
-                <div id="details-input">
-                    <textarea name="details" placeholder="insert details of item here"></textarea>
-                </div>
+                
                 <!-- separator -->
                 <div class="separator"></div>
-                
+                <!-- todo section -->
+                <div id="task">
+                    <div id="task-text">
+                        <h1>Some Text here</h1>
+                        <p>some text here</p>
+                        <h3>some another text here</h3>
+                    </div>    
+                    <div id="delete-wrapper">
+                        <div id="horizontal-seprator"></div>
+                        <button id="delete" type="button">X</button>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="js/main.js"></script>

@@ -65,34 +65,76 @@ textarea {
     border: 3px solid black;
     padding: 20px;
 }
+#input-wrapper {
+    width: 100%;
+    height: auto;
+    margin: 0 auto 10px auto;
+}
 #title-input {
-    margin: auto;
     width: 100%;
     padding-bottom: 10px;
 }
 #title-input input {
     width: 75%;
     height: 40px;
+    border-radius: 5px;
 }
 #title-input button {
     width: 20%;
-    height: 50px;
+    height: 45px;
 }
-#details-input {
-    margin: auto;
-    width: 100%;
-}
+
 #details-input textarea {
-    width: 96%;
+    width: 100%;
+    border-radius: 5px;
 }
-#todo-row{
+#task {
+    width: 100%;
+    height: 200px;
+    border: solid 1px gray;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+}
+
+#task h1{
+    text-align: left;
+    margin-left: 10px;
+}
+
+#task p {
+    margin-left: 10px;
 
 }
-.separator {
-    height: 0px;
-    width: 55%;
-    margin: 50px auto 5px auto; 
-    border-top: 2px solid #000;
+
+#task h3{
+    margin-left: 10px;
+}
+
+#task-text {
+    width: 85%;
+    height: 90%;
+    float: left;
+}
+
+#delete-wrapper {
+    width: auto;
+    height: 90%;
+}
+
+#horizontal-seprator {
+    width: 1px;
+    background-color: gray;
+    height: 100px;
+    margin-left: 10px;
+    margin-top: 50px;
+    float: left;
+
+}
+
+#delete{
+    margin-left: 10px;
+    margin-top: 70px;
+    height: 60px;
 }
 
 h1 {
