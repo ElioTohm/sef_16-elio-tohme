@@ -3,6 +3,7 @@ var TodoItem = {
 	title : "",
 	timestamp: "",
 	detail : "",
+	// addes item to local storage and creates element in DOM
 	addItem : function ()
 	{
 		var maindiv = document.getElementById('itemcontainer');	
@@ -13,6 +14,7 @@ var TodoItem = {
 		maindiv.insertBefore(this.createDivSection(this), maindiv.childNodes[0]);
 
 	},
+	// loads All all info fom local storage
 	loadItems : function ()
 	{
 		var maindiv = document.getElementById('itemcontainer');
@@ -29,6 +31,7 @@ var TodoItem = {
 			}
 		}
 	},
+	//creates the DOM elements 
 	createDivSection : function (item)
 	{
 		var title = document.createElement("h1");
@@ -48,7 +51,7 @@ var TodoItem = {
 		var deletebtn = document.createElement("button");
 		deletebtn.className = "delete";
 		deletebtn.innerHTML = "X";
-		deletebtn.onclick = 
+		deletebtn.onclick = this.deleteItem;
 		deletewrapper.appendChild(horizontalsep);
 		deletewrapper.appendChild(deletebtn);
 		itemtext.appendChild(title);
@@ -59,9 +62,12 @@ var TodoItem = {
 
 		return itemdiv;
 	},
-	deleteitem : function (event)
+	//deletes element by surfing throw the dom
+	deleteItem : function (event)
 	{
-		
+		var key = event.target.parentNode.parentNode.firstChild.firstChild.innerHTML;
+		localStorage.removeItem(key);
+		event.target.parentNode.parentNode.remove();
 	}
 }
 // function that loads items (will trigger on load)
