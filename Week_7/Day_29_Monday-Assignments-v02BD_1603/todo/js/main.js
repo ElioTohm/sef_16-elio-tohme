@@ -10,22 +10,28 @@ var TodoItem = {
 		this.title = document.getElementById('title').value;
 		this.timestamp = Date.now();
 		this.detail = document.getElementById('details').value;
-		localStorage.setItem(this.title, JSON.stringify(this));
-		maindiv.insertBefore(this.createDivSection(this), maindiv.childNodes[0]);
 
+		try {
+			this.checkinput();
+			localStorage.setItem(this.title, JSON.stringify(this));
+			maindiv.insertBefore(this.createDivSection(this), maindiv.childNodes[0]);
+		} catch (e) {
+			
+		}
+		
 	},
 	// loads All all info fom local storage
 	loadItems : function ()
 	{
 		var maindiv = document.getElementById('itemcontainer');
-		for (var key in localStorage){
+		for (var key in localStorage) {
    			var item = JSON.parse(localStorage.getItem(key));
    			console.log(JSON.parse(localStorage.getItem(key)));
    			var checkifExist = document.getElementsByClassName('item')[0];
    			if (checkifExist === undefined) {
    				console.log("has items");
    				maindiv.appendChild(this.createDivSection(item));
-			}else{
+			} else {
 				console.log('no items');
 				maindiv.insertBefore(this.createDivSection(item), maindiv.childNodes[0]);
 			}
@@ -34,12 +40,22 @@ var TodoItem = {
 	//creates the DOM elements 
 	createDivSection : function (item)
 	{
+		var monthsarray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		var daysarray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var title = document.createElement("h1");
 		title.innerHTML = item.title;
 		var detail = document.createElement("h3");
 		detail.innerHTML = item.detail;
 		var time = document.createElement("p");
-		time.innerHTML = item.timestamp;
+		var thedate = new Date(item.timestamp);
+		var dayname = daysarray[thedate.getDay()];
+		var day = thedate.getDate();
+		var month = monthsarray[thedate.getMonth()];
+		var year = thedate.getFullYear();
+		var hours = thedate.getHours();
+		var minutes = thedate.getMinutes();
+		time.innerHTML = "added: " + dayname + ", " + month + " " + day +
+						" " + year + " " + hours + ":" + minutes;
 		var itemdiv = document.createElement("div");
 		itemdiv.className = "item";
 		var itemtext = document.createElement("div");
@@ -68,7 +84,26 @@ var TodoItem = {
 		var key = event.target.parentNode.parentNode.firstChild.firstChild.innerHTML;
 		localStorage.removeItem(key);
 		event.target.parentNode.parentNode.remove();
+	},
+	checkinput :function ()
+	{
+		if (localStorage.getItem(this.title) !== null) {
+			throw this.errorHandler.throwError("Item Already Exists");
+		}
+		if (this.title == "") {
+			throw this.errorHandler.throwError("Empty Title");
+		}
+		if (this.detail == "") {
+			throw this.errorHandler.throwError("Empty Description");
+		}
+	},
+	errorHandler : {
+		throwError : function(message) {
+			alert(message);
+		} 
 	}
 }
+
+ 
 // function that loads items (will trigger on load)
 window.onload = TodoItem.loadItems();
