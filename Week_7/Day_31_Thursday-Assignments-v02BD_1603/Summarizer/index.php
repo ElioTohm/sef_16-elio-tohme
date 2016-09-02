@@ -9,18 +9,20 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
-
+        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
         <div id="main-wrapper">
-            <form id='form' method="post">
-                <input type="url" name="target-url" required>
-                <input type="submit"></button>
-            </form>
+            <div id='form'>
+                <input type="url" id="target-url" placeholder="url" required>
+                <button id="submit" >Summurize</button> 
+            </div>
+        </div>        
+        <div id="summary">
+            
         </div>
-        <script src="js/main.js"></script>
-       
+        <script src="js/main.js"></script>        
     </body>
 </html>
 
