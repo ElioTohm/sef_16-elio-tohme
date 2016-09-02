@@ -4,7 +4,6 @@ function loaded() {
 	    function()
 	    {
 			var url = document.getElementById('target-url').value ;
-	    	alert(url);
 	    	if (url !== null && url != "") {	    	
 	    		ajaxRequest.apiRequest(url);
 	    	}	
