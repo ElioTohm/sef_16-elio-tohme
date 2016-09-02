@@ -3,7 +3,7 @@ require_once 'config.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        $url = 'https://medium.freecodecamp.com/the-art-of-computer-programming-by-donald-knuth-82e275c8764f#.undnextd0';
+        $url = $_POST['url'];
         $sum = call_api('summarize', array('url' => $url, 'sentences_number' => 3));
 
         echo implode($sum->sentences),

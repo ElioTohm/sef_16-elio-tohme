@@ -1,33 +1,31 @@
-var url = document.getElementById('target-url').value ;
 
 function loaded() {
     document.getElementById('submit').addEventListener("click",
 	    function()
 	    {
+			var url = document.getElementById('target-url').value ;
+	    	alert(url);
 	    	if (url !== null && url != "") {	    	
-	    		ajaxRequest.apiRequest();
+	    		ajaxRequest.apiRequest(url);
 	    	}	
 	    },
 	false);
 }
 
-
 window.loaded = loaded();
 
 var ajaxRequest = {
-	apiRequest : function () 
+	apiRequest : function (url) 
 	{
-		
-		alert (url);
 		$.ajax({
 			type: 'POST',
 			url: "PostRedirect.php",
-			// data: , 
+			data: {'url' : url},
 			beforeSend  : function() {
-                $('#popup1').toggleClass('overlayshow overlayhide');
+		        $("#dvloader").show();
             },
 			success: function(resultData) { 
-				$('#popup1').toggleClass('overlayhide overlayshow');
+				$("#dvloader").hide();
 				document.getElementById('summary').innerHTML = resultData;
 			},
 			error: function (request, status, error) {

@@ -18,10 +18,11 @@
                 <input type="url" id="target-url" placeholder="url" required>
                 <button id="submit" >Summurize</button> 
             </div>
+        <div id="dvloader"><img src="img/loading.gif" /></div>
+        <div id="summary"></div>
         </div>        
-        <div id="summary">
+        
             
-        </div>
         <script src="js/main.js"></script>        
     </body>
 </html>

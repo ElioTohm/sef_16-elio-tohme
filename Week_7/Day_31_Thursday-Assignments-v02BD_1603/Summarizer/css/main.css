@@ -85,6 +85,11 @@ input[type=url], select {
     box-sizing: border-box;
 }
 
+#dvloader {
+    display:none;
+    margin: auto;
+}
+
 #submit {
     width: 100%;
     background-color: #4CAF50;
