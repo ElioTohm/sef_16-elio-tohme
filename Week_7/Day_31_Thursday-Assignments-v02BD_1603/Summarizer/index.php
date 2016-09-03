@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Summarizer</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,16 +13,24 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
+        <!-- HEADER section -->
         <div id="main-wrapper">
             <div id='form'>
                 <input type="url" id="target-url" placeholder="url" required>
                 <button id="submit" >Summurize</button> 
             </div>
-        <div id="dvloader"><img src="img/loading.gif" /></div>
-        <div id="summary"></div>
         </div>        
-        
-            
+        <!-- Summary of the given URL -->
+        <div id="summary" ></div>
+
+        <!-- loading div -->
+        <div class="popup-loader-img">
+            <div id="dvloader">
+                <h1>Loading</h1>
+                <img src="img/loading.gif">
+            </div>
+        </div>
+        <!-- Script to load after the element are present -->
         <script src="js/main.js"></script>        
     </body>
 </html>
