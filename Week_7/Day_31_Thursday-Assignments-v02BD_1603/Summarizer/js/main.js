@@ -21,14 +21,14 @@ var ajaxRequest = {
 			url: "PostRedirect.php",
 			data: {'url' : url},
 			beforeSend: function() {
-		        $(".popup-loader-img").fadeIn("slow");
+		        $("#dvloader").fadeIn("slow");
             },
 			success: function(resultData) { 
-				$(".popup-loader-img").fadeOut("slow");
+				$("#dvloader").fadeOut("slow");
 				document.getElementById('summary').innerHTML = resultData;
 			},
 			error: function (request, status, error) {
-				$('#popup1').toggleClass('overlayhide overlayshow');
+				$("dvloader").fadeOut("slow");
 				alert('Something went wrong!!'); 
 			}
 		});

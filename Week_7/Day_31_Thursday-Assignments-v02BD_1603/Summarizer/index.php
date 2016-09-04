@@ -21,15 +21,12 @@
             </div>
         </div>        
         <!-- Summary of the given URL -->
-        <div id="summary" ></div>
-
-        <!-- loading div -->
-        <div class="popup-loader-img">
+        <div id="summary" >
             <div id="dvloader">
-                <h1>Loading</h1>
                 <img src="img/loading.gif">
             </div>
         </div>
+
         <!-- Script to load after the element are present -->
         <script src="js/main.js"></script>        
     </body>
