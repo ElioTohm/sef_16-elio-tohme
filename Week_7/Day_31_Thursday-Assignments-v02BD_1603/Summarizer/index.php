@@ -9,7 +9,7 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -21,10 +21,11 @@
             </div>
         </div>        
         <!-- Summary of the given URL -->
-        <div id="summary" >
+        <div id="content" >
             <div id="dvloader">
                 <img src="img/loading.gif">
             </div>
+            <div id="summary"></div>
         </div>
 
         <!-- Script to load after the element are present -->

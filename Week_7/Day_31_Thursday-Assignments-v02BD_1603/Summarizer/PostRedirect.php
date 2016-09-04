@@ -3,11 +3,17 @@ require_once 'config.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        $url = $_POST['url'];
-        $sum = call_api('summarize', array('url' => $url, 'sentences_number' => 3));
-
-        echo implode($sum->sentences),
-        PHP_EOL;
+        if(isset($_POST['text'])){
+            $text = $_POST['text'];
+            $sum = call_api('summarize', array('title' => 'test', 'text' => $text, 'sentences_number' => 5));
+            echo implode($sum->sentences),
+            PHP_EOL;    
+        }else{
+            $url  = $_POST['url_page'];
+            $page = get_htmlcontent($url);
+            echo $page;
+        }
+        
     }
     
     function call_api($endpoint, $parameters) {
@@ -25,4 +31,9 @@ require_once 'config.php';
         return json_decode($response);
     }
 
+    function get_htmlcontent ($urlTaget)
+    {
+        $htmlelements = file_get_contents($urlTaget);
+        echo $htmlelements;
+    }
 ?>

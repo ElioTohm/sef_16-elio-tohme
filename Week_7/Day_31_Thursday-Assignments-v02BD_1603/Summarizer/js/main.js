@@ -3,9 +3,10 @@ function loaded() {
     document.getElementById('submit').addEventListener("click",
 	    function()
 	    {
-			var url = document.getElementById('target-url').value ;
-	    	if (url !== null && url != "" && ValidURL(url)) {	    	
-	    		ajaxRequest.apiRequest(url);
+			var targeturl = document.getElementById('target-url').value ;
+			var text = "";
+	    	if (targeturl !== null && targeturl != "" && ValidURL(targeturl)) {	    	
+	    		ajaxRequest.getContentRequest(targeturl);
 	    	}
 	    },
 	false);
@@ -14,39 +15,67 @@ function loaded() {
 window.loaded = loaded();
 
 var ajaxRequest = {
-	apiRequest : function (url) 
+	apiRequest : function (targeturl,text) 
 	{
 		$.ajax({
 			type: 'POST',
 			url: "PostRedirect.php",
-			data: {'url' : url},
-			beforeSend: function() {
-		        $("#dvloader").fadeIn("slow");
-            },
+			data: {	
+				'text' : text,
+			},
 			success: function(resultData) { 
 				$("#dvloader").fadeOut("slow");
 				document.getElementById('summary').innerHTML = resultData;
+				console.log(resultData);
 			},
 			error: function (request, status, error) {
 				$("dvloader").fadeOut("slow");
 				alert('Something went wrong!!'); 
 			}
 		});
+	},
+	getContentRequest : function (targeturl)
+	{	
+		var text = "";
+		$.ajax({
+			type: 'POST',
+			url: "PostRedirect.php",
+			data: {'url_page' : targeturl},
+
+			beforeSend: function() {
+		        $("#dvloader").fadeIn("slow");
+            },
+			success: function(resultData) { 
+				var paragraphs = getParagraph.get_p(resultData);
+				text = paragraphs;
+				ajaxRequest.apiRequest(targeturl,text);
+			},
+			error: function (request, status, error) {
+				$("dvloader").fadeOut("slow");
+				alert('Something went wrong!!'); 
+			}
+		});	
+		return text;
 	}
 }
 
+var getParagraph = {
+	get_p : function (returnedDocment)
+	{
+		var fullText = "";
+		parser=new DOMParser();
+		htmlDoc=parser.parseFromString(returnedDocment, "text/html");
+		var p_array = htmlDoc.getElementsByClassName('graf--p');
+		for (var i = p_array.length - 1; i >= 0; i--) {
+		 	fullText += p_array[i].innerHTML;
+		 } 
+		return fullText;
+	}
+}
+
+
 function ValidURL(str) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-  if(!pattern.test(str)) {
-    alert("Please enter a valid URL.");
-    return false;
-  } else {
-    return true;
-  }
+	var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+	return regexp.test(str);
 }
 
