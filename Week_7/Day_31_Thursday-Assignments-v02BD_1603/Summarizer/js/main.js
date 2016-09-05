@@ -26,7 +26,6 @@ var ajaxRequest = {
 			success: function(resultData) { 
 				$("#dvloader").fadeOut("slow");
 				document.getElementById('summary').innerHTML = resultData;
-				console.log(resultData);
 			},
 			error: function (request, status, error) {
 				$("dvloader").fadeOut("slow");
@@ -47,7 +46,7 @@ var ajaxRequest = {
             },
 			success: function(resultData) { 
 				var paragraphs = getParagraph.get_p(resultData);
-				text = paragraphs;
+				text = paragraphs; /**/
 				ajaxRequest.apiRequest(targeturl,text);
 			},
 			error: function (request, status, error) {
