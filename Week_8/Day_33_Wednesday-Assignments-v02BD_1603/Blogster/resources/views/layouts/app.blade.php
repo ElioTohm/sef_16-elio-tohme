@@ -11,9 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <!-- <link href="/public/css/app.css" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}"> -->
-    <link href={{ url('/css/app.css') }} rel="stylesheet">
+    <link href={{ url ('/css/app.css')}}  rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -61,9 +59,6 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="">Add Post</a>
-                                </li>
-                                <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -85,6 +80,6 @@
     @yield('content')
 
     <!-- Scripts -->
-    <script src={{ url('/js/app.js') }} ></script>
+    <script src={{ url('/js/app.js' )}} ></script>
 </body>
 </html>

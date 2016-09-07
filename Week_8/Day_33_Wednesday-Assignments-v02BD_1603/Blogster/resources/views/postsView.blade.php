@@ -12,7 +12,7 @@
 				        <div class="col-md-8 col-md-offset-2">
 				            <div class="panel panel-default">
 								@foreach ($posts as $post)
-									<div class="panel-heading">{{ $post->title }}</div>
+									<div class="panel-heading"> {{ $post->title }}</div>
 						                <div class="panel-body">
 						                    {{ $post->body }}
 						                </div>

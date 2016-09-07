@@ -13,7 +13,7 @@ class Posts extends Migration
      */
     public function up()
     {
-        // blog table
+         // blog table
         Schema::create('posts', function(Blueprint $table)
         {
             $table->increments('id');
@@ -23,8 +23,6 @@ class Posts extends Migration
                     ->onDelete('cascade');
             $table->string('title')->unique();
             $table->text('body');
-            $table->string('slug')->unique();
-            $table->boolean('active');
             $table->timestamps();
         });
     }

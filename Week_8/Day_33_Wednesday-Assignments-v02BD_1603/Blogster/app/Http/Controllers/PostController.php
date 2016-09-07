@@ -13,6 +13,6 @@ class PostController extends Controller
     public function get_allPosts ()
     {
 		$post = Post::all();
-		return view('PostsView')->with('posts',$post);
+		return view('postsView')->with('posts',$post);
     }
 }
