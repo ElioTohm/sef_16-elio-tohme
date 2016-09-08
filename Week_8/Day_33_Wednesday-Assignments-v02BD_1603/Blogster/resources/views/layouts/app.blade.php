@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href={{ url ('/css/app.css')}}  rel="stylesheet">
+    <!-- <link href={{ url ('/css/customStyle.css')}}  rel="stylesheet"> -->
 
     <!-- Scripts -->
     <script>
@@ -35,15 +36,13 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <strong>
+                        {{ config('app.name', 'Laravel') }}    
+                    </strong>
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
-                </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -59,16 +58,19 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{{ url ('AddPost') }}">Add Post</a>
+                                    <a href="{{ url ('newpost') }}">Add a Post</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/logout') }}"
+                                    <a href="{{ url ('manageposts') }}">Manage Posts</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
 
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </li>

@@ -21,6 +21,13 @@ Route::get('posts', 'PostController@get_allPosts');
 Route::group(['middleware' => ['auth']], function()
 {
 
-	Route::get('AddPost', 'PostController@addPost');
+	Route::get('newpost', 'PostController@getPostPage');
+	
+	Route::post('addpost', 'PostController@addPost');
+
+	Route::get('manageposts', 'PostController@getPostByUserID');
+
+	Route::delete('delete/{id}', 'PostController@deletePost');
 
 });
+

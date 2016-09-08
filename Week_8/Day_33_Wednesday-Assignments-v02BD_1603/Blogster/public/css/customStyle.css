@@ -1,0 +1,8 @@
+a {
+	color:white;
+}
+
+.body-fixed-height {
+	max-height: 150px;
+	overflow: auto;
+}
