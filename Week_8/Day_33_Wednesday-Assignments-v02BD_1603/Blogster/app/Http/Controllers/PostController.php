@@ -15,4 +15,9 @@ class PostController extends Controller
 		$post = Post::all();
 		return view('postsView')->with('posts',$post);
     }
+
+    public function addPost ()
+    {
+    	return view('addpostView');
+    }
 }
