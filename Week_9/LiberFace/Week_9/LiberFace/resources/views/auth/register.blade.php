@@ -37,20 +37,6 @@
                                 @endif
                             </div>
                         </div>
-                        <!-- Date of birth -->
-                        <div class="form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Date of birth</label>
-
-                            <div class="col-md-6">
-                                <input id="dob" type="date" class="form-control" name="dob" value="{{ old('dob') }}" required>
-
-                                @if ($errors->has('dob'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('dob') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
