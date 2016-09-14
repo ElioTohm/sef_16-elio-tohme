@@ -9,8 +9,4 @@ class Post extends Model
 {
     protected $table = 'posts';
 
-    function blogUserName ()
-    {
-    	return $this->hasMany('User', 'author_id', 'id');
-    }
 }

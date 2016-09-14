@@ -20,14 +20,18 @@
 					                <div class="panel-body body-fixed-height">
 					                    <p> {{ $post->body }} </p>
 					                </div>
-					                <div class="panel-footer">
-									 	<p class="text-muted">{{ $post->created_at }}</p>
+					                <div class="panel-footer ">
+				                		<p class="text-muted">Created by {{ $post->name }} On {{ $post->created_at }}</p>	
 					                </div>
 								</div>
 				            </div>
 				        </div>
 					@endforeach
 			    </div>
+			    <div class="container">
+			    	{{ $posts->links()}}
+			    </div>
+				</div>
             </div>
         </div>
     </div>

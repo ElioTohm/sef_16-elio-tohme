@@ -31,3 +31,4 @@ Route::group(['middleware' => ['auth']], function()
 
 });
 
+Route::get('test', 'PostController@getpostUserName');

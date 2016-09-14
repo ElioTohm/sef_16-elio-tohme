@@ -13,9 +13,9 @@
 						<input required="required" placeholder="Enter title here" type="text" name = "title"class="form-control" />
 					</div>
 					<div class="form-group">
-						<textarea name='body' class="form-control" placeholder="insert description and details here"></textarea>
+						<textarea required="required" name='body' class="form-control" placeholder="insert description and details here"></textarea>
 					</div>
-					<input required="required" type="submit" name='publish' class="btn btn-success" value="Publish"/>
+					<input type="submit" name='publish' class="btn btn-success" value="Publish"/>
 				</form>
 			</div>
 		</div>	

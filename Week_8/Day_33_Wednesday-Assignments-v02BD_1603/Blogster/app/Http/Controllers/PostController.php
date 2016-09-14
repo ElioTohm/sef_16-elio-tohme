@@ -10,12 +10,16 @@ use App\Post;
 
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\DB;
+
 class PostController extends Controller
 {
     public function get_allPosts ()
     {
-		$post = Post::all();
-        return view('postsView')->with('posts',$post);
+        $posts = DB::table('posts')
+                ->join('users', 'posts.author_id', '=', 'users.id')
+                ->paginate(5);
+        return view('postsView')->with('posts',$posts);
     }
 
     public function getPostPage ()
@@ -38,7 +42,7 @@ class PostController extends Controller
     public function getpostUserName ()
     {
         // $post = Post::where('author_id',1)->with('User')->get();
-        $post = Post::all();
+        $post = Post::join('User', 'User.id', '=', 'Post.author_id');
         return $post;
     }
 
@@ -55,4 +59,5 @@ class PostController extends Controller
         Post::findOrFail($id)->destroy($id);
         return redirect('manageposts');
     }
+
 }
