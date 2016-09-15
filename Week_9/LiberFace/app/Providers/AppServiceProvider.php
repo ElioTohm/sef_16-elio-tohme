@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace LiberFace\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

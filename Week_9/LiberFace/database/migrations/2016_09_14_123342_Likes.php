@@ -13,7 +13,20 @@ class Likes extends Migration
      */
     public function up()
     {
-        //
+        /*
+         * Create table comment with foreign key to user and post table
+        */
+        Schema::create('likes', function(Blueprint $table)
+        {
+            $table -> integer('likes') -> unsigned() -> default(0);
+            $table -> foreign('likes')
+                   -> references('id')-> on('posts')
+                   -> onDelete('cascade');
+            $table -> integer('from_user') -> unsigned() -> default(0);
+            $table -> foreign('from_user')
+                   -> references('id')->on('users')
+                   -> onDelete('cascade');
+        });
     }
 
     /**
@@ -23,6 +36,6 @@ class Likes extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('likes');
     }
 }

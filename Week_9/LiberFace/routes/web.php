@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DashboardController@index');
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function()
 {
-    Route::get('/home', 'HomeController@index');
+	/*
+	 * All routes that needs to be logged in are in this scope
+	*/
 });
+

@@ -11,9 +11,22 @@ class Posts extends Migration
      *
      * @return void
      */
+
+    /**
+     * Table post forgein key with table users on id
+    */
     public function up()
     {
-        //
+        Schema::create('posts', function (Blueprint $table) {
+            $table -> increments('id');
+            $table -> integer('author_id') -> unsigned() -> default(0);
+            $table -> foreign('author_id')
+                   -> references('id') -> on('users')
+                   -> onDelete('cascade');
+            $table -> string('tags');
+            $table -> text('image_url');
+            $table -> timestamps();
+        });
     }
 
     /**
@@ -23,6 +36,6 @@ class Posts extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('posts');
     }
 }

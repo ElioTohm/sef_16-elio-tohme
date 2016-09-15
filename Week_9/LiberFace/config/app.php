@@ -172,11 +172,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        LiberFace\Providers\AppServiceProvider::class,
+        // LiberFace\Providers\BroadcastServiceProvider::class,
+        LiberFace\Providers\AuthServiceProvider::class,
+        LiberFace\Providers\EventServiceProvider::class,
+        LiberFace\Providers\RouteServiceProvider::class,
 
     ],
 

@@ -13,7 +13,23 @@ class Comments extends Migration
      */
     public function up()
     {
-        //
+        /*
+         * Create table comment with foreign key to user and post table
+        */
+        Schema::create('comments', function(Blueprint $table)
+        {
+            $table -> increments('id');
+            $table -> integer('on_post') -> unsigned() -> default(0);
+            $table -> foreign('on_post')
+                   -> references('id')-> on('posts')
+                   -> onDelete('cascade');
+            $table -> integer('from_user') -> unsigned() -> default(0);
+            $table -> foreign('from_user')
+                   -> references('id')->on('users')
+                   -> onDelete('cascade');
+            $table -> text('comment_text');
+            $table -> timestamps();
+        });
     }
 
     /**
@@ -23,6 +39,6 @@ class Comments extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('comments');
     }
 }

@@ -79,7 +79,7 @@
     </nav>
 
     @yield('content')
-
+    @yield('posts')
     <!-- Scripts -->
     <script src={{ url ("/js/app.js")}} ></script>
 </body>

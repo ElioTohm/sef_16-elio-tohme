@@ -46,7 +46,7 @@
 
                                 @if ($errors->has('dob'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('dob') }}</strong>
+                                        <strong>Missing birth date</strong>
                                     </span>
                                 @endif
                             </div>
