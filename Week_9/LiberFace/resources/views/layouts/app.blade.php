@@ -78,8 +78,15 @@
         </div>
     </nav>
 
-    @yield('content')
+    <!-- Login -->
+    @yield('loginandregister')
+
+    <!-- Posts -->
     @yield('posts')
+
+    <!-- ImageUpload -->
+    @yield('uploadiamge')
+    
     <!-- Scripts -->
     <script src={{ url ("/js/app.js")}} ></script>
 </body>
