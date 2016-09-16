@@ -13,6 +13,6 @@ class Post extends Model
 
     function comments ()
     {
-      return $this->hasMany('LiberFace\Comment','id');
+      return $this->hasMany('LiberFace\Comment','on_post');
     }
 }

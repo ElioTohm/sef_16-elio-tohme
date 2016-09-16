@@ -13,6 +13,6 @@ class Comment extends Model
 
     function user ()
     {
-    	return $this->belongsTo('LiberFace\User');
+    	return $this->belongsTo('LiberFace\User', 'id');
     }
 }

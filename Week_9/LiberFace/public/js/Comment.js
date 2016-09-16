@@ -10,10 +10,16 @@ $('#text').keypress(function (e) {
 var PostComment = {
 	
 	getMessage : function (){
+		$.ajaxSetup({
+	        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+	    });
 		$.ajax({
 			type:'POST',
 			url:'PostComment',
-			data:'_token = <?php echo csrf_token() ?>',
+			headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+			// data:,
 			// success:function(data){
 			// $("#msg").html(data.msg);
 			// }
@@ -21,5 +27,3 @@ var PostComment = {
 	},
 
 }
-
-// window.loaded = loaded();

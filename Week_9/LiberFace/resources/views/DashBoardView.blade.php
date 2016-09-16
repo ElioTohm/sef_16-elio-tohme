@@ -26,9 +26,15 @@
                                     <div class="panel-footer ">
                                         
                                         <!-- previous comments -->
-                                        <div>
-                                            {{ $post->comments }}
-                                        </div>
+                                        @foreach ($post->comments as $comment )
+                                            <div>
+                                                <strong><i>
+                                                    {{ $comment->user->name }}
+                                                </i></strong>
+                                                : {{ $comment->comment_text }}
+                                            </div>
+                                                
+                                        @endforeach
                                         
                                         <!-- Add comment -->
                                         <form>
