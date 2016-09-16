@@ -26,5 +26,9 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::post('UploadImage', 'UploadImageController@uploadImage');
 
+	Route::post('PostComment', 'DashboardController@postcomment');
+
+
 });
 
+Route::get('test', 'DashboardController@postcomment');

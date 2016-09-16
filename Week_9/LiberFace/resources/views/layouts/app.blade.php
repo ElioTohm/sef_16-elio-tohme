@@ -12,8 +12,11 @@
 
     <!-- Styles -->
     <link href={{ url ("/css/app.css")}} rel="stylesheet">
+    <link href={{ url ("/css/customStyle.css")}} rel="stylesheet">
 
     <!-- Scripts -->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+      </script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

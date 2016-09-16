@@ -14,7 +14,7 @@ class UploadImageController extends Controller
    
 	function __construct() 
 	{
-        self::$destinationPath = public_path('images/usersImage');
+        self::$destinationPath = public_path('images/');
 	}
 
     function loadpage ()
@@ -29,7 +29,7 @@ class UploadImageController extends Controller
         ]);
 
     	$image = $request->file('file');
-        $input['imagename'] = $request->user()->id.'_'.time().'_'.$image->getClientOriginalExtension();
+        $input['imagename'] = $request->user()->id.'_'.time().'.'.$image->getClientOriginalExtension();
 
         $image->move(self::$destinationPath, $input['imagename']);
 
@@ -38,8 +38,8 @@ class UploadImageController extends Controller
         $post->tags = $request->get('tags');
         $post->user_id = $request->user()->id;
         $post->save();
-        return redirect()->action('UploadImageController@loadPage')
-                         ->withMessage('Posted Successfully');
+        // return redirect()->action('UploadImageController@loadPage')
+        //                  ->withMessage('Posted Successfully');
     }
 
 }

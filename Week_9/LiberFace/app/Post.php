@@ -4,8 +4,6 @@ namespace LiberFace;
 
 use Illuminate\Database\Eloquent\Model;
 
-use LiberFace\User;
-
 class Post extends Model
 {
     function user ()
@@ -13,13 +11,8 @@ class Post extends Model
     	return $this->belongsTo('LiberFace\User');
     }
 
-    function get_followed_posts ()
+    function comments ()
     {
-    	$posts = User::where('active', 1)
-               ->orderBy('name', 'desc')
-               ->take(10)
-               ->get();
-               
-        return $posts;
+      return $this->hasMany('LiberFace\Comment','id');
     }
 }
