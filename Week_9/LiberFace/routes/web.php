@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', 'DashboardController@index');
-
 Auth::routes();
-
 
 /*
  * All routes that needs to be logged in are in this scope
@@ -23,6 +20,8 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function()
 {
 
+	Route::get('/', 'DashboardController@index');
+	
 	Route::get('UploadImage', 'UploadImageController@loadPage');
 
 	Route::post('UploadImage', 'UploadImageController@uploadImage');

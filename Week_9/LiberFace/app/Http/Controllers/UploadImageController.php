@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use LiberFace\Http\Requests;
 
+use LiberFace\Post;
+
 class UploadImageController extends Controller
 {
 	private static $destinationPath; 
@@ -23,20 +25,21 @@ class UploadImageController extends Controller
     function uploadImage (Request $request)
     {
     	$this->validate($request, [
-            'image' => 'required|mimes:jpeg,png,jpg',
+            'file' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
-    	$image = $request->file('image');
-        $input['imagename'] = $request->user()->id.'_'.$image->getClientOriginalExtension();
+    	$image = $request->file('file');
+        $input['imagename'] = $request->user()->id.'_'.time().'_'.$image->getClientOriginalExtension();
 
-        $image->move($this->destinationPath, $input['imagename']);
+        $image->move(self::$destinationPath, $input['imagename']);
 
-        $newPost = new Post();
-        $newPost->image_url = $input['imagename'];
-        $newPost->tags = $request->get('tags');
-        $newPost->user_id = $request->user()->id;
-        $newPost->save();
-
+        $post = new Post();
+        $post->image_url = $input['imagename'];
+        $post->tags = $request->get('tags');
+        $post->user_id = $request->user()->id;
+        $post->save();
+        return redirect()->action('UploadImageController@loadPage')
+                         ->withMessage('Posted Successfully');
     }
 
 }

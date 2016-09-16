@@ -49,7 +49,7 @@ class PostController extends Controller
     public function getPostByUserID ()
     {
         $post  = Post::where('author_id',\Auth::user()->id)
-               ->orderBy('id')
+               ->orderBy('author')
                ->get();
         return view('postmanagerView')->with('posts',$post);
     }

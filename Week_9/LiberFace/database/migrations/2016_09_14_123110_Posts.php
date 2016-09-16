@@ -19,8 +19,8 @@ class Posts extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table -> increments('id');
-            $table -> integer('author_id') -> unsigned() -> default(0);
-            $table -> foreign('author_id')
+            $table -> integer('user_id') -> unsigned() -> default(0);
+            $table -> foreign('user_id')
                    -> references('id') -> on('users')
                    -> onDelete('cascade');
             $table -> string('tags');
