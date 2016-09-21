@@ -1,20 +1,44 @@
 <?php
 class Rest 
 {
-    public $_content_type = "application/json";
+    private $_content_type = "application/json";
     private $_code = 200;
-    public function get_referer(){
-        return $_SERVER['HTTP_REFERER'];
+    private $_request = NULL;
+    private $_requestType = NULL;
+
+    /**
+     * on create get all info
+     */
+    public function __construct ()
+    {
+        $this->checkRequest();
     }
      
-    public function response($data,$status){
-        $this->_code = ($status)?$status:200;
-        $this->set_headers();
+    /**
+     * the response that has header, info and a response status
+     */     
+    public function response ($data, $status) {
+        $this->setHeaders();
         echo $data;
         exit;
     }
-     
-    private function get_status_message(){
+    
+    public function _getRequest ()
+    {
+        return $this->_request;
+    }
+
+    public function _getRequestType ()
+    {
+        return $this->_requestType;
+    }
+
+
+    /**
+     * get costum status message
+     */
+    private function getStatusMessage ()
+    {
         $status = array(
                     100 => 'Continue',  
                     101 => 'Switching Protocols',  
@@ -59,10 +83,61 @@ class Rest
                     505 => 'HTTP Version Not Supported');
         return ($status[$this->_code])?$status[$this->_code]:$status[500];
     }
-     
-    private function set_headers(){
-        header("HTTP/1.1 ".$this->_code." ".$this->get_status_message());
-        header("Content-Type:".$this->_content_type);
+
+
+    /**
+     * get information fromt he request method
+     */
+    private function checkRequest ()
+    {
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case "POST":
+                $this->_requestType = 'Post';
+                $this->_request = $this->cleanInputs($_POST);
+                break;
+            case "GET":
+                $this->_request = $this->cleanInputs($_GET);
+                $this->_requestType = 'Read';
+                break;
+            case "DELETE":
+                $this->_request = $this->cleanInputs($_GET);
+                $this->_requestType = 'Delete';
+                break;
+            case "PUT":
+                $this->_requestType = 'Update';
+                parse_str(file_get_contents("php://input"),$this->_request);
+                $this->_request = $this->cleanInputs($this->_request);
+                break;
+            default:
+                $this->response('',406);
+                break;
+         } 
     }
+
+    private function cleanInputs ($data)
+    {
+        $clean_input = array();
+        if(is_array($data)){
+            foreach($data as $k => $v){
+                $clean_input[$k] = $this->cleanInputs($v);
+            }
+        }else{
+            if(get_magic_quotes_gpc()){
+                $data = trim(stripslashes($data));
+            }
+            $data = strip_tags($data);
+            $clean_input = trim($data);
+        }
+        return $clean_input;
+    }
+
+    /*
+     * add information in the header response
+     */
+    private function setHeaders ()
+    {
+        header("HTTP/1.1 ".$this->_code." ".$this->getStatusMessage());
+        header("Content-Type:".$this->_content_type);
+    }       
 }   
 ?>

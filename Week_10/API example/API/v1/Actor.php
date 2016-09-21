@@ -3,12 +3,7 @@ require_once 'QueryWrapper.php';
 
 class Actor 
 {
-	public function Read ($tables, $args = []) 
-	{
-		$sqlwrapper = new QueryWrapper();
-		return $sqlwrapper->Read($tables);
-	}
-
+	protected $relation = ['film'=>'film_id','address'=>'address_id','customer'=>'customer_id'];
 }
 
 ?>

@@ -3,16 +3,7 @@ require_once 'QueryWrapper.php';
 
 class Film
 {
-	private $sqlwrapper;
-
-	public function __construct ()
-	{
-		$this->sqlwrapper = new QueryWrapper();
-	}
-	public function Read ($tables, $args = []) 
-	{
-		return $this->sqlwrapper->Read($tables);
-	}
+	protected $relation = ['actor'=>'actor_id','address'=>'address_id','customer'=>'customer_id'];
 }
 
 

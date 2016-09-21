@@ -12,8 +12,17 @@ class ApiHandler extends Rest {
      
     public $data = "";
 
-    private $_request = NULL;
     private $table = NULL;
+
+
+    /**
+  	 * on create trigger the construct of parent class
+     */
+    public function __construct ()
+    {
+    	parent::__construct();
+    }
+
     /**
      * Public method for access api.
      * This method dynmically call the method based on the query string
@@ -24,32 +33,11 @@ class ApiHandler extends Rest {
 		$this->checkHeaderInfo($args);
 		$queryWrapper = new QueryWrapper();
 		$table  = new $args[0]();
-		$this->CheckRequest();
-		$tempreq = $this->_request;
-		$this->response($this->jsonfy($queryWrapper->$tempreq($args),200));
+		$reqtype = $this->_getRequestType();
+		$req = $this->_getRequest();
+		$this->response($this->jsonfy($queryWrapper->$reqtype($args, $req),200));
 	}
 
-
-	private function CheckRequest ()
-	{
-		switch ($_SERVER['REQUEST_METHOD']) {
-		 	case 'GET':
-		 		$this->_request = 'Read';
-		 		break;
-		 	case 'POST':
-		 		$this->_request = 'Post';
-		 		break;
-		 	case 'DELETE':
-		 		$this->_request = 'Delete';
-		 		break;
-		 	case 'UPDATE':
-		 		$this->_request = 'Update';
-		 		break;
-		 	default:
-		 		# code...
-		 		break;
-		 } 
-	}
 	/**
 	 * checkHeaderInfo() Checks if the parameters sent are correct 
   	 */

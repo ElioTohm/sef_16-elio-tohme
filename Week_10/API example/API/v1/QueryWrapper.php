@@ -7,8 +7,8 @@
  */	
 class QueryWrapper
 {
-	
 	private $db = NULL;
+
 	/**
 	 * connection to the database
 	 */
@@ -30,14 +30,15 @@ class QueryWrapper
 	public function Read ($table, $arg = [])
 	{
 		$myArray = array();
-		$result = $this->db->query("select * from " . strtolower($table[0]));
+		$condition = $this->getCondition($arg);
+		$result = $this->db->query("select * from " . strtolower($table[0]) . $condition);
 		while($row = $result->fetch_array(MYSQL_ASSOC)) {
             $myArray[] = $row;
     	}
     	return $myArray;
 	}
 
-	public function Insert ()
+	public function Post ()
 	{
 
 	}
@@ -51,6 +52,19 @@ class QueryWrapper
 	{
 
 	} 
+
+	private function getCondition($arg = "")
+	{
+		if ($arg != "") {
+			$condition = " where ";
+			foreach ($arg as $key => $value) {
+				if($key == count($arg) - 1 || $key != "rquest"){
+					$condition .= " " . $key . " = '" . $value . "'";	
+				}
+			}
+			return $condition;		
+		}
+	}
 	
 }	
 
