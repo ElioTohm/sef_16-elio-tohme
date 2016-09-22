@@ -55,15 +55,16 @@ class QueryWrapper
 
 	private function getCondition($arg = "")
 	{
-		if ($arg != "") {
+		$condition = "";
+		if (count($arg) > 1 ) {
 			$condition = " where ";
 			foreach ($arg as $key => $value) {
 				if($key == count($arg) - 1 || $key != "rquest"){
 					$condition .= " " . $key . " = '" . $value . "'";	
 				}
 			}
-			return $condition;		
 		}
+		return $condition;
 	}
 	
 }	
