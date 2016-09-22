@@ -32,15 +32,21 @@ class QueryWrapper
 		$myArray = array();
 		$condition = $this->getCondition($arg);
 		$result = $this->db->query("select * from " . strtolower($table[0]) . $condition);
-		while($row = $result->fetch_array(MYSQL_ASSOC)) {
-            $myArray[] = $row;
-    	}
-    	return $myArray;
+		if(mysqli_num_rows($result) != 0){
+			while($row = $result->fetch_array(MYSQL_ASSOC)) {
+            	$myArray[] = $row;
+    		}
+    		return $myArray;	
+		}else{
+			return "no data found";
+		}
+		$result->free();
+		$this->closeConnection();
 	}
 
 	public function Post ()
 	{
-
+		
 	}
 
 	public function Delete ()
@@ -53,18 +59,34 @@ class QueryWrapper
 
 	} 
 
+	/*
+	 * Build the condition corresponding with the info sent
+ 	 */
 	private function getCondition($arg = "")
 	{
+		end($arg);
+		$Endkey = key($arg);
 		$condition = "";
 		if (count($arg) > 1 ) {
 			$condition = " where ";
 			foreach ($arg as $key => $value) {
-				if($key == count($arg) - 1 || $key != "rquest"){
-					$condition .= " " . $key . " = '" . $value . "'";	
+				if($key != "rquest" && $key != $Endkey){
+					$condition .= " " . $key . " = '" . $value . "' and";	
+				}else{
+					if($key != "rquest"){
+						$condition .= " " . $key . " = '" . $value . "'";		
+					}
+					
 				}
+
 			}
 		}
 		return $condition;
+	}
+
+	public function closeConnection ()
+	{
+		$this->db->close();
 	}
 	
 }	

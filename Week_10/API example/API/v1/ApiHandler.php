@@ -35,7 +35,7 @@ class ApiHandler extends Rest {
 		$table  = new $args[0]();
 		$reqtype = $this->_getRequestType();
 		$req = $this->_getRequest();
-		$this->response($this->jsonfy($queryWrapper->$reqtype($args, $req),200));
+		$this->response($this->jsonfy($queryWrapper->$reqtype($args, $req)),200);
 	}
 
 	/**
