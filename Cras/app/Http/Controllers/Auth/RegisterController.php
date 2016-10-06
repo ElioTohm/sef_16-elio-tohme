@@ -56,16 +56,19 @@ class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
+     * added random key generator   
      * @param  array  $data
      * @return User
      */
     protected function create(array $data)
     {
+        $bytes = openssl_random_pseudo_bytes(20, $cstrong);
+        $hex   = bin2hex($bytes);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'api_key' => $hex,
         ]);
     }
 }
