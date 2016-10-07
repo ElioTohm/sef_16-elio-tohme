@@ -14,15 +14,16 @@ class CensorsAPI extends Controller
 	 * Class CensorsAPI will filter the data sent from the processors
 	 * and insert them to redis through CensorData class 
 	 */
+	protected $DATA;
 
     public function insertData (Request $request)
     {
     	if ($this->filterData($request)) {
     		$censorData =  new CensorData();
-    		$censorData->insert($request);
+    		$censorData->insert($this->DATA->{'userid'}, $this->DATA->{'timestamp'}, $this->DATA->{'value'});
     	}
-    }
-
+    } 
+    
     private function filterData ($request)
     {
     	$data = json_decode($request);
@@ -34,9 +35,12 @@ class CensorsAPI extends Controller
 	    	$userid = $data->{'userid'};
 	    	$timestamp = $data->{'timestamp'};
 	    	$value = $data->{'value'};
-	    	$censordata = json_decode($value)
-	    	if ($censordata !== NULL) {
+	    	$censordata = json_decode($value);
+	    	if ($censordata !== NULL && property_exists($censordata, 'timestamp')) {
+	    		$this->DATA = $data;
 	    		return true;
+	    	} else {
+	    		return false;
 	    	}
     	} else {
     		return false;

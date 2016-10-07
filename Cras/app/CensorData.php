@@ -18,4 +18,11 @@ class CensorData extends Model
     	$redis = Redis::connection();
     	$redis->zAdd($userid, $timestamp , $value);
     }
+
+    function read ($userid,$fromtime,$totime)
+    {
+    	$redis = Redis::connection();
+    	$result = $redis->zRange($userid,$fromtime,$totime);
+    	return $result;
+    }
 }
