@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Redis;
 
 class CensorData extends Model
 {
-    function insert ($sensordata) 
-    {
+	/**
+	 * this class will only be responsable for adding data in redis
+	 * as time series with keyname the user's ID
+	 */
+
+    function insert ($userid, $timestamp, $value) 
+    {    	
     	$redis = Redis::connection();
-    	$redis->set(1, $sensordata);
+    	$redis->zAdd($userid, $timestamp , $value);
     }
 }
