@@ -15,6 +15,7 @@ class CensorData extends Model
 
     function insert ($userid, $timestamp, $value) 
     {    	
+    	
     	$redis = Redis::connection();
     	$redis->zAdd($userid, $timestamp , $value);
     }

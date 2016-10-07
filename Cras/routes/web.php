@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('crassensorservice', 'CensorsAPI@insertData');
+
 Route::get('test', 'CensorsAPI@test');
 
 Auth::routes();
