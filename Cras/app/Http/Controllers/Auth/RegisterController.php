@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Cras\Http\Controllers\Auth;
 
-use App\User;
+use Cras\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use Cras\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller

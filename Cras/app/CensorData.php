@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Cras;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +15,6 @@ class CensorData extends Model
 
     function insert ($userid, $timestamp, $value) 
     {    	
-    	
     	$redis = Redis::connection();
     	$redis->zAdd($userid, $timestamp , $value);
     }
@@ -23,7 +22,7 @@ class CensorData extends Model
     function read ($userid,$fromtime,$totime)
     {
     	$redis = Redis::connection();
-    	$result = $redis->zRange($userid,$fromtime,$totime);
+    	$result = $redis->zRangeByScore($userid, $fromtime, $totime, array('withscores' => TRUE));
     	return $result;
     }
 }

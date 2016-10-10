@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Cras\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

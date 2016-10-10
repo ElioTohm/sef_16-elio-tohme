@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Cras\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use Cras\Http\Requests;
 
 class Monitoring extends Controller
 {
