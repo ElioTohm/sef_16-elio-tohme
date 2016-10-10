@@ -18,7 +18,7 @@ class CreateProcessorsTable extends Migration
             $table -> increments('processors_id');
             $table -> integer('user_id') -> unsigned();
             $table -> foreign('user_id')
-                    -> references('user_id') -> on('users')
+                    -> references('id') -> on('users')
                     -> onDelete('cascade');
             $table -> string('mac')->unique();
             $table -> string('authentication') -> unique();

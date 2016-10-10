@@ -10,6 +10,6 @@ class Monitoring extends Controller
 {
     public function loadGraphs ()
     {
-    	return view();
+    	return view('monitoring');
     }
 }
