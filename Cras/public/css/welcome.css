@@ -7,13 +7,12 @@ body, html {
 .top-right {
   position: absolute;
   right: 10px;
-  top: 8px;
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.links > a {
+a {
     color: #636b6f;
     padding: 0 25px;
     font-size: 12px;
