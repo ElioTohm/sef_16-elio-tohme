@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/home', function () {
+//     return view('monitoring');
+// });
+
 Route::get('crassensorservice', 'CensorsAPI@insertData');
 
 Route::get('test', 'CensorsAPI@test');
