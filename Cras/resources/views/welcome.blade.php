@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('welcome')
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
+
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-opacity w3-display-container">
@@ -32,7 +32,7 @@
 
 <!-- Container (solution) -->
 <div class="w3-content w3-container w3-padding-64">
-  <h3 class="w3-center">We Porvide</h3>
+  <h3 class="w3-center">We Provide</h3>
   <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
   <div class="w3-row-padding w3-center">
     <div class="w3-col m3">

@@ -13,7 +13,11 @@
     <!-- Styles -->
     <link href={{ url ("/css/welcome.css")}} rel="stylesheet">
     <link href={{ url ("/css/app.css")}} rel="stylesheet">
-
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -27,7 +31,7 @@
     @else
         <nav class="navbar navbar-default navbar-static-top">
     @endif
-        <div class="container">
+        <div class="header-container">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->

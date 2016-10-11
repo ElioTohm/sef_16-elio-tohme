@@ -1,0 +1,87 @@
+.sidenav {
+    height: 100%;
+    top:50px;
+    width: 250px;
+    position: fixed;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding: 20px;
+}
+.sidenavclosed {
+    height: 100%;
+    top:50px;
+    width: 30px;
+    position: fixed;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding: 20px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .menubtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+}
+
+.main {
+	margin-left: 250px;
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+.mainwide {
+    margin-left: 30px;
+    transition: margin-left .5s;
+    padding: 20px;
+}
+.sidenavclosed {
+    height: 100%;
+    top:50px;
+    width: 30px;
+    position: fixed;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding: 20px;
+}
+
+.sidenavclosed a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenavclosed a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenavclosed .menubtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
