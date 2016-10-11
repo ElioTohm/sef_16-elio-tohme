@@ -3,4 +3,5 @@
 @section('monitoringGraph')
 
 
+
 @endsection

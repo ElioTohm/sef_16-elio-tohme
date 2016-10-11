@@ -11,9 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href={{ url ("/css/app.css")}} rel="stylesheet">
     <link href={{ url ("/css/welcome.css")}} rel="stylesheet">
-
+    <link href={{ url ("/css/app.css")}} rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -23,7 +22,11 @@
     </script>
 </head>
 <body>
-    <nav class="navbar-default navbar-static-top">
+    @if (Request::is('/'))
+        <nav class="navbar-default navbar-static-top">
+    @else
+        <nav class="navbar navbar-default navbar-static-top">
+    @endif
         <div class="container">
             <div class="navbar-header">
 
@@ -42,11 +45,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
-                </ul>
-
+               
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -79,12 +78,16 @@
         </div>
     </nav>
 
+
+    <!-- content view for registration and loggin -->
+    @yield('content')
+
     <!-- Monitoring view -->
     @yield('monitoringGraph')
 
     <!-- Weclome view -->
     @yield('welcome')
-    
+
     <!-- Scripts -->
     <script src={{ url ("/js/app.js")}} ></script>
 </body>
