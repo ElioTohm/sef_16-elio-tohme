@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html>
-<title>{{ config('app.name', 'Laravel') }}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+
+@section('welcome')
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
-<link href={{ url ("/css/welcome.css")}} rel="stylesheet">
-
-<body>
-
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <ul class="w3-navbar" id="myNavbar">
-    <li><a href="#">{{ config('app.name', 'Laravel') }}</a></li>
-    <li class="w3-hide-small w3-right">
-      @if (Route::has('login'))
-          <div class="top-right">
-              <a href="{{ url('/login') }}">Login</a>
-              <a href="{{ url('/register') }}">Register</a>
-          </div>
-      @endif
-    </li>
-  </ul>
-</div>
-
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-opacity w3-display-container">
-  <div class="w3-display-middle" style="white-space:nowrap;">
+  <div class="w3-display-middle" >
     <span class="w3-center w3-padding-xlarge w3-black w3-xlarge w3-wide w3-animate-opacity glyphicon glyphicon-delete">Cras</span>
   </div>
 </div>
@@ -129,6 +109,4 @@
 <!-- Scroll javascript code -->
 <script src={{ url ("/js/welcome.js")}} ></script>
 
-</body>
-</html>
-
+@endsection
