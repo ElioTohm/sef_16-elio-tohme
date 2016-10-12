@@ -18,10 +18,10 @@ class Processor extends Model
 
     function getUserProcessor ()
     {
-    	$processor  = Processor::where('author_id',\Auth::user()->id)
-               ->orderBy('author')
+    	$processor  = Processor::where('user_id',\Auth::user()->id)
+               ->orderBy('processors_id')
                ->get();
-               
-        return view('postmanagerView')->with('posts',$post);
+
+        return $processor;
     }
 }

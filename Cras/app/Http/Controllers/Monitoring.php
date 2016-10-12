@@ -14,10 +14,18 @@ class Monitoring extends Controller
 {
     public function loadGraphs ()
     {
-    	return view('monitoring');
+    	$usersprocessor = $this->getProcessors();
+    	return view('monitoring')->with('processors', $usersprocessor);
     }
 
-    public function getProcessors ()
+    private function getProcessors ()
+    {
+    	$processor =  new Processor();
+    	$usersprocessor = $processor->getUserProcessor();
+    	return $usersprocessor;
+    }
+
+    public function getSensors ()
     {
 
     }

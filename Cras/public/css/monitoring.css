@@ -3,7 +3,7 @@
     top:50px;
     width: 250px;
     position: fixed;
-    background-color: #111;
+    background-color: #fff;
     overflow-x: hidden;
     transition: 0.5s;
     padding: 20px;
@@ -20,12 +20,10 @@
 }
 
 .sidenav .menusection {
-    padding: 18px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
     color: #818181;
     display: block;
-    transition: 0.3s
+    transition: 0.5s
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -56,23 +54,14 @@
     top:50px;
     width: 30px;
     position: fixed;
-    background-color: #111;
+    background-color: #f5f8fa;
     overflow-x: hidden;
     transition: 0.5s;
     padding: 20px;
 }
 
 .sidenavclosed .menusection {
-    padding: 18px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
-}
-
-.sidenavclosed a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+    visibility: hidden;
 }
 
 .sidenavclosed .menubtn {
