@@ -20,8 +20,9 @@ class CreateProcessorsTable extends Migration
             $table -> foreign('user_id')
                     -> references('id') -> on('users')
                     -> onDelete('cascade');
+            $table -> string('processor_name');
             $table -> string('mac')->unique();
-            $table -> string('authentication') -> unique();
+            $table -> string('auth_key') -> unique();
             $table -> timestamps();
         });
     }
