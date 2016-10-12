@@ -21,14 +21,16 @@ $('#btn_addprocessor').click(function ()
 				contentType: false,
 		        data:formdata,
 		        success:function(data){
-		          if (data == '400') {
-		          	$("input[name=mac]").addClass('alert alert-danger');
-		          }
+					if (data == '400') {
+						$("input[name=mac]").addClass('alert alert-danger');
+					}
 		        }
 		    });
+		   
 	    } else {
 			  $("input").addClass('alert alert-danger');
 	    }
+
 	});
 
 //if input was empty while the user is typing remove alert class

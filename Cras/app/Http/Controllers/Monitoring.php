@@ -27,7 +27,7 @@ class Monitoring extends Controller
 
     public function getSensors ()
     {
-
+		
     }
 
     /**

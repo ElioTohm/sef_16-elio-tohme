@@ -34,8 +34,7 @@
 </div>
 
 <div id="main" class="mainwide">
-  <h2>Sidenav Push Example</h2>
-  <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>
+  <h2>Main</h2>
 </div>
 
 <!-- Modal for procesors -->
@@ -48,18 +47,27 @@
 		    <h4 class="modal-title">Add a Processor</h4>
 		  </div>
 		  <div class="modal-body">
-			<form role="form" name="form_addnewprocessor">
+		  <form role="form" name="form_editprocessor">
 			    {{ csrf_field() }}
 				<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 				<div class="form-group">
 					@if (count($processors))
 						@foreach ($processors as $processor)
-						  <a class="list-group-item active"> 
-						  	{{ $processor->processor_name}}
-						  </a>
+							<div class="form-group">
+								<div class="form-inline">
+									<input type="text" class="form-control" name="processor_name" value="{{ $processor->processor_name}}" disabled>
+									<input type="text" class="form-control" name="mac" value="{{ $processor->mac }}" disabled>
+									<button type="button" class="btn btn-default">Edit</button>
+									<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash">Delete</span></button>
+								</div>
+							</div>
 						@endforeach
 					@endif
 				</div>
+			</form> 
+			<form role="form" name="form_addnewprocessor">
+			    {{ csrf_field() }}
+				<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 				<div class="form-group">
 					<label for="processor_name">Processor name:</label>
 					<input type="text" class="form-control" name="processor_name" placeholder="Processor name" required />	
@@ -70,6 +78,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" id="btn_addprocessor">Add</button>
+
 				</div>
 			</form> 
 		  </div>
@@ -108,4 +117,4 @@
 </div>
 <!-- animation script -->
 <script src={{ url ("/js/monitoring.js")}} ></script>
-@endsection
+@stop
