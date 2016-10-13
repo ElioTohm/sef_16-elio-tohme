@@ -2,8 +2,6 @@
 
 @extends('navbar.navbar')
 
-@extends('modal.navbarmodal')
-
 @section('monitoringGraph')
 <link href={{ url ("/css/monitoring.css")}} rel="stylesheet">
 

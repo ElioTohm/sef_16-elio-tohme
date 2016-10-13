@@ -88,7 +88,6 @@
 
     <!-- Monitoring view -->
     @yield('monitoringGraph')
-    @yield('navbarmodal')
     @yield('navbar')
     
     <!-- Weclome view -->
