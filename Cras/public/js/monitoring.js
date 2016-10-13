@@ -1,11 +1,18 @@
 // setup token on first page load
+
 $.ajaxSetup({ headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') } });
 
 //animation for side menu
 $('#menubtn').click(function () 
 	{
 		$('#navbar').toggleClass("sidenavclosed sidenav");
-		$('#main').toggleClass("mainwide main");
+		if ($('#navbar').hasClass('sidenavclosed')) {
+			$('#main').removeClass("main");
+			$('#main').addClass("mainwide");
+		} else {
+			$('#main').removeClass("mainwide");
+			$('#main').addClass("main");
+		}
 	});
 
 //ajax request to create add new processor
@@ -23,19 +30,20 @@ $('#btn_addprocessor').click(function ()
 		        success:function(data){
 					if (data == '400') {
 						$("input[name=mac]").addClass('alert alert-danger');
+					} else {
+						$('.close').click();
+					    $('.modal-backdrop').remove();
+						$.ajax({
+							type:'GET',
+					        url:'rerendersection',
+					        success:function (data)
+					        {
+					        	$('#sidebar').html(data);
+					        }
+						});
 					}
 		        }
 		    });
-		    $('.close').click();
-		    $('.modal-backdrop').remove();
-			$.ajax({
-				type:'GET',
-		        url:'rerendersection',
-		        success:function (data)
-		        {
-		        	$('#sidebar').html(data);
-		        }
-			});
 	    } else {
 			$("input").addClass('alert alert-danger');
 	    }
@@ -48,4 +56,3 @@ $("input").keypress(function (e)
 		   $(this).removeClass('alert alert-danger')
 		}
 	});
-

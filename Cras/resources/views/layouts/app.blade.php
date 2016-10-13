@@ -87,9 +87,10 @@
     @yield('content')
 
     <!-- Monitoring view -->
-    @yield('navbar')
     @yield('monitoringGraph')
-
+    @yield('navbarmodal')
+    @yield('navbar')
+    
     <!-- Weclome view -->
     @yield('welcome')
 

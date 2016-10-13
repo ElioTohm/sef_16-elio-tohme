@@ -2,12 +2,14 @@
 
 @extends('navbar.navbar')
 
-@section('monitoringGraph')
+@extends('modal.navbarmodal')
 
-<div id="main" class="mainwide">
+@section('monitoringGraph')
+<link href={{ url ("/css/monitoring.css")}} rel="stylesheet">
+
+<div id="main" class="main">
   <h2>Main</h2>
 </div>
 
-<!-- animation script -->
 
 @endsection
