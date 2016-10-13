@@ -25,4 +25,5 @@ Route::group(['middleware' => ['auth']], function()
 {
 	Route::get('monitoring', 'Monitoring@loadGraphs');
 	Route::post('addprocessor', 'Monitoring@addProcessor');
+	Route::get('rerendersection','Monitoring@getSensors');
 });

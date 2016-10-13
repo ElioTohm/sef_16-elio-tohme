@@ -10,16 +10,16 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
+    <!-- Styles -->  
     <link href={{ url ("/css/welcome.css")}} rel="stylesheet">
     <link href={{ url ("/css/app.css")}} rel="stylesheet">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     
     <!-- Scripts -->
-    <script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
@@ -87,6 +87,7 @@
     @yield('content')
 
     <!-- Monitoring view -->
+    @yield('navbar')
     @yield('monitoringGraph')
 
     <!-- Weclome view -->

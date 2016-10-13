@@ -3,8 +3,6 @@
 @section('welcome')
 
 
-
-
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-opacity w3-display-container">
   <div class="w3-display-middle" >

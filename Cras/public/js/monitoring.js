@@ -26,11 +26,19 @@ $('#btn_addprocessor').click(function ()
 					}
 		        }
 		    });
-		   
+		    $('.close').click();
+		    $('.modal-backdrop').remove();
+			$.ajax({
+				type:'GET',
+		        url:'rerendersection',
+		        success:function (data)
+		        {
+		        	$('#sidebar').html(data);
+		        }
+			});
 	    } else {
-			  $("input").addClass('alert alert-danger');
+			$("input").addClass('alert alert-danger');
 	    }
-
 	});
 
 //if input was empty while the user is typing remove alert class
