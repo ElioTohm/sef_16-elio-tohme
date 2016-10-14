@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Processor extends Model
 {
-    function censors ()
+    function sensors ()
     {
-    	return $this->hasMany('Cras\Censor', 'processors', 'processors_id');
+    	return $this->hasMany('Cras\Sensor', 'processors', 'processors_id');
     }
 
     function user ()

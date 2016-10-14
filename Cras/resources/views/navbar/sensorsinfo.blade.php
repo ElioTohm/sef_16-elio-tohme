@@ -5,8 +5,8 @@
 		</div>
 		<div class="col-sm-5">
 			<select class="form-control inline-inputselect" id="select_processor">
-				@foreach ($processor->censors as $censor)
-					<option value="{{ $censor->censor_id }}" >{{ $censor->censor_type }}</option>
+				@foreach ($processor->sensors as $sensor)
+					<option value="{{ $sensor->sensor_id }}" >{{ $sensor->sensor_type }}</option>
 				@endforeach
 			</select>	
 		</div>

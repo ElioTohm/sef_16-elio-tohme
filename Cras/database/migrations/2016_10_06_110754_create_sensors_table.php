@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCensorsTable extends Migration
+class CreateSensorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateCensorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('censors', function(Blueprint $table)
+        Schema::create('sensors', function(Blueprint $table)
         {
-            $table -> increments('censors_id');
+            $table -> increments('sensors_id');
             $table -> integer('processors') -> unsigned();
             $table -> foreign('processors')
                     -> references('processors_id') -> on('processors');
-            $table -> string('censor_type');
+            $table -> string('sensor_type');
             $table -> string('calibration');
         });
     }
@@ -31,6 +31,6 @@ class CreateCensorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('censors');
+        Schema::drop('sensors');
     }
 }

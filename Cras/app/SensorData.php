@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\Redis;
 
-class CensorData extends Model
+class SensorData extends Model
 {
 	/**
 	 * this class will only be responsable for adding data in redis

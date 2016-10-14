@@ -22,7 +22,7 @@
   <!-- list of sensors -->
 	<div class="form-inline menusection">
 		<div>
-			<h6><b><u><a data-toggle="modal" data-target="#model_addcensors">Censors</a></u></b></h6>
+			<h6><b><u><a data-toggle="modal" data-target="#model_addcensors">Sensors</a></u></b></h6>
 		</div>
 		<div>
 
@@ -72,7 +72,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-		    <h4 class="modal-title">Add a Censor</h4>
+		    <h4 class="modal-title">Add a Sensor</h4>
 		  </div>
 		  <div class="modal-body">
 			<form role="form" name="form_addnewprocessor">
@@ -88,7 +88,7 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="processor_name">Censor type:</label>
+					<label for="processor_name">Sensor type:</label>
 					<input type="text" class="form-control" name="processor_name" placeholder="Processor name" required />	
 				</div>
 				<div class="modal-footer">
