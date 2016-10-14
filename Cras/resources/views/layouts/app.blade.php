@@ -43,9 +43,9 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="# ">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <span class="navbar-brand" href="# ">
+                    <b>{{ config('app.name', 'Laravel') }}</b>
+                </span>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -89,7 +89,7 @@
     <!-- Monitoring view -->
     @yield('monitoringGraph')
     @yield('navbar')
-    
+
     <!-- Weclome view -->
     @yield('welcome')
 
