@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Processor extends Model
 {
-    function getCensorsInfo ()
+    function censors ()
     {
-    	return $this->hasMany('Cras\Censor');
+    	return $this->hasMany('Cras\Censor', 'processors', 'processors_id');
     }
 
-    function getUserInfo ()
+    function user ()
     {
-    	return $this->belongsTo('Cras\User');
+    	return $this->belongsTo('Cras\User', 'user_id');
     }
 
     function getUserProcessor ()

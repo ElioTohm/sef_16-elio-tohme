@@ -42,9 +42,7 @@
 				<form role="form" name="form_editprocessor">
 				    {{ csrf_field() }}
 					<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-					<div class="form-group">
-						@each('navbar.processormodal', $processors, 'processor')
-					</div>
+					@each('navbar.processormodal', $processors, 'processor')
 				</form> 
 				<form role="form" name="form_addnewprocessor">
 				    {{ csrf_field() }}
@@ -80,13 +78,18 @@
 			<form role="form" name="form_addnewprocessor">
 			    {{ csrf_field() }}
 				<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+					@each('navbar.sensorsinfo', $processors, 'processor')
 				<div class="form-group">
-					<label for="processor_name">Processor name:</label>
-					<input type="text" class="form-control" name="processor_name" placeholder="Processor name" required />	
+					<label for="sel1">Select a processor:</label>
+					<select class="form-control" id="select_processor">
+						@foreach($processors as $processor)
+							<option id="{{ $processor->processor_id }}">{{ $processor->processor_name }}</option>
+						@endforeach
+					</select>
 				</div>
 				<div class="form-group">
-					<label for="mac">Mac address:</label>
-					<input type="text" class="form-control" name="mac" placeholder="Device MAC address" required />	
+					<label for="processor_name">Censor type:</label>
+					<input type="text" class="form-control" name="processor_name" placeholder="Processor name" required />	
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" id="btn_addprocessor">Add</button>

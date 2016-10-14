@@ -25,10 +25,11 @@ class Monitoring extends Controller
     	return $usersprocessor;
     }
 
-    public function getSensors ()
+    public function rerenderSection ()
     {
         $usersprocessor = $this->getProcessors();
-        $sections = view('monitoring')->with('processors', $usersprocessor)->renderSections();
+        $sections = view('monitoring')->with('processors', $usersprocessor)
+                                      ->renderSections();
         return $sections['navbar'];
     }
 

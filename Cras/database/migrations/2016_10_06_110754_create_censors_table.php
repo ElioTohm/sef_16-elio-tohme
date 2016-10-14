@@ -16,11 +16,10 @@ class CreateCensorsTable extends Migration
         Schema::create('censors', function(Blueprint $table)
         {
             $table -> increments('censors_id');
-            $table -> integer('processors_id') -> unsigned();
-            $table -> foreign('processors_id')
-                    -> references('processors_id') -> on('processors')
-                    -> onDelete('cascade');
-            $table -> string('type');
+            $table -> integer('processors') -> unsigned();
+            $table -> foreign('processors')
+                    -> references('processors_id') -> on('processors');
+            $table -> string('censor_type');
             $table -> string('calibration');
         });
     }
