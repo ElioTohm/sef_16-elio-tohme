@@ -50,22 +50,19 @@ class Monitoring extends Controller
      * @param  array  $data
      * @return User
      */
-    public function addProcessor(Request $request)
+    public function addProcessor (Request $request)
     {
-    	if ( !preg_match('/([a-fA-F0-9]{2}[:|\-]?){6}/', $request->get('mac'))) {
+        $data = json_decode($request->getContent(),true);
+    	if (!preg_match('/([a-fA-F0-9]{2}[:|\-]?){6}/', $data['mac'])) {
 			return "400";
 		}
 
-    	$this->validate($request, [
-           'processor_name' => 'required|max:50',
-        ]);
-
         $bytes = openssl_random_pseudo_bytes(20, $cstrong);
-        $hex   = bin2hex($bytes);
+        $hex = bin2hex($bytes);
 
        	$processor = new Processor();
-        $processor->processor_name = $request->get('processor_name');
-        $processor->mac = $request->get('mac');
+        $processor->processor_name = $data['processorname'];
+        $processor->mac = $data['mac'];
         $processor->user_id = $request->user()->id;
         $processor->auth_key = $hex;
         $processor->save();
@@ -78,6 +75,19 @@ class Monitoring extends Controller
     */
     public function deleteProcessor (Request $request)
     {
-        return "test";
+        $data = json_decode($request->getContent(),true);
+        $processor = new Processor();
+        $processor->deleteUserProcessor($data['id']);
+    }
+
+    /*
+    * update an existing processor
+    */
+
+    public function updateProcessor (Request $request)
+    {
+        $data = json_decode($request->getContent(),true);
+        $processor = new Processor();
+        $processor->updateuserProcessor($data['id'],$data['mac'],$data['processorname']);
     }
 }

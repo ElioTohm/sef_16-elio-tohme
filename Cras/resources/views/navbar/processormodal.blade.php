@@ -1,6 +1,6 @@
-<div class="form-inline well">
+<div class="form-inline well" processorid="{{ $processor->processor_id }}">
 	<div class="row">
-		<input type="text" class="form-control" name="processor_name" value="{{ $processor->processor_name }}" processorid="{{ $processor->processor_id }}" disabled>	
+		<input type="text" class="form-control" name="processorname" value="{{ $processor->processor_name }}" processorid="{{ $processor->processor_id }}" disabled>	
 		<input type="text" class="form-control" name="mac" value="{{ $processor->mac }}" processorid="{{ $processor->processor_id }}" disabled>	
 		<div class="form-group">
 			<button type="button" class="btn btn-default" processorid="{{ $processor->processor_id }}">Edit</button>	

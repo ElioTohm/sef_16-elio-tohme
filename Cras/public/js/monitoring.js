@@ -1,7 +1,3 @@
-// setup token on first page load
-
-$.ajaxSetup({ headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') } });
-
 //animation for side menu
 $('#menubtn').click(function () 
 	{
@@ -35,15 +31,25 @@ $('#btn_addprocessor').click(function ()
 		if($("form[name=form_addnewprocessor]")[0].checkValidity()) {
 	        var form = document.forms.namedItem("form_addnewprocessor");
 		    var formdata = new FormData(form);
+		    var datasent =  {
+		    	"processorname" : $('#processorname').val(),
+		    	"mac" : $('#mac').val(),
+		    };
+		    var token = $('meta[name="csrf-token"]').attr('content');
+		    $.ajaxSetup({
+		      headers: {
+		        'X-CSRF-TOKEN': token
+		      }
+		    });
 			$.ajax({
 		        type:'POST',
 		        url:'addprocessor',
-				processData: false,
-				contentType: false,
-		        data:formdata,
+				contentType: "json",
+      			processData: false,
+		        data: JSON.stringify(datasent),
 		        success:function(data){
 					if (data == '400') {
-						$("input[name=mac]").addClass('alert alert-danger');
+						$("input[name=mac][placeholder]").addClass('alert alert-danger');
 					} else {
 						$('.close').click();
 					    $('.modal-backdrop').remove();
@@ -65,21 +71,27 @@ $('#btn_addprocessor').click(function ()
 
 //ajax request to delete processors
 $('button.btn-danger[processorid]').click(function(event) {
-    	// this.append wouldn't work
     	var id = $(this).attr("processorid");
-    	var datasent = {
-    					"id" : id,
-					}
-			$.ajax({
-				type:'POST',
-		        url:'deleteprocessor',
-				processData: "json",
-				contentType: false,
-		        data: JSON.stringify(datasent),
-		        success: function (data){
-		        	alert(data);
-		        }
-			});
+    	var datasent = {"id" : id};
+		var token = $('meta[name="csrf-token"]').attr('content');
+	    $.ajaxSetup({
+	      headers: {
+	        'X-CSRF-TOKEN': token
+	      }
+	    });
+
+		$.ajax(
+	    {
+	        url : "deleteprocessor",
+	        type: "POST",
+	        contentType: "application/json; charset=utf-8",
+            traditional: true,
+	        data : JSON.stringify(datasent),
+	        success:function(data) 
+	        {
+	            $('[processorid='+ id +']').remove();
+	        }
+	    });
     });
 
 //on edit click
@@ -96,7 +108,7 @@ $('button.btn-default[processorid]').click(
 	        		$("button.btn-danger[processorid="+ id +"]").prop('hidden', false);
 	        		$("input[processorid="+ id +"]").prop('disabled', true);
 	        		$("button.btn-warning[processorid="+ id +"]").prop('hidden', true);
-	        		$("input[name=processor_name][processorid="+ id +"]").val(
+	        		$("input[name=processorname][processorid="+ id +"]").val(
 							$(this).attr("processorname")
 	        			);
 	        		$("input[name=mac][processorid="+ id +"]").val(
@@ -104,6 +116,33 @@ $('button.btn-default[processorid]').click(
 	        			);
 	        	});
 		} else {
-			
+			var id = $(this).attr("processorid");
+			var processorname = $("input[name=processorname][processorid="+ id +"]").val();
+			var mac = $("input[name=mac][processorid="+ id +"]").val();
+	    	var datasent = {
+				    		"id" : id,
+				    		"mac" : mac,
+				    		"processorname" : processorname
+				    		};
+			var token = $('meta[name="csrf-token"]').attr('content');
+		    $.ajaxSetup({
+		      headers: {
+		        'X-CSRF-TOKEN': token
+		      }
+		    });
+
+			$.ajax(
+		    {
+		        url : "updateprocessor",
+		        type: "POST",
+		        contentType: "application/json; charset=utf-8",
+	            traditional: true,
+		        data : JSON.stringify(datasent),
+		        success:function(data) 
+		        {
+		        	$("input[processorid="+ id +"]").prop('disabled', true);
+		            $('a[processorid='+ id +']').html(processorname);
+		        }
+		    });
 		}
     });

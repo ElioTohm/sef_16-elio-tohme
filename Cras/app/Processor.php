@@ -24,4 +24,18 @@ class Processor extends Model
 
         return $processor;
     }
+
+    function deleteUserProcessor ($id)
+    {   
+        Processor::where('user_id',\Auth::user()->id)
+            ->where('processor_id', $id)
+            ->delete();
+    }
+
+    function updateuserProcessor ($id,$mac,$name)
+    {
+        Processor::where('user_id',\Auth::user()->id)
+            ->where('processor_id', $id)
+            ->update(['mac' => $mac, 'processor_name' => $name]);
+    }
 }
