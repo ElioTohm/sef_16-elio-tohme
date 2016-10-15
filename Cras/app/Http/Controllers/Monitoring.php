@@ -12,12 +12,19 @@ use Validator;
 
 class Monitoring extends Controller
 {
+    /*
+    * initially called to return the view with the information
+    */
     public function loadGraphs ()
     {
     	$usersprocessor = $this->getProcessors();
     	return view('monitoring')->with('processors', $usersprocessor);
     }
 
+    /*
+    * function reponsable for retreivin the information of the processors and sensors
+    * like mac address name sensor type
+    */
     private function getProcessors ()
     {
     	$processor =  new Processor();
@@ -25,6 +32,10 @@ class Monitoring extends Controller
     	return $usersprocessor;
     }
 
+    /*
+    * returns section to ajax call to prevent refreshing the page 
+    * and is easier than appending items dynamically through ajax
+    */
     public function rerenderSection ()
     {
         $usersprocessor = $this->getProcessors();
@@ -60,5 +71,13 @@ class Monitoring extends Controller
         $processor->save();
 
         return "201";
+    }
+
+    /*
+    * delete processor
+    */
+    public function deleteProcessor (Request $request)
+    {
+        return "test";
     }
 }

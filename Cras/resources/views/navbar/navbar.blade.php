@@ -21,11 +21,19 @@
 	</div>	
   <!-- list of sensors -->
 	<div class="form-inline menusection">
-		<div>
 			<h6><b><u><a data-toggle="modal" data-target="#model_addcensors">Sensors</a></u></b></h6>
-		</div>
 		<div>
-
+		</div>
+		<div class="list-group">
+			@if (count($processors))
+				@foreach ($processors as $processor)
+					@foreach ($processor->sensors as $sensor)
+						<a class="list-group-item active"> 
+							{{ $sensor->sensor_type }}
+						</a>
+					@endforeach
+				@endforeach
+			@endif
 		</div>
 	</div>
 </div>

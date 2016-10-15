@@ -15,6 +15,20 @@ $('#menubtn').click(function ()
 		}
 	});
 
+
+//if input was empty while the user is typing remove alert class
+$("input").keypress(function (e)
+	{
+		if($('input').hasClass('alert alert-danger')){
+		   $(this).removeClass('alert alert-danger')
+		}
+	});
+
+
+/*
+* manipulation edit/delete/add for processors and sensors
+*/
+
 //ajax request to create add new processor
 $('#btn_addprocessor').click(function () 
 	{
@@ -49,10 +63,47 @@ $('#btn_addprocessor').click(function ()
 	    }
 	});
 
-//if input was empty while the user is typing remove alert class
-$("input").keypress(function (e)
-	{
-		if($('input').hasClass('alert alert-danger')){
-		   $(this).removeClass('alert alert-danger')
+//ajax request to delete processors
+$('button.btn-danger[processorid]').click(function(event) {
+    	// this.append wouldn't work
+    	var id = $(this).attr("processorid");
+    	var datasent = {
+    					"id" : id,
+					}
+			$.ajax({
+				type:'POST',
+		        url:'deleteprocessor',
+				processData: "json",
+				contentType: false,
+		        data: JSON.stringify(datasent),
+		        success: function (data){
+		        	alert(data);
+		        }
+			});
+    });
+
+//on edit click
+$('button.btn-default[processorid]').click(
+	function() {
+		var id = $(this).attr("processorid");
+		var btncancel = $("button.btn-warning[processorid="+ id +"]").prop('hidden');
+		if (btncancel) {
+			$("input[processorid="+ id +"]").prop('disabled', false);
+			$("button.btn-danger[processorid="+ id +"]").prop('hidden', true);
+	        $("button.btn-warning[processorid="+ id +"]").prop('hidden', false);
+	        $("button.btn-warning[processorid="+ id +"]").click(function ()
+	        	{
+	        		$("button.btn-danger[processorid="+ id +"]").prop('hidden', false);
+	        		$("input[processorid="+ id +"]").prop('disabled', true);
+	        		$("button.btn-warning[processorid="+ id +"]").prop('hidden', true);
+	        		$("input[name=processor_name][processorid="+ id +"]").val(
+							$(this).attr("processorname")
+	        			);
+	        		$("input[name=mac][processorid="+ id +"]").val(
+	        				$(this).attr("processormac")
+	        			);
+	        	});
+		} else {
+			
 		}
-	});
+    });

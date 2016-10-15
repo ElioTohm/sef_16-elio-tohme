@@ -18,7 +18,7 @@ class CreateSensorsTable extends Migration
             $table -> increments('sensors_id');
             $table -> integer('processors') -> unsigned();
             $table -> foreign('processors')
-                    -> references('processors_id') -> on('processors');
+                    -> references('processor_id') -> on('processors');
             $table -> string('sensor_type');
             $table -> string('calibration');
         });

@@ -52,7 +52,7 @@ class CensorsAPI extends Controller
 	    		return  false;
 	    	}
     	} else {
-    		echo "false first";
+    		return false;
     	}
     }
 
