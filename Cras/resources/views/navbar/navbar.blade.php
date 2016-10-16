@@ -87,10 +87,10 @@
 				<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 					@each('navbar.sensorsinfo', $processors, 'processor')
 				<div class="form-group">
-					<label for="sel1">Select a processor:</label>
-					<select class="form-control" id="select_processor">
+					<label for="select_processor">Select a processor:</label>
+					<select class="form-control" processorselect>
 						@foreach($processors as $processor)
-							<option processorid="{{ $processor->processor_id }}" >{{ $processor->processor_name }}</option>
+							<option value="{{ $processor->processor_id }}" >{{ $processor->processor_name }}</option>
 						@endforeach
 					</select>
 				</div>

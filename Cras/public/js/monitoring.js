@@ -149,34 +149,33 @@ $('button.btn-default[processorid]').click(
 $('#btn_addsensor').click(function ()
 	{
 		if($("form[name=form_addnewsensor]")[0].checkValidity()) {
-			var processor = $('#select_processor').val();
+			var processor = $('[processorselect] option:selected').val();
 			var type = $('#sensor_type').val();	
 
 			var datasent = {
-								'processor ' : processor,
-								'type' : type
+								"processor" : processor,
+								"type" : type
 							};
+			var token = $('meta[name="csrf-token"]').attr('content');
 
-			alert(processor);
-			// var token = $('meta[name="csrf-token"]').attr('content');
-			// $.ajaxSetup({
-		 //      headers: {
-		 //        'X-CSRF-TOKEN': token
-		 //      }
-		 //    });
+			$.ajaxSetup({
+		      headers: {
+		        'X-CSRF-TOKEN': token
+		      }
+		    });
 
-			// $.ajax(
-		 //    {
-		 //        url : "addsensor",
-		 //        type: "POST",
-		 //        contentType: "json",
-   //    			processData: false,
-		 //        data: JSON.stringify(datasent),
-		 //        success:function(data) 
-		 //        {
-		 //        	alert(data);
-		 //        }
-		 //    });
+			$.ajax(
+		    {
+		        url : "addsensor",
+		        type: "POST",
+		        contentType: "json",
+      			processData: false,
+		        data: JSON.stringify(datasent),
+		        success:function(data) 
+		        {
+		        	alert(data);
+		        }
+		    });
 		} else {
 			$("#sensor_type").addClass('alert alert-danger');
 		}

@@ -4,9 +4,9 @@
 			<input type="text" class="form-control" name="mac" value="{{ $processor->processor_name }}" disabled>
 		</div>
 		<div class="col-sm-5">
-			<select class="form-control inline-inputselect" id="select_processor">
+			<select class="form-control inline-inputselect" sensorsselector>
 				@foreach ($processor->sensors as $sensor)
-					<option value="{{ $sensor->sensor_id }}">{{ $sensor->sensor_type }}</option>
+					<option value="{{ $sensor->sensor_id }}" selected>{{ $sensor->sensor_type }}</option>
 				@endforeach
 			</select>	
 		</div>

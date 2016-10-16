@@ -101,7 +101,7 @@ class Monitoring extends Controller
 
         $sensor = new Sensor();
         $sensor->processor = $data['processor'];
-        $sensor->type = $data['type'];
+        $sensor->sensor_type = $data['type'];
         $sensor->save();
 
         return "201";
