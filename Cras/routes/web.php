@@ -29,4 +29,5 @@ Route::group(['middleware' => ['auth']], function()
 	Route::post('deleteprocessor','Monitoring@deleteProcessor');
 	Route::post('updateprocessor', 'Monitoring@updateProcessor');
 	Route::post('addsensor','Monitoring@addSensor');
+	Route::post('deletesensor','Monitoring@deleteSensor');
 });

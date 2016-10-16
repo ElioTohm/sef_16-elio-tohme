@@ -191,3 +191,31 @@ $('#btn_addsensor').click(function ()
 			$("#sensor_type").addClass('alert alert-danger');
 		}
 	});
+//delete a sensor
+$('#deletesensor').click(function ()
+	{
+			var sensor = $('[sensorsselector] option:selected').val();
+
+			var datasent = {"sensor" : sensor};
+			var token = $('meta[name="csrf-token"]').attr('content');
+
+			$.ajaxSetup({
+		      headers: {
+		        'X-CSRF-TOKEN': token
+		      }
+		    });
+
+			$.ajax(
+		    {
+		        url : "deletesensor",
+		        type: "POST",
+		        contentType: "json",
+      			processData: false,
+		        data: JSON.stringify(datasent),
+		        success:function(data) 
+		        {
+		        	$('[sensorid='+ sensor +']').remove();
+		        	$('[value='+ sensor +']').remove();
+		        }
+		    });
+	});

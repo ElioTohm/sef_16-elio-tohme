@@ -11,7 +11,7 @@
 			</select>	
 		</div>
 		<div class="col-sm-1">
-			<button type="button" class="btn btn-danger" processorid="{{ $processor->id }}">
+			<button type="button" class="btn btn-danger" id="deletesensor" processorid="{{ $processor->id }}">
 				<span class="glyphicon glyphicon-trash">Delete</span>
 			</button>	
 		</div>

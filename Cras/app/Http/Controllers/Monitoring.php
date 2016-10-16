@@ -78,8 +78,11 @@ class Monitoring extends Controller
     public function deleteProcessor (Request $request)
     {
         $data = json_decode($request->getContent(),true);
+
         $processor = new Processor();
         $processor->deleteUserProcessor($data['id']);
+
+        return '201';
     }
 
     /*
@@ -88,8 +91,11 @@ class Monitoring extends Controller
     public function updateProcessor (Request $request)
     {
         $data = json_decode($request->getContent(),true);
+
         $processor = new Processor();
         $processor->updateuserProcessor($data['id'],$data['mac'],$data['processorname']);
+        
+        return '201';
     }
 
     /*
@@ -98,11 +104,23 @@ class Monitoring extends Controller
     public function addSensor (Request $request)
     {
         $data = json_decode($request->getContent(),true);
+
         $sensor = new Sensor();
         $sensor->processor_id = $data['processor'];
         $sensor->sensor_type = $data['type'];
         $sensor->save();
 
         return "201";
+    }
+
+    /*
+    * delete sensor
+    */
+    public function deleteSensor (Request $request)
+    {
+        $data = json_decode($request->getContent(),true);
+
+        $sensor = new Sensor();
+        $sensor->deleteSensor($data['sensor']);
     }
 }
