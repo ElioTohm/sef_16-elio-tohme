@@ -29,8 +29,6 @@ $("input").keypress(function (e)
 $('#btn_addprocessor').click(function () 
 	{
 		if($("form[name=form_addnewprocessor]")[0].checkValidity()) {
-	        var form = document.forms.namedItem("form_addnewprocessor");
-		    var formdata = new FormData(form);
 		    var datasent =  {
 		    	"processorname" : $('#processorname').val(),
 		    	"mac" : $('#mac').val(),
@@ -65,12 +63,12 @@ $('#btn_addprocessor').click(function ()
 		        }
 		    });
 	    } else {
-			$("input").addClass('alert alert-danger');
+			$("#processorname").addClass('alert alert-danger');
 	    }
 	});
 
 //ajax request to delete processors
-$('button.btn-danger[processorid]').click(function(event) {
+$('button.btn-danger[delete="processor"]').click(function(event) {
     	var id = $(this).attr("processorid");
     	var datasent = {"id" : id};
 		var token = $('meta[name="csrf-token"]').attr('content');
@@ -84,9 +82,9 @@ $('button.btn-danger[processorid]').click(function(event) {
 	    {
 	        url : "deleteprocessor",
 	        type: "POST",
-	        contentType: "application/json; charset=utf-8",
-            traditional: true,
-	        data : JSON.stringify(datasent),
+	        contentType: "json",
+  			processData: false,
+	        data: JSON.stringify(datasent),
 	        success:function(data) 
 	        {
 	            $('[processorid='+ id +']').remove();
@@ -135,9 +133,9 @@ $('button.btn-default[processorid]').click(
 		    {
 		        url : "updateprocessor",
 		        type: "POST",
-		        contentType: "application/json; charset=utf-8",
-	            traditional: true,
-		        data : JSON.stringify(datasent),
+		        contentType: "json",
+      			processData: false,
+		        data: JSON.stringify(datasent),
 		        success:function(data) 
 		        {
 		        	$("input[processorid="+ id +"]").prop('disabled', true);
@@ -146,3 +144,40 @@ $('button.btn-default[processorid]').click(
 		    });
 		}
     });
+
+//add sensors to database
+$('#btn_addsensor').click(function ()
+	{
+		if($("form[name=form_addnewsensor]")[0].checkValidity()) {
+			var processor = $('#select_processor').val();
+			var type = $('#sensor_type').val();	
+
+			var datasent = {
+								'processor ' : processor,
+								'type' : type
+							};
+
+			alert(processor);
+			// var token = $('meta[name="csrf-token"]').attr('content');
+			// $.ajaxSetup({
+		 //      headers: {
+		 //        'X-CSRF-TOKEN': token
+		 //      }
+		 //    });
+
+			// $.ajax(
+		 //    {
+		 //        url : "addsensor",
+		 //        type: "POST",
+		 //        contentType: "json",
+   //    			processData: false,
+		 //        data: JSON.stringify(datasent),
+		 //        success:function(data) 
+		 //        {
+		 //        	alert(data);
+		 //        }
+		 //    });
+		} else {
+			$("#sensor_type").addClass('alert alert-danger');
+		}
+	});

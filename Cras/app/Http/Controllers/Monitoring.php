@@ -8,6 +8,8 @@ use Cras\Http\Requests;
 
 use Cras\Processor;
 
+use Cras\Sensor;
+
 use Validator;
 
 class Monitoring extends Controller
@@ -83,11 +85,25 @@ class Monitoring extends Controller
     /*
     * update an existing processor
     */
-
     public function updateProcessor (Request $request)
     {
         $data = json_decode($request->getContent(),true);
         $processor = new Processor();
         $processor->updateuserProcessor($data['id'],$data['mac'],$data['processorname']);
+    }
+
+    /*
+    * add sensor
+    */
+    public function addSensor (Request $request)
+    {
+        $data = json_decode($request->getContent(),true);
+
+        $sensor = new Sensor();
+        $sensor->processor = $data['processor'];
+        $sensor->type = $data['type'];
+        $sensor->save();
+
+        return "201";
     }
 }

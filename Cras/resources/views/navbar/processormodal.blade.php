@@ -5,7 +5,7 @@
 		<div class="form-group">
 			<button type="button" class="btn btn-default" processorid="{{ $processor->processor_id }}">Edit</button>	
 			<button type="button" class="btn btn-warning" hidden="true" processorid="{{ $processor->processor_id }}" processormac="{{ $processor->mac }}" processorname="{{ $processor->processor_name }}">Cancel</button>
-			<button type="button" class="btn btn-danger" processorid="{{ $processor->processor_id }}">Delete</button>
+			<button type="button" class="btn btn-danger" processorid="{{ $processor->processor_id }}" delete="processor">Delete</button>
 		</div>
 				
 	</div>

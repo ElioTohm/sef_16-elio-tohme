@@ -16,8 +16,8 @@ class CreateSensorsTable extends Migration
         Schema::create('sensors', function(Blueprint $table)
         {
             $table -> increments('sensors_id');
-            $table -> integer('processors') -> unsigned();
-            $table -> foreign('processors')
+            $table -> integer('processor') -> unsigned();
+            $table -> foreign('processor')
                     -> references('processor_id') -> on('processors')
                     -> onDelete('cascade');
             $table -> string('sensor_type');

@@ -8,7 +8,7 @@ class Processor extends Model
 {
     function sensors ()
     {
-    	return $this->hasMany('Cras\Sensor', 'processors', 'processor_id');
+    	return $this->hasMany('Cras\Sensor', 'processor', 'processor_id');
     }
 
     function user ()

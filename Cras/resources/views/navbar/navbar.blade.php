@@ -21,14 +21,14 @@
 	</div>	
   <!-- list of sensors -->
 	<div class="form-inline menusection">
-			<h6><b><u><a data-toggle="modal" data-target="#model_addcensors">Sensors</a></u></b></h6>
+			<h6><b><u><a data-toggle="modal" data-target="#model_addsensors">Sensors</a></u></b></h6>
 		<div>
 		</div>
 		<div class="list-group">
 			@if (count($processors))
 				@foreach ($processors as $processor)
 					@foreach ($processor->sensors as $sensor)
-						<a class="list-group-item active"> 
+						<a class="list-group-item active" processorid="{{ $processor->processor_id }}"  sensorid="{{ $sensor->sensor_id }}">
 							{{ $sensor->sensor_type }}
 						</a>
 					@endforeach
@@ -73,7 +73,7 @@
 </div>
 
 <!-- Modal for sensors -->
-<div id="model_addcensors" class="modal fade" role="dialog">
+<div id="model_addsensors" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 	<!-- Modal content-->
 		<div class="modal-content">
@@ -90,16 +90,16 @@
 					<label for="sel1">Select a processor:</label>
 					<select class="form-control" id="select_processor">
 						@foreach($processors as $processor)
-							<option id="{{ $processor->processor_id }}">{{ $processor->processor_name }}</option>
+							<option processorid="{{ $processor->processor_id }}" >{{ $processor->processor_name }}</option>
 						@endforeach
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="processor_name">Sensor type:</label>
-					<input type="text" class="form-control" name="processor_name" placeholder="Processor name" required />	
+					<input type="text" class="form-control" id="sensor_type" placeholder="Processor name" required />
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" id="btn_addprocessor">Add</button>
+					<button type="button" class="btn btn-default" id="btn_addsensor">Add</button>
 				</div>
 			</form> 
 		  </div>

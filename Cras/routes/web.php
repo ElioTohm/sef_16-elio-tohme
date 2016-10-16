@@ -28,4 +28,5 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('rerendersection','Monitoring@rerenderSection');
 	Route::post('deleteprocessor','Monitoring@deleteProcessor');
 	Route::post('updateprocessor', 'Monitoring@updateProcessor');
+	Route::post('addsensor','Monitoring@addSensor');
 });
