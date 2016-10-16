@@ -123,4 +123,24 @@ class Monitoring extends Controller
         $sensor = new Sensor();
         $sensor->deleteSensor($data['sensor']);
     }
+
+    /*
+    * handles pagination for nav bar processor rendering only navbar_processorlist view 
+    */
+    public function paginationHandlerNavProcessor ()
+    {
+        $usersprocessor = $this->getProcessors();
+        return \View::make('navbar.navbar_processorlist')->with('processors', $usersprocessor)
+                                      ->render();
+    }
+
+    /*
+    * handles pagination for modal processor rendering only processor_modal view 
+    */
+    public function paginationHandlerModalProcessor ()
+    {
+        $usersprocessor = $this->getProcessors();
+        return \View::make('navbar.processor_modal')->with('processors', $usersprocessor)
+                                      ->render();
+    }
 }

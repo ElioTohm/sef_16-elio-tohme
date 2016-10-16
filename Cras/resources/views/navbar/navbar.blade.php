@@ -1,6 +1,4 @@
 @section('navbar')
-<!-- Style sheet -->
-
 <div id="sidebar">
 <div id="navbar" class="sidenav">
   <a class="menubtn" id="menubtn" ><span class="glyphicon glyphicon-menu-hamburger"></span></a>
@@ -9,15 +7,7 @@
 		<div>
 			<h6><b><u><a data-toggle="modal" data-target="#model_addprocessor">Processors</a></u></b></h6>
 		</div>
-		<div class="list-group">
-			@if (count($processors))
-				@foreach ($processors as $processor)
-					<a class="list-group-item active" processorid="{{ $processor->id }}"> 
-						{{ $processor->processor_name}}
-					</a>
-				@endforeach
-			@endif
-		</div>
+		@include('navbar.navbar_processorlist')
 	</div>	
   <!-- list of sensors -->
 	<div class="form-inline menusection">
@@ -38,37 +28,9 @@
 	</div>
 </div>
 <!-- Modal for procesors -->
-<div id="model_addprocessor" class="modal fade" role="dialog">
+<div id="model_addprocessor" class="modal fade in" role="dialog">
 	<div class="modal-dialog ">
-	<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Add a Processor</h4>
-			</div>
-			<div class="modal-body">
-				<form role="form" name="form_editprocessor">
-				    {{ csrf_field() }}
-					<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-					@each('navbar.processormodal', $processors, 'processor')
-				</form>
-				<form role="form" name="form_addnewprocessor">
-				    {{ csrf_field() }}
-					<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-					<div class="form-group">
-						<label for="processor_name">Processor name:</label>
-						<input type="text" class="form-control" id="processorname" name="processor_name" placeholder="Processor name" required />	
-					</div>
-					<div class="form-group">
-						<label for="mac">Mac address:</label>
-						<input type="text" class="form-control" id="mac" name="mac" placeholder="Device MAC address" required />	
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" id="btn_addprocessor">Add</button>
-					</div>
-				</form> 
-			</div>
-		</div>
+		@include('navbar.processor_modal')
 	</div>
 </div>
 

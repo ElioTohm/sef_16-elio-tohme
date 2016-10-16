@@ -30,4 +30,6 @@ Route::group(['middleware' => ['auth']], function()
 	Route::post('updateprocessor', 'Monitoring@updateProcessor');
 	Route::post('addsensor','Monitoring@addSensor');
 	Route::post('deletesensor','Monitoring@deleteSensor');
+	Route::get('paging_navprocessor','Monitoring@paginationHandlerNavProcessor');
+	Route::get('paging_modalprocessor','Monitoring@paginationHandlerModalProcessor');
 });

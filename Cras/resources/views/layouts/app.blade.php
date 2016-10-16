@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     
     <!-- Scripts -->
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>

@@ -1,3 +1,34 @@
+//pagination handling with ajax and laravel for navbar
+$(document).on('click', '#pagination_navbar > .pagination a', function(e) 
+	{
+		e.preventDefault();
+		
+		var page = $(this).attr('href').split('page=')[1];
+
+		$.ajax({
+			url: 'paging_navprocessor?page=' + page
+		}).done(function (data)
+		{
+			$('#processorslist').html(data);
+		});
+	});
+
+//pagination handling with ajax and laravel for modal processor
+$(document).on('click', '#pagination_modal > .pagination a', function(e) 
+	{
+		e.preventDefault();
+		
+		var page = $(this).attr('href').split('page=')[1];
+
+		$.ajax({
+			url: 'paging_modalprocessor?page=' + page
+		}).done(function (data)
+		{
+			$('#model_addprocessor').html(data);
+		});
+	});
+
+
 //animation for side menu
 $('#menubtn').click(function () 
 	{
@@ -191,6 +222,7 @@ $('#btn_addsensor').click(function ()
 			$("#sensor_type").addClass('alert alert-danger');
 		}
 	});
+
 //delete a sensor
 $('#deletesensor').click(function ()
 	{

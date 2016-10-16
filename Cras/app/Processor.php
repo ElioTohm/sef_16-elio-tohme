@@ -20,7 +20,7 @@ class Processor extends Model
     {
     	$processor  = Processor::where('user_id',\Auth::user()->id)
                ->orderBy('id')
-               ->get();
+               ->paginate(5);
 
         return $processor;
     }
