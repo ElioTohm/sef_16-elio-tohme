@@ -8,7 +8,7 @@ class Processor extends Model
 {
     function sensors ()
     {
-    	return $this->hasMany('Cras\Sensor', 'processor', 'processor_id');
+    	return $this->hasMany('Cras\Sensor', 'processor_id');
     }
 
     function user ()
@@ -19,7 +19,7 @@ class Processor extends Model
     function getUserProcessor ()
     {
     	$processor  = Processor::where('user_id',\Auth::user()->id)
-               ->orderBy('processor_id')
+               ->orderBy('id')
                ->get();
 
         return $processor;
@@ -28,14 +28,14 @@ class Processor extends Model
     function deleteUserProcessor ($id)
     {   
         Processor::where('user_id',\Auth::user()->id)
-            ->where('processor_id', $id)
+            ->where('id', $id)
             ->delete();
     }
 
     function updateuserProcessor ($id,$mac,$name)
     {
         Processor::where('user_id',\Auth::user()->id)
-            ->where('processor_id', $id)
+            ->where('id', $id)
             ->update(['mac' => $mac, 'processor_name' => $name]);
     }
 }

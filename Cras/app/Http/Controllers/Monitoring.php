@@ -98,9 +98,8 @@ class Monitoring extends Controller
     public function addSensor (Request $request)
     {
         $data = json_decode($request->getContent(),true);
-
         $sensor = new Sensor();
-        $sensor->processor = $data['processor'];
+        $sensor->processor_id = $data['processor'];
         $sensor->sensor_type = $data['type'];
         $sensor->save();
 

@@ -1,4 +1,4 @@
-<div class="form-group well" processorid="{{ $processor->processor_id }}">
+<div class="form-group well" processorid="{{ $processor->id }}">
 	<div class="row">
 		<div class="col-sm-5">
 			<input type="text" class="form-control" name="mac" value="{{ $processor->processor_name }}" disabled>
@@ -11,7 +11,7 @@
 			</select>	
 		</div>
 		<div class="col-sm-1">
-			<button type="button" class="btn btn-danger" processorid="{{ $processor->processor_id }}">
+			<button type="button" class="btn btn-danger" processorid="{{ $processor->id }}">
 				<span class="glyphicon glyphicon-trash">Delete</span>
 			</button>	
 		</div>

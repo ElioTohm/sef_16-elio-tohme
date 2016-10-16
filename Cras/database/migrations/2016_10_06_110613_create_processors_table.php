@@ -15,7 +15,7 @@ class CreateProcessorsTable extends Migration
     {
         Schema::create('processors', function(Blueprint $table)
         {
-            $table -> increments('processor_id');
+            $table -> increments('id');
             $table -> integer('user_id') -> unsigned();
             $table -> foreign('user_id')
                     -> references('id') -> on('users')

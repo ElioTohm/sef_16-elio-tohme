@@ -16,11 +16,12 @@ class CreateSensorsTable extends Migration
         Schema::create('sensors', function(Blueprint $table)
         {
             $table -> increments('sensor_id');
-            $table -> integer('processor') -> unsigned();
-            $table -> foreign('processor')
-                    -> references('processor_id') -> on('processors')
+            $table -> integer('processor_id') -> unsigned();
+            $table -> foreign('processor_id')
+                    -> references('id') -> on('processors')
                     -> onDelete('cascade');
             $table -> string('sensor_type');
+            $table -> timestamps();
         });
     }
 

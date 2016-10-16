@@ -12,7 +12,7 @@
 		<div class="list-group">
 			@if (count($processors))
 				@foreach ($processors as $processor)
-					<a class="list-group-item active" processorid="{{ $processor->processor_id }}"> 
+					<a class="list-group-item active" processorid="{{ $processor->id }}"> 
 						{{ $processor->processor_name}}
 					</a>
 				@endforeach
@@ -28,7 +28,7 @@
 			@if (count($processors))
 				@foreach ($processors as $processor)
 					@foreach ($processor->sensors as $sensor)
-						<a class="list-group-item active" processorid="{{ $processor->processor_id }}"  sensorid="{{ $sensor->sensor_id }}">
+						<a class="list-group-item active" processorid="{{ $processor->id }}"  sensorid="{{ $sensor->sensor_id }}">
 							{{ $sensor->sensor_type }}
 						</a>
 					@endforeach
@@ -63,10 +63,10 @@
 						<label for="mac">Mac address:</label>
 						<input type="text" class="form-control" id="mac" name="mac" placeholder="Device MAC address" required />	
 					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="btn_addprocessor">Add</button>
+					</div>
 				</form> 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" id="btn_addprocessor">Add</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
 					<label for="select_processor">Select a processor:</label>
 					<select class="form-control" processorselect>
 						@foreach($processors as $processor)
-							<option value="{{ $processor->processor_id }}" >{{ $processor->processor_name }}</option>
+							<option value="{{ $processor->id }}" >{{ $processor->processor_name }}</option>
 						@endforeach
 					</select>
 				</div>

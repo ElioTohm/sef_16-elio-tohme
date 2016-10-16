@@ -173,7 +173,18 @@ $('#btn_addsensor').click(function ()
 		        data: JSON.stringify(datasent),
 		        success:function(data) 
 		        {
-		        	alert(data);
+		        	if (data == '201') {
+						$('.close').click();
+					    $('.modal-backdrop').remove();
+						$.ajax({
+							type:'GET',
+					        url:'rerendersection',
+					        success:function (data)
+					        {
+					        	$('#sidebar').html(data);
+					        }
+						});
+					}
 		        }
 		    });
 		} else {
