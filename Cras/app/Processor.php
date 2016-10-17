@@ -25,6 +25,15 @@ class Processor extends Model
         return $processor;
     }
 
+    function getAllUserProcessors()
+    {
+        $processor  = Processor::where('user_id',\Auth::user()->id)
+               ->orderBy('id')
+               ->get();
+
+        return $processor;
+    }
+
     function deleteUserProcessor ($id)
     {   
         Processor::where('user_id',\Auth::user()->id)

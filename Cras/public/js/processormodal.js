@@ -45,7 +45,7 @@ $('#btn_addprocessor').click(function ()
 	});
 
 //ajax request to delete processors
-$('button.btn-danger[delete="processor"]').click(function(event) {
+$('button.btn-danger[delete="processor"]').click(function() {
     	var id = $(this).attr("processorid");
     	var datasent = {"id" : id};
 		var token = $('meta[name="csrf-token"]').attr('content');

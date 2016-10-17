@@ -46,9 +46,10 @@ $('#btn_addsensor').click(function ()
 	});
 
 //delete a sensor
-$('#deletesensor').click(function ()
+$('[delete=sensor]').click(function ()
 	{
-		var sensor = $('[sensorsselector] option:selected').attr('sensorid');
+		var processor = $(this).attr('processorid');
+		var sensor = $('[processorid='+processor+'] option:selected').attr('sensorid');
 		var datasent = {"sensor" : sensor};
 		var token = $('meta[name="csrf-token"]').attr('content');
 
@@ -70,4 +71,4 @@ $('#deletesensor').click(function ()
 	        	$('[sensorid='+ sensor +']').remove();
 	        }
 	    });
-	});
+	}); 

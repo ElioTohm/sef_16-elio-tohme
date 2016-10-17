@@ -5,14 +5,14 @@
 			<input type="text" processorid="{{ $processor->id }}" class="form-control" value="{{ $processor->processor_name }}" disabled>
 		</div>
 		<div class="col-sm-5">
-			<select class="form-control inline-inputselect" sensorsselector>
+			<select class="form-control inline-inputselect" processorid="{{ $processor->id }}">
 				@foreach ($processor->sensors as $sensor)
 					<option sensorid="{{ $sensor->sensor_id }}" selected>{{ $sensor->sensor_type }}</option>
 				@endforeach
 			</select>	
 		</div>
 		<div class="col-sm-1">
-			<button type="button" class="btn btn-danger" id="deletesensor" processorid="{{ $processor->id }}">
+			<button type="button" class="btn btn-danger" delete="sensor" processorid="{{ $processor->id }}">
 				<span class="glyphicon glyphicon-trash">Delete</span>
 			</button>	
 		</div>

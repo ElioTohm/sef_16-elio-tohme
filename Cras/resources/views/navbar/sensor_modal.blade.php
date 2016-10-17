@@ -15,8 +15,8 @@
 				<div class="form-group">
 					<label for="select_processor">Select a processor:</label>
 					<select class="form-control" processorselect>
-						@foreach($processors as $processor)
-							<option value="{{ $processor->id }}" >{{ $processor->processor_name }}</option>
+						@foreach($allusersprocessors as $allprocessor)
+							<option value="{{ $allprocessor->id }}" >{{ $allprocessor->processor_name }}</option>
 						@endforeach
 					</select>
 				</div>

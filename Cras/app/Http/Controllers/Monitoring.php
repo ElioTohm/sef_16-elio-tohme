@@ -20,8 +20,10 @@ class Monitoring extends Controller
     public function loadGraphs ()
     {
     	$usersprocessor = $this->getProcessors();
-    	return view('monitoring')->with('processors', $usersprocessor);
-    }
+        $allusersprocessors = $this->getAllProcessors();
+    	return view('monitoring')->with('processors', $usersprocessor)
+                                 ->with('allusersprocessors', $allusersprocessors);
+    }   
 
     /*
     * function reponsable for retreivin the information of the processors and sensors
@@ -33,6 +35,12 @@ class Monitoring extends Controller
     	$usersprocessor = $processor->getUserProcessor();
     	return $usersprocessor;
     }
+    private function getAllProcessors ()
+    {
+        $processor =  new Processor();
+        $allsprocessor = $processor->getAllUserProcessors();
+        return $allsprocessor;
+    }
 
     /*
     * returns section to ajax call to prevent refreshing the page 
@@ -41,7 +49,9 @@ class Monitoring extends Controller
     public function rerenderSection ()
     {
         $usersprocessor = $this->getProcessors();
+        $allusersprocessors = $this->getAllProcessors();
         $sections = view('monitoring')->with('processors', $usersprocessor)
+                                      ->with('allusersprocessors', $allusersprocessors)
                                       ->renderSections();
         return $sections['navbar'];
     }
