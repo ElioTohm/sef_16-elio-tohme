@@ -65,6 +65,7 @@ $('button.btn-danger[delete="processor"]').click(function(event) {
 	        success:function(data) 
 	        {
 	            $('[processorid='+ id +']').remove();
+	            $('[sensors_processor='+ id +']').remove();
 	        }
 	    });
     });

@@ -1,3 +1,4 @@
+@foreach( $processors as $processor)
 <div class="form-group well" processorid="{{ $processor->id }}">
 	<div class="row">
 		<div class="col-sm-5">
@@ -16,4 +17,8 @@
 			</button>	
 		</div>
 	</div>
+</div>
+@endforeach
+<div id="sensorpagination_modal">
+	{{ $processors->links() }}
 </div>

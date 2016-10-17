@@ -143,4 +143,24 @@ class Monitoring extends Controller
         return \View::make('navbar.processor_modal')->with('processors', $usersprocessor)
                                       ->render();
     }
+
+    /*
+    * handles pagination for nav bar processor rendering only navbar_processorlist view 
+    */
+    public function paginationHandlerNavSensor ()
+    {
+        $usersprocessor = $this->getProcessors();
+        return \View::make('navbar.sensorsinfo')->with('processors', $usersprocessor)
+                                      ->render();
+    }
+
+    /*
+    * handles pagination for modal processor rendering only processor_modal view 
+    */
+    public function paginationHandlerModalSensor ()
+    {
+        $usersprocessor = $this->getProcessors();
+        return \View::make('navbar.sensorsinfo')->with('processors', $usersprocessor)
+                                      ->render();
+    }
 }

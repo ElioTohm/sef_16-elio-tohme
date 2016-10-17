@@ -32,4 +32,6 @@ Route::group(['middleware' => ['auth']], function()
 	Route::post('deletesensor','Monitoring@deleteSensor');
 	Route::get('paging_navprocessor','Monitoring@paginationHandlerNavProcessor');
 	Route::get('paging_modalprocessor','Monitoring@paginationHandlerModalProcessor');
+	Route::get('paging_navsensor','Monitoring@paginationHandlerNavSensor');
+	Route::get('paging_modalsensor','Monitoring@paginationHandlerModalSensor');
 });

@@ -9,7 +9,9 @@
 			<form role="form" name="form_addnewsensor">
 			    {{ csrf_field() }}
 				<input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-					@each('navbar.sensorsinfo', $processors, 'processor')
+				<div id="sensorprocessor_pagination">
+					@include('navbar.sensorsinfo')
+				</div>
 				<div class="form-group">
 					<label for="select_processor">Select a processor:</label>
 					<select class="form-control" processorselect>

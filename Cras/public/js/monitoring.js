@@ -28,6 +28,22 @@ $(document).on('click', '#pagination_modal > .pagination a', function(e)
 		});
 	});
 
+//pagination handling with ajax and laravel for modal sensor
+$(document).on('click', '#sensorpagination_modal > .pagination a', function(e) 
+	{
+		e.preventDefault();
+		
+		var page = $(this).attr('href').split('page=')[1];
+
+		$.ajax({
+			url: 'paging_modalsensor?page=' + page
+		}).done(function (data)
+		{
+			$('#sensorprocessor_pagination').html(data);
+		});
+	});
+
+
 
 //animation for side menu
 $('#menubtn').click(function () 

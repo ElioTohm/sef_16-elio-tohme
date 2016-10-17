@@ -10,4 +10,6 @@ class Sensor extends Model
     {   
         Sensor::where('sensor_id', $sensorid)->delete();
     }
+
+    
 }
