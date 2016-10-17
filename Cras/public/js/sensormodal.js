@@ -2,7 +2,7 @@
 $('#btn_addsensor').click(function ()
 	{
 		if($("form[name=form_addnewsensor]")[0].checkValidity()) {
-			var processor = $('[processorselect] option:selected').val();
+			var processor = $('[processorselect] option:selected').attr('processorid');
 			var type = $('#sensor_type').val();	
 
 			var datasent = {
