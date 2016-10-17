@@ -5,7 +5,7 @@
 	  <!-- List of processors -->
 		<div class="form-inline menusection">
 			<div>
-				<h6><b><u><a data-toggle="modal" data-target="#model_addprocessor">Processors</a></u></b></h6>
+				<h6><b><u><a data-toggle="modal" data-target="#model_addprocessor">Nodes</a></u></b></h6>
 			</div>
 			@include('navbar.navbar_processorlist')
 		</div>	
@@ -14,18 +14,10 @@
 				<h6><b><u><a data-toggle="modal" data-target="#model_addsensors">Sensors</a></u></b></h6>
 			<div>
 			</div>
-			<div class="list-group">
-				@if (count($processors))
-					@foreach ($processors as $processor)
-						@foreach ($processor->sensors as $sensor)
-							<a class="list-group-item active" sensorid="{{ $sensor->sensor_id }}"
-							sensors_processor="{{$processor->id}}">
-								{{ $sensor->sensor_type }}
-							</a>
-						@endforeach
-					@endforeach
-				@endif
+			<div id="sensor_list">
+				@include('navbar.navbar_sensorslist')
 			</div>
+			
 		</div>
 	</div>
 	<!-- Modal for procesors -->

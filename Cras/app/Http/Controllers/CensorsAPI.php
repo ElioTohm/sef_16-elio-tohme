@@ -20,7 +20,6 @@ class CensorsAPI extends Controller
 	*/
 	protected $DATA;
 
-
     public function insertData (Request $request)
     {
     	if ($this->authenticateRequest($request) && $this->filterData($request)) {

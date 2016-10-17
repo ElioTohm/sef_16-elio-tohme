@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::post('crassensorservice', 'CensorsAPI@insertData');
 
+Route::post('getdata', 'GetData@readData');
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function()
@@ -32,9 +34,4 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('paging_modalprocessor','Monitoring@paginationHandlerModalProcessor');
 	Route::get('paging_navsensor','Monitoring@paginationHandlerNavSensor');
 	Route::get('paging_modalsensor','Monitoring@paginationHandlerModalSensor');
-});
-
-Route::group(['middleware' => ['auth']], function()
-{
-	
 });

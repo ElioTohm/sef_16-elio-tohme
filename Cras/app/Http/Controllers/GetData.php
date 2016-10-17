@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Cras\Http\Requests;
 
-use Cras\CensorData;
+use Cras\SensorData;
 
 class GetData extends Controller
 {
@@ -15,8 +15,12 @@ class GetData extends Controller
      */
     public function readData (Request $request)
     {
-    	$censorData =  new CensorData();
-    	$censorData->read();
+    	$data = json_decode($request->getContent(), true);
+    	
+    	$censorData =  new SensorData();
+    	$result = $censorData->getAllDataSensors($data['userid'],$data['fromtime'],$data['totime']);
+
+    	return $result;
     }
     
 }

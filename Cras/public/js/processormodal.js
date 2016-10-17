@@ -123,7 +123,7 @@ $('button.btn-default[processorid]').click(
 		        	$("input[processorid="+ id +"]").prop('disabled', true);
 		        	$("input[processorid="+ id +"]").val(processorname);
 		            $('a[processorid='+ id +']').html(processorname);
-		            $('option[value='+id+']').html(processorname);
+		            $('option[processorid='+id+']').html(processorname);
 		        }
 		    });
 		}

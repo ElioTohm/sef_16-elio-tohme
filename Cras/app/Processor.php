@@ -16,6 +16,12 @@ class Processor extends Model
     	return $this->belongsTo('Cras\User', 'user_id');
     }
 
+    // function getPagedSensors ()
+    // {
+    //     $sensors = $this->getAllUserProcessors()->paginate(4);
+    //     return $sensors;
+    // }
+
     function getUserProcessor ()
     {
     	$processor  = Processor::where('user_id',\Auth::user()->id)
