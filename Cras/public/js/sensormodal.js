@@ -67,7 +67,6 @@ $('#deletesensor').click(function ()
 	        data: JSON.stringify(datasent),
 	        success:function(data) 
 	        {
-	        	$('[sensor='+ sensor +']').remove();
 	        	$('[sensorid='+ sensor +']').remove();
 	        }
 	    });
