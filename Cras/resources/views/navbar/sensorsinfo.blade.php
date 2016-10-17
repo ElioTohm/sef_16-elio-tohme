@@ -1,12 +1,12 @@
 <div class="form-group well" processorid="{{ $processor->id }}">
 	<div class="row">
 		<div class="col-sm-5">
-			<input type="text" class="form-control" name="mac" value="{{ $processor->processor_name }}" disabled>
+			<input type="text" processorid="{{ $processor->id }}" class="form-control" value="{{ $processor->processor_name }}" disabled>
 		</div>
 		<div class="col-sm-5">
 			<select class="form-control inline-inputselect" sensorsselector>
 				@foreach ($processor->sensors as $sensor)
-					<option value="{{ $sensor->sensor_id }}" selected>{{ $sensor->sensor_type }}</option>
+					<option sensorid="{{ $sensor->sensor_id }}" selected>{{ $sensor->sensor_type }}</option>
 				@endforeach
 			</select>	
 		</div>
