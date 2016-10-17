@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 
 use Cras\Http\Requests;
 
-use Cras\CensorData;
-
-use Cras\Censor;
+use Cras\SensorData;
 
 use Cras\Processor;
 
@@ -22,12 +20,13 @@ class CensorsAPI extends Controller
 	*/
 	protected $DATA;
 
+
     public function insertData (Request $request)
     {
     	if ($this->authenticateRequest($request) && $this->filterData($request)) {
-    		$censorData =  new CensorData();
-    		$censorData->insert($this->DATA->{'userid'}, $this->DATA->{'timestamp'}, $this->DATA->{'value'});
-    	}
+    		$sensorData =  new SensorData();
+    		$sensorData->insert($this->DATA['userid'], $this->DATA['timestamp'], json_encode($this->DATA['value']));
+        }
     } 
 
     /**
@@ -37,16 +36,19 @@ class CensorsAPI extends Controller
     private function filterData ($request)
     {
     	// add timestamp to value to make it unique 
-    	$data = json_decode($request);
+    	$data = json_decode($request->getContent(), true);
     	if ($data !== NULL
-    			&& property_exists($data, 'userid') 
-    			&& property_exists($data, 'timestamp')	
-    			&& property_exists($data, 'value')) 
+    			&& array_key_exists('userid', $data) 
+    			&& array_key_exists('timestamp', $data)	
+    			&& array_key_exists('value', $data)) 
     	{
-	    	$value = $data->{'value'};
-	    	$censordata = json_decode($value);
+	    	$value = $data['value'];
+            $censordata = json_decode(json_encode($value),true);
 	    	if ($censordata !== NULL ) {
-	    		$this->DATA = $data;
+	    		$censordata["timestamp"] = $data['timestamp'];
+                $data['value'] = $censordata;
+                $this->DATA = $data;
+
 	    		return true;
 	    	} else {
 	    		return  false;
@@ -62,9 +64,21 @@ class CensorsAPI extends Controller
     */
     private function authenticateRequest ($request)
     {
-        $headers = apache_request_headers();
-        foreach ($headers as $key => $value) {
-            
+        $headers = getallheaders();
+
+        $user = new User();
+        $user_key = $user::where('api_key',$headers['user_auth'])
+                            ->select('id')
+                            ->first();
+
+        $processor = new Processor();
+        $node_key = $processor::where('auth_key', $headers['node_auth'])
+                                ->where('user_id', $user_key->id)
+                                ->get();
+        if(count($node_key) == 1){
+            return true;
+        } else {
+            return false;
         }
     }
 }

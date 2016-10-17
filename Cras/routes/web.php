@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('crassensorservice', 'CensorsAPI@insertData');
-
-Route::get('test', 'CensorsAPI@test');
+Route::post('crassensorservice', 'CensorsAPI@insertData');
 
 Auth::routes();
 
@@ -34,4 +32,9 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('paging_modalprocessor','Monitoring@paginationHandlerModalProcessor');
 	Route::get('paging_navsensor','Monitoring@paginationHandlerNavSensor');
 	Route::get('paging_modalsensor','Monitoring@paginationHandlerModalSensor');
+});
+
+Route::group(['middleware' => ['auth']], function()
+{
+	
 });
