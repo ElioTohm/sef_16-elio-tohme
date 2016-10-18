@@ -16,14 +16,15 @@
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
-    padding: 20px;
+    padding-bottom: 20px;
 }
 
 .sidenav .menusection {
     text-decoration: none;
     color: #818181;
     display: block;
-    transition: 0.5s
+    transition: 0.5s;
+    padding-top: 20px
 }
 
 .sidenav a:hover, .offcanvas a:focus{
