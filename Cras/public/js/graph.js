@@ -1,52 +1,57 @@
- $('#container').highcharts({
-            chart: {
-                    zoomType: 'x',
-                    
+/*
+* intialize time picker and bootstrap switch
+*/
+$('#timepicker_to').timepicker();
+$('#timepicker_from').timepicker();
+/*$("[name='live-checkbox']").bootstrapSwitch();
+
+$("[name='live-checkbox']").on('switchChange.bootstrapSwitch', function(event, state) 
+    {
+        if (state == true) {
+            $('#customgraph').hide();        
+        } else {
+            $('#customgraph').show();
+        }
+    });
+*/
+/*
+* function create chart using high chart library
+*/
+$('#creategraph').click(function () { 
+    var chart = Highcharts.chart('container', {
+
+         chart: {
+                type: 'spline',
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
                 events: {
                     load: function () {
                         // set up the updating of the chart each second
                         var series = this.series[0];
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
-                                y = Math.random();
+                                y = 2; //Math.random();
                             series.addPoint([x, y], true, true);
-                        }, 1000);
+                        }, 3000);
                     }
                 }
             },
-            title: {
-                text: 'Live random data'
-            },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150
-            },
-            yAxis: {
-                title: {
-                    text: 'Value'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                        Highcharts.numberFormat(this.y, 2);
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
-            series: [{
-                name: 'Random data',
-                data: (function () {
+
+        title: {
+            text: 'Chart.update'
+        },
+
+        subtitle: {
+            text: 'Plain'
+        },
+
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+
+        series: [{
+            name: 'Temperature',
+            data: (function () {
                     // generate an array of random data
                     var data = [],
                         time = (new Date()).getTime(),
@@ -55,10 +60,28 @@
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: Math.random()
+                            y: 1 
                         });
                     }
                     return data;
                 }())
-            }]
-        });
+        }]
+
+    });
+});
+
+
+/*
+* ajax request to fetch data
+*/
+function getNodeData() { 
+    $.ajax({
+        type: "POST",
+        url: "getdata",
+        data: "user=success",
+        success: function(msg){
+            $(msg).appendTo("#edix");
+        }
+    });
+    alert();
+}

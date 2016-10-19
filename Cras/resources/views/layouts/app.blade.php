@@ -18,6 +18,7 @@
     
     <!-- Scripts -->
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -81,7 +82,6 @@
         </div>
     </nav>
 
-
     <!-- content view for registration and loggin -->
     @yield('content')
 
@@ -92,7 +92,8 @@
     <!-- Weclome view -->
     @yield('welcome')
 
-    <!-- Scripts -->
+    <!-- main Scripts -->
     <script src={{ url ("/js/app.js")}} ></script>
+
 </body>
 </html>

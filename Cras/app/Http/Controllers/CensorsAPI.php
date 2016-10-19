@@ -25,6 +25,8 @@ class CensorsAPI extends Controller
     	if ($this->authenticateRequest($request) && $this->filterData($request)) {
     		$sensorData =  new SensorData();
     		$sensorData->insert($this->DATA['userid'], $this->DATA['timestamp'], json_encode($this->DATA['value']));
+        }else{
+            echo "401";
         }
     } 
 
@@ -65,19 +67,24 @@ class CensorsAPI extends Controller
     {
         $headers = getallheaders();
 
-        $user = new User();
-        $user_key = $user::where('api_key',$headers['user_auth'])
-                            ->select('id')
-                            ->first();
+        if (isset($headers['user_auth']) && isset($headers['node_auth'])) {
+            $user = new User();
+            $user_key = $user::where('api_key',$headers['user_auth'])
+                                ->select('id')
+                                ->first();
 
-        $processor = new Processor();
-        $node_key = $processor::where('auth_key', $headers['node_auth'])
-                                ->where('user_id', $user_key->id)
-                                ->get();
-        if(count($node_key) == 1){
-            return true;
+            $processor = new Processor();
+            $node_key = $processor::where('auth_key', $headers['node_auth'])
+                                    ->where('user_id', $user_key->id)
+                                    ->get();
+            if(count($node_key) == 1){
+                return true;
+            } else {
+                return false;
+            }    
         } else {
             return false;
         }
+        
     }
 }

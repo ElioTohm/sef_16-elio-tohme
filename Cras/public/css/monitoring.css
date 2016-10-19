@@ -1,7 +1,7 @@
 .sidenav {
     height: 100%;
     top:50px;
-    width: 250px;
+    width: 350px;
     position: fixed;
     background-color: #fff;
     overflow-x: hidden;
@@ -40,7 +40,7 @@
 }
 
 .main {
-	margin-left: 250px;
+	margin-left: 350px;
     transition: margin-left .5s;
     padding: 20px;
 }
