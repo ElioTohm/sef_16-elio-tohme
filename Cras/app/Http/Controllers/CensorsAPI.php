@@ -14,17 +14,19 @@ use Cras\User;
 
 class CensorsAPI extends Controller
 {
-	/**
-	* Class CensorsAPI will filter the data sent from the processors
-	* and insert them to redis through CensorData class 
-	*/
-	protected $DATA;
+    /**
+    * Class CensorsAPI will filter the data sent from the processors
+    * and insert them to redis through CensorData class 
+    */
+    protected $DATA;
 
     public function insertData (Request $request)
     {
-    	if ($this->authenticateRequest($request) && $this->filterData($request)) {
-    		$sensorData =  new SensorData();
-    		$sensorData->insert($this->DATA['userid'], $this->DATA['timestamp'], json_encode($this->DATA['value']));
+        if ($this->authenticateRequest($request) && $this->filterData($request)) {
+            $sensorData =  new SensorData();
+            $sensorData->insert($this->DATA['userid'], $this->DATA['timestamp'], json_encode($this->DATA['value']));
+
+            return "inserted for " . $this->DATA['userid'] . $this->DATA['timestamp'].$this->DATA['value'];
         }else{
             echo "401";
         }
@@ -36,27 +38,24 @@ class CensorsAPI extends Controller
     */
     private function filterData ($request)
     {
-    	// add timestamp to value to make it unique 
-    	$data = json_decode($request->getContent(), true);
-    	if ($data !== NULL
-    			&& array_key_exists('userid', $data) 
-    			&& array_key_exists('timestamp', $data)	
-    			&& array_key_exists('value', $data)) 
-    	{
-	    	$value = $data['value'];
+        // add timestamp to value to make it unique 
+        $data = json_decode($request->getContent(), true);
+        if ($data !== NULL
+                && array_key_exists('userid', $data) 
+                && array_key_exists('timestamp', $data) 
+                && array_key_exists('value', $data)) 
+        {
+            $value = $data['value'];
             $censordata = json_decode(json_encode($value),true);
-	    	if ($censordata !== NULL ) {
-	    		$censordata["timestamp"] = $data['timestamp'];
-                $data['value'] = $censordata;
+            if ($censordata !== NULL ) {
                 $this->DATA = $data;
-
-	    		return true;
-	    	} else {
-	    		return  false;
-	    	}
-    	} else {
-    		return false;
-    	}
+                return true;
+            } else {
+                return  false;
+            }
+        } else {
+            return false;
+        }
     }
 
     /**

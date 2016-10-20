@@ -17,12 +17,11 @@ Route::get('/', function () {
 
 Route::post('crassensorservice', 'CensorsAPI@insertData');
 
-Route::post('getdata', 'GetData@readData');
-
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function()
 {
+	Route::post('getdata', 'GetData@readData');
 	Route::get('monitoring', 'Monitoring@loadGraphs');
 	Route::post('addprocessor', 'Monitoring@addProcessor');
 	Route::get('rerendersection','Monitoring@rerenderSection');

@@ -25,17 +25,8 @@ class SensorData extends Model
     function getAllDataSensors ($userid,$fromtime,$totime)
     {
     	$redis = Redis::connection();
-    	$result = $redis->zRangeByScore($userid, $fromtime, $totime, array('withscores' => TRUE));
+    	$result = $redis->zRange($userid, $fromtime, $totime);
     	return $result;
-    }
-
-    /*
-    * filter result to get specific node data or sensor data
-    * or a filter on both
-    */
-    function filterData ($processor = NULL, $sensor = NULL)
-    {
-        
     }
 
 }

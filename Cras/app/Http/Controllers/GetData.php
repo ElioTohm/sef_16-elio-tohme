@@ -17,8 +17,8 @@ class GetData extends Controller
     {
     	$data = json_decode($request->getContent(), true);
     	
-    	$censorData =  new SensorData();
-    	$result = $censorData->getAllDataSensors($data['userid'],$data['fromtime'],$data['totime']);
+    	$sensorData =  new SensorData();
+    	$result = $sensorData->getAllDataSensors(\Auth::user()->id,$data['fromtime'],$data['totime']);
 
     	return $result;
     }
