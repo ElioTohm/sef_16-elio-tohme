@@ -3,49 +3,44 @@
 */
 $('#timepicker_to').timepicker();
 $('#timepicker_from').timepicker();
-var Graphdata = [];
 /*
 * function create chart using high chart library
 */
 $('#creategraph').click(function () { 
+    var array = [];
+
+    var charttype = $("#charttype").val();
+    
+    getNodeData(array);
+
     var chart = Highcharts.chart('container', {
 
          chart: {
-                type: 'spline',
+                type: charttype,
                 animation: Highcharts.svg, // don't animate in old IE
                 marginRight: 10,
-                // events: {
-                //     load: function () {
-                //         // set up the updating of the chart each second
-                //         var series = this.series[0];
-                //         setInterval(function () {
-                //             var x = (new Date()).getTime(), // current time
-                //                 y = Math.random();
-                //             series.addPoint([x, y], true, true);
-                //         }, 3000);
-                //     }
-                // }
             },
 
         title: {
-            text: 'Chart.update'
+            text: 'Node 1'
         },
-
-        subtitle: {
-            text: 'Plain'
-        },
-
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-
         series: [{
-            name: 'Temperature',
-            data: (function () {
+                name: 'node',
+                data: (function () {
                     // generate an array of random data
-                    getNodeData();
+                    var data = [];
+
+                    for(var key in array){
+                        data.push(array[key]);
+                    }
+                    return data;
                 }())
-        }]
+            }],
+        tooltip: {
+                formatter: function () {
+                    return Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
+                }
+            },
 
     });
 });
@@ -54,7 +49,7 @@ $('#creategraph').click(function () {
 /*
 * ajax request to fetch data
 */
-function getNodeData() { 
+function getNodeData(array) { 
     
     var token = $('meta[name="csrf-token"]').attr('content');
     $.ajaxSetup({
@@ -62,19 +57,23 @@ function getNodeData() {
         'X-CSRF-TOKEN': token
       }
     });
+
     $.ajax({
         type: "POST",
         url: "getdata",
+        async: false,
         data: JSON.stringify({
                 "fromtime" : 0,
-                "totime" : 10,
+                "totime" : 30,
             }),
         success: function(data){
-            $parsedData = JSON.parse(data);
-            for (var k in parsedData){
-                Graphdata.push([k,data]);
-            }
-            alert(Graphdata);
+            var result = data.result;
+            for (var key in result) {
+                var object = JSON.parse(result[key]);
+                array.push([object.timestamp,parseInt(object.measurement)]);
+            }          
+            return array;
         }
     });
+
 }

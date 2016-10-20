@@ -26,7 +26,8 @@ class SensorData extends Model
     {
     	$redis = Redis::connection();
     	$result = $redis->zRange($userid, $fromtime, $totime);
-    	return $result;
+        
+        return response()->json(array('result'=>$result),200);
     }
 
 }
