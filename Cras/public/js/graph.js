@@ -3,17 +3,7 @@
 */
 $('#timepicker_to').timepicker();
 $('#timepicker_from').timepicker();
-/*$("[name='live-checkbox']").bootstrapSwitch();
-
-$("[name='live-checkbox']").on('switchChange.bootstrapSwitch', function(event, state) 
-    {
-        if (state == true) {
-            $('#customgraph').hide();        
-        } else {
-            $('#customgraph').show();
-        }
-    });
-*/
+var Graphdata = [];
 /*
 * function create chart using high chart library
 */
@@ -54,9 +44,6 @@ $('#creategraph').click(function () {
             data: (function () {
                     // generate an array of random data
                     getNodeData();
-                    var data = 
-                    [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[0,0]];
-                    return data;
                 }())
         }]
 
@@ -82,8 +69,12 @@ function getNodeData() {
                 "fromtime" : 0,
                 "totime" : 10,
             }),
-        success: function(lol){
-            alert(lol);
+        success: function(data){
+            $parsedData = JSON.parse(data);
+            for (var k in parsedData){
+                Graphdata.push([k,data]);
+            }
+            alert(Graphdata);
         }
     });
 }

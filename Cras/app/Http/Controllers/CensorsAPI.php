@@ -25,8 +25,6 @@ class CensorsAPI extends Controller
         if ($this->authenticateRequest($request) && $this->filterData($request)) {
             $sensorData =  new SensorData();
             $sensorData->insert($this->DATA['userid'], $this->DATA['timestamp'], json_encode($this->DATA['value']));
-
-            return "inserted for " . $this->DATA['userid'] . $this->DATA['timestamp'].$this->DATA['value'];
         }else{
             echo "401";
         }
