@@ -6,6 +6,4 @@ require_once "config.php";
 // $post = new PostRequest();
 
 $request = new RequestListener($_REQUEST);
-$sensorType = $request->SENSORTYPE;
-$sensorValue = $request->SENSORVALUE;
-$post = new PostRequest($sensorType, $sensorValue);
+$post = new PostRequest($request->SENSORTYPE, $request->SENSORVALUE);
