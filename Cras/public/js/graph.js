@@ -22,25 +22,31 @@ $('#creategraph').click(function () {
             },
 
         title: {
-            text: 'Node 1'
+            text: 'Chart.update'
         },
+
+        subtitle: {
+            text: 'Plain'
+        },
+
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+
         series: [{
-                name: 'node',
+                name: 'Random data',
                 data: (function () {
                     // generate an array of random data
                     var data = [];
 
                     for(var key in array){
                         data.push(array[key]);
+                        console.log(array[key]);
                     }
+
                     return data;
                 }())
-            }],
-        tooltip: {
-                formatter: function () {
-                    return Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
-                }
-            },
+            }]
 
     });
 });
@@ -64,13 +70,13 @@ function getNodeData(array) {
         async: false,
         data: JSON.stringify({
                 "fromtime" : 0,
-                "totime" : 30,
+                "totime" : 1000,
             }),
         success: function(data){
             var result = data.result;
             for (var key in result) {
                 var object = JSON.parse(result[key]);
-                array.push([object.timestamp,parseInt(object.measurement)]);
+                array.push([parseInt(object.timestamp),parseInt(object.measurement)]);
             }          
             return array;
         }

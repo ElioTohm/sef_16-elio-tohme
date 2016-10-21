@@ -29,8 +29,7 @@
 			<b><u>
 			<h8>Graph</h8>
 			</b></u>
-			<!-- <input type="checkbox" name="live-checkbox" data-on-text="Off" data-on-color="default" data-off-text="On" data-off-color="primary"
-			data-size="mini"  data-label-text="Live" data-label-width="auto"> -->
+				
 			<div id="sensor_list">
 				@include('navbar.graph_manipulation_section')
 			</div>
